@@ -1,0 +1,88 @@
+.section-offer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.section-main {
+  width: 67%;
+}
+
+.section-sidebar {
+  width: 33%;
+}
+
+.section-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-description {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #cad1d9;
+}
+
+.section-description div:first-child {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.section-description p {
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.gallery-container {
+  height: 392px;
+  background: #d7d0d0;
+}
+
+.section-card-body {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 1.3rem;
+}
+
+.section-card-body h1 {
+  font-size: 24px;
+  line-height: 31px;
+  font-weight: 600;
+}
+
+.section-card-body span {
+  font-size: 20px;
+  line-height: 30px;
+  color: #f56b2a;
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+
+.section-card-body div {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.section-sidebar {
+  margin-left: 2rem;
+}
+
+.contact-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contact-card svg {
+  width: 60px;
+  height: 60px;
+}
+
+.contact-card .user {
+  margin-left: 10px;
+  font-weight: 700;
+  color: #1a1a1a;
+}

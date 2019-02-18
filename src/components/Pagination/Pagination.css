@@ -1,0 +1,15 @@
+.pagination {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pagination span {
+  padding: 8px;
+}
+
+.pagination .active {
+  background-color: #f46a2a;
+}

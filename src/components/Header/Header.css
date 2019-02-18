@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60px;
+  background-color: #f56b2a;
+  color: #fff;
+}
+
+.header a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%; /* really important otherwise, this flex does not work */
+}
+
+.account-panel {
+  display: flex;
+  flex-direction: row;
+}
+
+.account-panel a:nth-child(1) {
+  padding-right: 16px;
+}
+
+.flex a:nth-child(2) {
+  padding-left: 16px;
+}
+
+.flex a:nth-child(3) {
+  flex-grow: 1;
+  padding-left: 16px;
+}

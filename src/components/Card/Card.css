@@ -1,0 +1,63 @@
+.card {
+  position: relative;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0.2s ease-in;
+  box-shadow: 1px 1px 8px 1px #e6ebef;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 8px 1px #cad1d9;
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+
+.card:hover .card-title {
+  color: #f56b2a;
+}
+
+.card-body {
+  display: flex;
+  position: relative;
+  padding: 0;
+  z-index: 0;
+  width: 100%;
+  min-height: 12rem;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+.card .img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: 10px;
+  height: 172px;
+  width: 230px;
+  background: #fafafa;
+}
+
+.card-content {
+  position: relative;
+  padding: 1.2rem;
+  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  transition: 0.3s;
+}
+
+.card-price {
+  color: #f56b2a;
+}
