@@ -1,8 +1,26 @@
 .filters-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 60px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #cad1d9;
   background: #e6ebef;
+}
+
+.filters-container form {
+  max-width: 1024px;
+  width: 1024px;
+}
+
+.search {
+  display: flex;
+}
+
+.price-range select {
+  display: inline-block;
+  width: 49%;
+  /* background: #fff url(/42c142d….png) no-repeat 100%; */
+  background: #fff;
+  height: 24px;
+  border: 1px solid #cad1d9;
+  border-radius: 4px;
 }
