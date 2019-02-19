@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import "./LogIn.css";
+
 const urlPost = "https://leboncoin-api.herokuapp.com/api/user/log_in";
 
 class LogIn extends Component {
@@ -42,11 +44,11 @@ class LogIn extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="wrapper">
+      <div className="wrapper connection">
         <div className="sign-in-flex">
           <section>
             <h1>Connexion</h1>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="form">
               <div className="form-item">
                 <label htmlFor="email">Adresse email</label>
                 <input
@@ -54,6 +56,7 @@ class LogIn extends Component {
                   name="email"
                   value={email}
                   onChange={this.handleChange}
+                  placeholder="johndoe@gmail.com"
                 />
               </div>
 

@@ -1,0 +1,56 @@
+.connection {
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.connection section {
+  margin: 0 auto;
+  max-width: 430px;
+}
+
+.connection h1 {
+  font-size: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 2px solid #f56b2a;
+}
+
+.sign-in-flex {
+  padding: 2.5rem;
+}
+
+.form {
+  margin-bottom: 26px;
+}
+
+.create-account-redirect {
+  padding: 1.5rem 0;
+  border-top: 1px solid #cad1d9;
+  text-align: center;
+}
+
+.create-account-redirect p {
+  padding-bottom: 16px;
+}
+
+.connection .btn {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 600;
+  background-color: transparent;
+  border: 1px solid #4183d7;
+  border-radius: 4px;
+  color: #4183d7;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.connection .btn:hover {
+  background-color: rgba(51, 102, 153, 0.1);
+}
