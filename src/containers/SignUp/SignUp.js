@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import "./SignUp.css";
+
+const urlPost = "https://leboncoin-api.herokuapp.com/api/user/sign_up";
 
 class SignUp extends Component {
   state = {
@@ -9,6 +12,17 @@ class SignUp extends Component {
     password: "",
     confirmPassword: ""
   };
+
+  createAccount(newUser) {
+    axios
+      .post(urlPost, newUser)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
   handleChange = event => {
     const name = event.target.name;
@@ -28,6 +42,11 @@ class SignUp extends Component {
 
     if (username && email && password && confirmPassword) {
       if (password === confirmPassword) {
+        this.createAccount({
+          email: this.state.email,
+          username: this.state.username,
+          password: this.state.password
+        });
         console.log("Success");
       } else {
         console.log("the passwords are not similar");
