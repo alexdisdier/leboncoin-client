@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 import Loading from "../../components/Loading/Loading";
 
@@ -14,7 +14,7 @@ class Offer extends Component {
 
   async componentDidMount() {
     try {
-      const response = await Axios.get(
+      const response = await axios.get(
         "https://leboncoin-api.herokuapp.com/api/offer/" +
           this.props.match.params.offerId
       );
@@ -64,6 +64,7 @@ class Offer extends Component {
             <div className="contact-card">
               <div>{profileImg}</div>
               <div className="user">{creator.account.username}</div>
+              <div className="phone">{creator.account.phone}</div>
             </div>
           </div>
         </section>

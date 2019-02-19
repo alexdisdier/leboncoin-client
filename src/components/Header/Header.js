@@ -8,11 +8,11 @@ const header = props => {
     <header className="header">
       <div className="wrapper flex">
         <a href="https://alexdisdier.fr">logo</a>
-        <Button to="/advertise">Déposer une annonce</Button>
-        <Button to="/home">offres</Button>
+        <Button to="/publish">Déposer une annonce</Button>
+        <Button to="/">offres</Button>
         <div className="account-panel">
           <Button to="/login">Se connecter</Button>
-          <Button to="/account">Créer un compte</Button>
+          <Button to="/signup">Créer un compte</Button>
         </div>
       </div>
     </header>

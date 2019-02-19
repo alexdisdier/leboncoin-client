@@ -8,8 +8,15 @@
 
 .pagination span {
   padding: 8px;
+  cursor: pointer;
 }
 
 .pagination .active {
   background-color: #f46a2a;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.pagination svg {
+  width: 14px;
 }

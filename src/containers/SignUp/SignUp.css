@@ -1,0 +1,29 @@
+.sign-up-page {
+  box-shadow: 0 0 5px 0 #ddd;
+  padding: 3rem 6rem;
+  margin-top: 2rem;
+}
+
+.sign-up-page svg {
+  width: 24px;
+}
+
+.sign-up-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.sign-up-flex-left {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 1.5rem;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-item {
+  padding: 16px;
+}
