@@ -42,7 +42,11 @@ class App extends Component {
               render={props => <Offer {...props} />}
             />
             <Route path="/SignUp" render={props => <SignUp {...props} />} />
-            <Route path="/LogIn" render={props => <LogIn {...props} />} />
+            <Route
+              path="/LogIn"
+              render={props => <LogIn {...props} />}
+              setUserId={this.setUserId}
+            />
             <Route path="/Publish" render={props => <Publish {...props} />} />
           </Switch>
         </>

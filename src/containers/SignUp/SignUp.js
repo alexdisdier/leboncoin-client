@@ -10,18 +10,15 @@ class SignUp extends Component {
     username: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    error: null
   };
 
   createAccount(newUser) {
     axios
       .post(urlPost, newUser)
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   }
 
   handleChange = event => {
