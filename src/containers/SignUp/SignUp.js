@@ -4,7 +4,37 @@ import "./SignUp.css";
 
 class SignUp extends Component {
   state = {
-    default: null
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  };
+
+  handleChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    const stateToUpdate = {};
+
+    stateToUpdate[name] = value;
+
+    this.setState(stateToUpdate);
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const { username, email, password, confirmPassword } = this.state;
+
+    if (username && email && password && confirmPassword) {
+      if (password === confirmPassword) {
+        console.log("Success");
+      } else {
+        console.log("the passwords are not similar");
+      }
+    } else {
+      console.log("you're missing one field");
+    }
   };
 
   render() {
@@ -27,6 +57,8 @@ class SignUp extends Component {
         <path d="M12 3.5A12.92 12.92 0 0 0 0 12a12.92 12.92 0 0 0 12 8.5A12.92 12.92 0 0 0 24 12a12.92 12.92 0 0 0-12-8.5zm0 14.17A5.56 5.56 0 0 1 6.55 12 5.56 5.56 0 0 1 12 6.33 5.56 5.56 0 0 1 17.45 12 5.56 5.56 0 0 1 12 17.67z" />
       </svg>
     );
+
+    const { username, email, password, confirmPassword } = this.state;
 
     return (
       <div className="wrapper">
@@ -71,33 +103,53 @@ class SignUp extends Component {
             <div className="sign-up-flex-right">
               <section>
                 <h1>Créez un compte</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                   <div className="form-item">
-                    <label for="pseudo">Pseudo *</label>
-                    <input type="text" name="pseudo" value="" />
+                    <label htmlFor="username">username *</label>
+                    <input
+                      type="text"
+                      name="username"
+                      value={username}
+                      onChange={this.handleChange}
+                    />
                   </div>
 
                   <div className="form-item">
-                    <label for="email">Adresse email *</label>
-                    <input type="email" name="email" value="" />
+                    <label htmlFor="email">Adresse email *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={this.handleChange}
+                    />
                   </div>
 
-                  <div className="form-password">
+                  <div className="form-item form-password">
                     <div className="form-item">
-                      <label for="password">Mot de passe *</label>
-                      <input type="password" name="password" value="" />
+                      <label htmlFor="password">Mot de passe *</label>
+                      <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={this.handleChange}
+                      />
                     </div>
                     <div className="form-item">
-                      <label for="confirmPassword">
+                      <label htmlFor="confirmPassword">
                         Confirmer le mot de passe *
                       </label>
-                      <input type="password" name="confirmPassword" value="" />
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        value={confirmPassword}
+                        onChange={this.handleChange}
+                      />
                     </div>
                   </div>
 
                   <div className="form-checkbox">
                     <input type="checkbox" name="newsletter" />
-                    <label for="newsletter">
+                    <label htmlFor="newsletter">
                       Je souhaite recevoir des offres des partenaires du site
                       leboncoin susceptibles de m’intéresser
                     </label>
@@ -105,7 +157,7 @@ class SignUp extends Component {
 
                   <div className="form-checkbox">
                     <input type="checkbox" name="legal" />
-                    <label for="legal">
+                    <label htmlFor="legal">
                       "&nbsp;J'accepte les&nbsp;
                       <span>Conditions Générales de Vente</span>"
                     </label>

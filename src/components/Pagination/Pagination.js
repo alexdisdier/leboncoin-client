@@ -4,8 +4,6 @@ import "./Pagination.css";
 
 const pagination = props => {
   const { totalPages, currentPage, goToPage } = props;
-  console.log("totalPages", totalPages);
-  console.log("currentPage", currentPage);
 
   const pages = [];
 
