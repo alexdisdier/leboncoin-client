@@ -29,7 +29,13 @@ class LogIn extends Component {
         email: this.state.email,
         password: this.state.password
       })
-      .then(response => console.log(response))
+      .then(response => {
+        const id = response.data._id;
+        const token = response.data.token;
+        const username = response.data.account.username;
+        this.props.setUserId(id, token, username);
+        console.log("success, check cookies");
+      })
       .catch(error => console.log(error));
   };
 
