@@ -45,29 +45,31 @@ class Offer extends Component {
         </svg>
       );
       return (
-        <section className="wrapper section-offer">
-          <div className="section-main">
-            <div className="section-card">
-              <div className="gallery-container" />
-              <div className="section-card-body">
-                <h1>{title}</h1>
-                <span>{price}&nbsp;€</span>
-                <div>{created}</div>
+        <div className="wrapper">
+          <section className="section-offer">
+            <div className="section-main">
+              <div className="section-card">
+                <div className="gallery-container" />
+                <div className="section-card-body">
+                  <h1>{title}</h1>
+                  <span>{price}&nbsp;€</span>
+                  <div>{created}</div>
+                </div>
+              </div>
+              <div className="section-description">
+                <div>Description</div>
+                <p>{description}</p>
               </div>
             </div>
-            <div className="section-description">
-              <div>Description</div>
-              <p>{description}</p>
+            <div className="section-sidebar">
+              <div className="contact-card">
+                <div>{profileImg}</div>
+                <div className="user">{creator.account.username}</div>
+                <div className="phone">{creator.account.phone}</div>
+              </div>
             </div>
-          </div>
-          <div className="section-sidebar">
-            <div className="contact-card">
-              <div>{profileImg}</div>
-              <div className="user">{creator.account.username}</div>
-              <div className="phone">{creator.account.phone}</div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       );
     } else if (isLoading && error === null) {
       return <Loading />;

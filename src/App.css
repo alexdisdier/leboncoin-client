@@ -6,6 +6,15 @@ body {
 
 .wrapper {
   max-width: 1024px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+header,
+.filters-container,
+.homepage ul,
+.section-offer {
+  padding-left: 16px;
+  padding-right: 16px;
 }

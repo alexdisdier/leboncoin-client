@@ -13,18 +13,18 @@ const filters = props => {
               value=""
               placeholder="Que recherchez-vous?"
             />
-            <button>Rechercher</button>
+            <button type="submit">Rechercher</button>
           </div>
           <div className="filters">
             <div className="price-range">
-              <label htmlFor="price">Prix entre</label>
+              <label htmlFor="price">Prix&nbsp;entre</label>
               <select>
                 <option>Prix min</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
               </select>
-              et
+              <span>et</span>
               <select>
                 <option>Prix max</option>
                 <option value="10">10</option>

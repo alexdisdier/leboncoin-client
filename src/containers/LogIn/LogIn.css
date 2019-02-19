@@ -19,6 +19,7 @@
 
 .sign-in-flex {
   padding: 2.5rem;
+  box-shadow: 1px 1px 8px 1px #e6ebef;
 }
 
 .form {
