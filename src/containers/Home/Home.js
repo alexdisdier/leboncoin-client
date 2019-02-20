@@ -9,6 +9,9 @@ import Loading from "../../components/Loading/Loading";
 
 import "./Home.css";
 
+// const urlFilterPrice =
+//   "https://leboncoin-api.herokuapp.com/api/offer/with-count?title=ordinateur&priceMax=200";
+
 class Home extends Component {
   state = {
     offers: [],
@@ -16,6 +19,12 @@ class Home extends Component {
     limit: 25,
     totalPages: 0,
     currentPage: 1,
+
+    title: "",
+    minPrice: "",
+    maxPrice: "",
+    sort: "",
+
     isLoading: true,
     error: null
   };
@@ -45,6 +54,58 @@ class Home extends Component {
       this.setState({
         error: "An error occurred"
       });
+    }
+  };
+
+  handleFilters = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    const stateToUpdate = {};
+
+    stateToUpdate[name] = value;
+
+    this.setState(stateToUpdate);
+  };
+
+  searchFilters = async criteria => {
+    try {
+      const response = await axios.get(
+        `https://leboncoin-api.herokuapp.com/api/offer/with-count?title=${
+          criteria.title
+        }`
+      );
+      const offers = response.data.offers;
+      const count = response.data.count;
+      this.setState({
+        offers: offers,
+        count: count
+      });
+    } catch (error) {
+      this.setState({
+        error: "An error occured"
+      });
+    }
+  };
+
+  submitFilters = event => {
+    event.preventDefault();
+
+    const criteria = {
+      title: this.state.title,
+      minPrice: this.state.minPrice,
+      maxPrice: this.state.maxPrice,
+      sort: this.state.sort
+    };
+
+    const keys = Object.values(criteria);
+
+    // Checks if a value exists
+    const notEmpty = keys.filter(value => value !== "").length > 0;
+
+    if (notEmpty) {
+      this.searchFilters(criteria);
+    } else {
+      console.log("nothing");
     }
   };
 
@@ -83,9 +144,18 @@ class Home extends Component {
   }
 
   render() {
+    const { title, minPrice, maxPrice, sort } = this.state;
     return (
       <>
-        <Filters />
+        <Filters
+          title={title}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          sort={sort}
+          // filters={this.state.filters}
+          handleFilters={this.handleFilters}
+          submitFilters={this.submitFilters}
+        />
 
         {this.renderMain()}
       </>
