@@ -1,39 +1,43 @@
 import React from "react";
 import Button from "./Button/Button";
+import { ReactComponent as Logo } from "../../assets/img/logo.svg";
 
 import "./Header.css";
 
 const header = props => {
   const { token, username } = props;
+
+  let renderNav;
+
   const logOut = (
     <>
-      <Button to="/login">Se connecter</Button>
-      <Button to="/signup">Créer un compte</Button>
+      <Button to="/log_in">Se connecter</Button>
+      <Button to="/sign_up">Créer un compte</Button>
     </>
   );
 
   const logIn = (
     <>
-      <span>{username} est connecté</span>
-      <button onClick={() => props.endSession()}>Se déconnecter</button>
+      <span>Hello {username}</span>
+      <button onClick={() => props.logOut()}>Se déconnecter</button>
     </>
   );
 
-  let display;
-
-  if (token !== null && username !== null) {
-    display = logIn;
+  if (token) {
+    renderNav = logIn;
   } else {
-    display = logOut;
+    renderNav = logOut;
   }
 
   return (
     <header className="header">
       <div className="wrapper flex">
-        <a href="https://alexdisdier.fr">logo</a>
+        <a href="https://alexdisdier.fr">
+          <Logo />
+        </a>
         <Button to="/publish">Déposer une annonce</Button>
         <Button to="/">offres</Button>
-        <div className="account-panel">{display}</div>
+        <div className="account-panel">{renderNav}</div>
       </div>
     </header>
   );

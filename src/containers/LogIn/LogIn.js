@@ -4,8 +4,6 @@ import axios from "axios";
 
 import "./LogIn.css";
 
-const urlPost = "https://leboncoin-api.herokuapp.com/api/user/log_in";
-
 class LogIn extends Component {
   state = {
     email: "",
@@ -14,31 +12,29 @@ class LogIn extends Component {
   };
 
   handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    const stateToUpdate = {};
-
-    stateToUpdate[name] = value;
-
-    this.setState(stateToUpdate);
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
-    axios
-      .post(urlPost, {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(response => {
-        const id = response.data._id;
-        const token = response.data.token;
-        const username = response.data.account.username;
-        this.props.setUserId(id, token, username);
+    try {
+      const response = await axios.post(
+        "https://leboncoin-api.herokuapp.com/api/user/log_in",
+        {
+          email: this.state.email,
+          password: this.state.password
+        }
+      );
+      if (response.data.token) {
+        this.props.setUser(response.data);
+        this.props.history.push("/");
         console.log("success, check cookies");
-      })
-      .catch(error => console.log(error));
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   render() {

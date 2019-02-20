@@ -9,9 +9,6 @@ import Loading from "../../components/Loading/Loading";
 
 import "./Home.css";
 
-// const urlFilterPrice =
-//   "https://leboncoin-api.herokuapp.com/api/offer/with-count?title=ordinateur&priceMax=200";
-
 class Home extends Component {
   state = {
     offers: [],
@@ -71,12 +68,14 @@ class Home extends Component {
     console.log(criteria);
     try {
       if (criteria !== undefined) {
+        let maxPrice = "";
+        if (criteria.maxPrice !== "") {
+          maxPrice = "&priceMax=" + criteria.maxPrice;
+        }
         const response = await axios.get(
           `https://leboncoin-api.herokuapp.com/api/offer/with-count?title=${
             criteria.title
-          }&priceMin=${criteria.minPrice}&priceMax=${criteria.maxPrice}&sort=${
-            criteria.sort
-          }`
+          }&priceMin=${criteria.minPrice}${maxPrice}&sort=${criteria.sort}`
         );
         const offers = response.data.offers;
         const count = response.data.count;

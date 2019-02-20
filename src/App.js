@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 
 import Header from "./components/Header/Header";
@@ -20,34 +15,44 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    userId: Cookies.get("userId") || null,
     token: Cookies.get("token") || null,
-    username: Cookies.get("username") || null,
-    redirect: false
+    username: Cookies.get("username") || null
   };
 
-  setUserId = (id, token, username) => {
-    Cookies.set("userId", id);
-    Cookies.set("token", token);
-    Cookies.set("username", username);
+  setUser = user => {
+    if (user) {
+      const { token, account } = user;
+      this.setState({
+        token: token,
+        username: account.username
+      });
+
+      Cookies.set("token", token);
+      Cookies.set("username", account.username);
+    } else {
+      console.log("no user was passed in setUser()");
+    }
+  };
+
+  getUser = () => {
+    if (this.state.token) {
+      return {
+        token: this.state.token,
+        username: this.state.username
+      };
+    } else {
+      console.log("getUser() does not find a user, check token");
+    }
+  };
+
+  logOut = () => {
     this.setState({
-      userId: Cookies.get("userId"),
-      token: Cookies.get("token"),
-      username: Cookies.get("username"),
-      redirect: true
+      token: null,
+      username: null
     });
-  };
 
-  endSession = () => {
-    Cookies.remove("userId");
     Cookies.remove("token");
     Cookies.remove("username");
-    this.setState({
-      userId: null,
-      token: null,
-      username: null,
-      redirect: true
-    });
   };
 
   render() {
@@ -56,32 +61,39 @@ class App extends Component {
         <>
           <Header
             token={this.state.token}
-            endSession={this.endSession}
+            logOut={this.logOut}
             username={this.state.username}
           />
           <Switch>
             <Route
               exact={true}
               path="/"
-              render={props => <Home {...props} />}
+              render={props => {
+                // props = {
+                //  history (push triggers redirection)
+                //  match
+                //  location
+                // }
+                return <Home {...props} />;
+              }}
             />
             <Route
               path="/offer/:offerId"
               render={props => <Offer {...props} />}
             />
-            <Route path="/SignUp" render={props => <SignUp {...props} />} />
+            <Route
+              path="/sign_up"
+              render={props => <SignUp setUser={this.setUser} {...props} />}
+            />
 
             <Route
-              path="/LogIn"
-              render={props =>
-                this.state.redirect ? (
-                  <Redirect to="/" />
-                ) : (
-                  <LogIn setUserId={this.setUserId} {...props} />
-                )
-              }
+              path="/log_in"
+              render={props => <LogIn setUser={this.setUser} {...props} />}
             />
-            <Route path="/Publish" render={props => <Publish {...props} />} />
+            <Route
+              path="/publish"
+              render={props => <Publish getUser={this.getUser} {...props} />}
+            />
           </Switch>
         </>
       </Router>

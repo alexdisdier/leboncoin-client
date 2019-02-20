@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { ReactComponent as ClockIcon } from "../../assets/img/clock.svg";
+import { ReactComponent as BellIcon } from "../../assets/img/bell.svg";
+import { ReactComponent as EyeIcon } from "../../assets/img/eye.svg";
 
 import "./SignUp.css";
-
-const urlPost = "https://leboncoin-api.herokuapp.com/api/user/sign_up";
 
 class SignUp extends Component {
   state = {
@@ -14,66 +15,47 @@ class SignUp extends Component {
     error: null
   };
 
-  createAccount(newUser) {
-    axios
-      .post(urlPost, newUser)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
-  }
-
   handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    const stateToUpdate = {};
-
-    stateToUpdate[name] = value;
-
-    this.setState(stateToUpdate);
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
+    try {
+      const { username, email, password, confirmPassword } = this.state;
 
-    const { username, email, password, confirmPassword } = this.state;
+      if (username && email && password && confirmPassword) {
+        if (password === confirmPassword) {
+          const response = await axios.post(
+            "https://leboncoin-api.herokuapp.com/api/user/sign_up",
+            {
+              email: email,
+              username: username,
+              password: password
+            }
+          ); // issue with axios.post
 
-    if (username && email && password && confirmPassword) {
-      if (password === confirmPassword) {
-        this.createAccount({
-          email: this.state.email,
-          username: this.state.username,
-          password: this.state.password
-        });
-        console.log("Success");
+          if (response.data.token) {
+            this.props.setUser(response.data);
+            this.props.history.push("/");
+            console.log("Success, user created");
+          } else {
+            alert("an error occurred");
+          }
+        } else {
+          console.log("the passwords are not similar");
+        }
       } else {
-        console.log("the passwords are not similar");
+        console.log("you're missing one field");
       }
-    } else {
-      console.log("you're missing one field");
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
   render() {
-    const clockSvg = (
-      <svg viewBox="0 0 24 24" data-name="Calque 1" focusable="false">
-        <path d="M17.24 15.07l-4.64-2.76V6.86a.85.85 0 0 0-.86-.86h-.08a.85.85 0 0 0-.86.86v5.67a1.2 1.2 0 0 0 .59 1l5 3a.86.86 0 1 0 .87-1.48z" />
-        <path d="M12 0a12 12 0 1 0 12 12A12 12 0 0 0 12 0zm0 21.6a9.6 9.6 0 1 1 9.6-9.6 9.6 9.6 0 0 1-9.6 9.6z" />
-      </svg>
-    );
-
-    const bellSvg = (
-      <svg viewBox="0 0 24 24" data-name="Calque 1" focusable="false">
-        <path d="M12 24a2.49 2.49 0 0 0 2.51-2.46h-5A2.48 2.48 0 0 0 12 24zM21.13 18.2l-1.61-1.58v-6.16c0-3.78-2.06-6.94-5.64-7.78v-.83a1.88 1.88 0 0 0-3.76 0v.83c-3.59.84-5.63 4-5.63 7.78v6.16L2.87 18.2a1.23 1.23 0 0 0 .88 2.11h16.49a1.23 1.23 0 0 0 .89-2.11z" />
-      </svg>
-    );
-
-    const eyeSvg = (
-      <svg viewBox="0 0 24 24" data-name="Calque 1" focusable="false">
-        <path d="M12 8.6A3.33 3.33 0 0 0 8.73 12 3.33 3.33 0 0 0 12 15.4a3.33 3.33 0 0 0 3.27-3.4A3.33 3.33 0 0 0 12 8.6z" />
-        <path d="M12 3.5A12.92 12.92 0 0 0 0 12a12.92 12.92 0 0 0 12 8.5A12.92 12.92 0 0 0 24 12a12.92 12.92 0 0 0-12-8.5zm0 14.17A5.56 5.56 0 0 1 6.55 12 5.56 5.56 0 0 1 12 6.33 5.56 5.56 0 0 1 17.45 12 5.56 5.56 0 0 1 12 17.67z" />
-      </svg>
-    );
-
     const { username, email, password, confirmPassword } = this.state;
 
     return (
@@ -84,7 +66,7 @@ class SignUp extends Component {
               <section>
                 <h2>Pourquoi créer un compte ?</h2>
                 <div className="flex-row">
-                  {clockSvg}
+                  <ClockIcon />
                   <div className="flex-row">
                     <p>Gagnez du temps</p>
                     <p>
@@ -95,7 +77,7 @@ class SignUp extends Component {
                   </div>
                 </div>
                 <div className="flex-row">
-                  {bellSvg}
+                  <BellIcon />
                   <div className="flex-row">
                     <p>Soyez les premiers informés</p>
                     <p>
@@ -105,7 +87,7 @@ class SignUp extends Component {
                   </div>
                 </div>
                 <div className="flex-row">
-                  {eyeSvg}
+                  <EyeIcon />
                   <div className="flex-row">
                     <p>Visibilité</p>
                     <p>
