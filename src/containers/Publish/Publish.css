@@ -1,0 +1,104 @@
+.ad-listing {
+  margin-top: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.ad-listing img {
+  height: 152px;
+  width: 170px;
+}
+
+.ad-listing-container {
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+.ad-listing h1 {
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  font-family: "OpenSansBold", sans-serif;
+  color: #989898;
+  border-bottom: 1px solid #ccc;
+}
+
+.ad-listing h2 {
+  margin-bottom: 0;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 600;
+  font-family: "OpenSansSemiBold", sans-serif;
+  background: #666;
+  color: #fff;
+}
+
+.ad-listing-body {
+  padding: 10px;
+}
+
+.ad-listing-body label {
+  display: block;
+  width: 100%;
+  margin: 10px 0 5px 0;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 600;
+  font-family: "OpenSansSemiBold", sans-serif;
+}
+
+.ad-listing-body input,
+.ad-listing-body textarea {
+  margin-bottom: 20px;
+  width: 50%;
+  min-width: 50%;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ad-listing-body p {
+  margin-bottom: 15px;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.ad-listing-body p span {
+  font-weight: 600;
+}
+
+.ad-listing-body aside {
+  display: flex;
+  flex-direction: row;
+}
+
+.react-file-reader-button {
+  margin-right: 16px;
+  height: 152px;
+  width: 170px;
+  background: #f2f2f2;
+  border: 1px dashed #ccc;
+  padding-top: 10px;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.react-file-reader-button span {
+  margin: 10px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19px;
+  text-align: center;
+  font-family: "OpenSansSemiBold", sans-serif;
+  text-transform: uppercase;
+}
+
+.react-file-reader-button svg {
+  margin-top: 19px;
+  width: 58px;
+}

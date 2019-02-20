@@ -52,7 +52,7 @@ class LogIn extends Component {
                   name="email"
                   value={email}
                   onChange={this.handleChange}
-                  placeholder="johndoe@gmail.com"
+                  placeholder="mern@gmail.com"
                 />
               </div>
 

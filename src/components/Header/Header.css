@@ -26,6 +26,10 @@
   flex-direction: row;
 }
 
+.account-panel span {
+  margin-right: 10px;
+}
+
 .account-panel a:nth-child(1) {
   padding-right: 16px;
 }
