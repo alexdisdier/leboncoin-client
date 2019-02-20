@@ -25,7 +25,7 @@ const filters = props => {
                 value={minPrice}
                 onChange={props.handleFilters}
               >
-                <option>Prix min</option>
+                <option value="0">Prix min</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
@@ -38,7 +38,7 @@ const filters = props => {
                 value={maxPrice}
                 onChange={props.handleFilters}
               >
-                <option>Prix max</option>
+                <option value="0">Prix max</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
@@ -47,8 +47,10 @@ const filters = props => {
               </select>
             </div>
             <select name="sort" value={sort} onChange={props.handleFilters}>
-              <option value="desc">Tri: Plus récents</option>
-              <option value="asc">Tri: Plus vieux</option>
+              <option value="date-desc">Tri: Plus récents</option>
+              <option value="date-asc">Tri: Plus vieux</option>
+              <option value="price-asc">Tri: Moins cher</option>
+              <option value="price-desc">Tri: Plus cher</option>
             </select>
           </div>
         </form>

@@ -68,18 +68,23 @@ class Home extends Component {
   };
 
   searchFilters = async criteria => {
+    console.log(criteria);
     try {
-      const response = await axios.get(
-        `https://leboncoin-api.herokuapp.com/api/offer/with-count?title=${
-          criteria.title
-        }`
-      );
-      const offers = response.data.offers;
-      const count = response.data.count;
-      this.setState({
-        offers: offers,
-        count: count
-      });
+      if (criteria !== undefined) {
+        const response = await axios.get(
+          `https://leboncoin-api.herokuapp.com/api/offer/with-count?title=${
+            criteria.title
+          }&priceMin=${criteria.minPrice}&priceMax=${criteria.maxPrice}&sort=${
+            criteria.sort
+          }`
+        );
+        const offers = response.data.offers;
+        const count = response.data.count;
+        this.setState({
+          offers: offers,
+          count: count
+        });
+      }
     } catch (error) {
       this.setState({
         error: "An error occured"
@@ -105,7 +110,7 @@ class Home extends Component {
     if (notEmpty) {
       this.searchFilters(criteria);
     } else {
-      console.log("nothing");
+      this.searchFilters();
     }
   };
 

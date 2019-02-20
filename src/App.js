@@ -46,7 +46,7 @@ class App extends Component {
       userId: null,
       token: null,
       username: null,
-      redirect: false
+      redirect: true
     });
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 import "./Card.css";
 const card = props => {
@@ -17,7 +18,7 @@ const card = props => {
             </div>
             <div className="card-bottom" />
             <p>{props.description}</p>
-            <span>{props.date}</span>
+            <span>{format(props.date, "MMMM DD, YYYY")}</span>
           </div>
         </div>
       </Link>

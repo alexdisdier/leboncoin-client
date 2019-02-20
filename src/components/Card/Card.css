@@ -56,6 +56,7 @@
   font-size: 2rem;
   line-height: 2.4rem;
   transition: 0.3s;
+  padding-bottom: 8px;
 }
 
 .card-price {
