@@ -67,7 +67,6 @@ class Home extends Component {
   // I could also use query-string
   // source: https://www.npmjs.com/package/query-string
   searchFilters = async criteria => {
-    console.log(criteria);
     try {
       if (criteria !== undefined) {
         let maxPrice = "";

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import ReactFileReader from "react-file-reader";
 import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg";
 
@@ -26,12 +27,33 @@ class Publish extends Component {
     });
   };
 
-  submitForm = () => {
-    const { title, description, price, files } = this.state;
-    console.log(`Title ${title}
-    Description ${description}
-    Price ${price}
-    Files ${files}`);
+  submitForm = async () => {
+    try {
+      const { title, description, price, files } = this.state;
+      const token = this.props.getUser().token;
+
+      const response = await axios.post(
+        "https://leboncoin-api.herokuapp.com/api/offer/publish",
+        {
+          title: title,
+          description: description,
+          files: files,
+          price: Number(price)
+        },
+        {
+          headers: {
+            authorization: "Bearer " + token
+          }
+        }
+      );
+
+      console.log("response.data", response.data);
+    } catch (error) {
+      console.log({
+        error: error.message,
+        specific: "The ad was not published"
+      });
+    }
   };
 
   render() {
