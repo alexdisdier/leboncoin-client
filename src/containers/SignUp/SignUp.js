@@ -35,7 +35,7 @@ class SignUp extends Component {
               username: username,
               password: password
             }
-          ); // issue with axios.post
+          );
 
           if (response.data.token) {
             this.props.setUser(response.data);
