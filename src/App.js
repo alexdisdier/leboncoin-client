@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import Cookies from "js-cookie";
 
 import Header from "./components/Header/Header";
@@ -92,7 +97,13 @@ class App extends Component {
             />
             <Route
               path="/publish"
-              render={props => <Publish getUser={this.getUser} {...props} />}
+              render={props => {
+                if (this.state.token) {
+                  return <Publish getUser={this.getUser} {...props} />;
+                } else {
+                  return <Redirect to="/log_in" />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
+                }
+              }}
             />
           </Switch>
         </>

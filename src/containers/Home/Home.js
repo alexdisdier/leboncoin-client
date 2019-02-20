@@ -64,6 +64,8 @@ class Home extends Component {
     this.setState(stateToUpdate);
   };
 
+  // I could also use query-string
+  // source: https://www.npmjs.com/package/query-string
   searchFilters = async criteria => {
     console.log(criteria);
     try {
