@@ -26,6 +26,14 @@ class Publish extends Component {
     });
   };
 
+  submitForm = () => {
+    const { title, description, price, files } = this.state;
+    console.log(`Title ${title}
+    Description ${description}
+    Price ${price}
+    Files ${files}`);
+  };
+
   render() {
     const { title, description, price } = this.state;
 
@@ -93,9 +101,10 @@ class Publish extends Component {
                   multiplesFiles={false} // false for one single image
                   handleFiles={this.handleFiles}
                 >
-                  <span>
+                  <div className="box-photo">
+                    <span className="close-photo">⤫</span>
                     {filesArray.length > 0 ? filesArray[0] : "Photo principale"}
-                  </span>
+                  </div>
                 </ReactFileReader>
 
                 <ReactFileReader
@@ -104,23 +113,29 @@ class Publish extends Component {
                   multiplesFiles={false} // false for one single image
                   handleFiles={this.handleFiles}
                 >
-                  <span>
-                    {filesArray.length > 0 ? filesArray[2] : "Photo 2"}
-                  </span>
+                  <div className="box-photo">
+                    <span className="close-photo">⤫</span>
+                    {filesArray[1] ? filesArray[1] : "Photo 2"}
+                  </div>
                 </ReactFileReader>
+
                 <ReactFileReader
                   fileTypes={[".png", ".jpg"]}
                   base64={true}
                   multiplesFiles={false} // false for one single image
                   handleFiles={this.handleFiles}
                 >
-                  <span>
-                    {filesArray.length > 0 ? filesArray[3] : "Photo 3"}
-                  </span>
+                  <div className="box-photo">
+                    <span className="close-photo">⤫</span>
+                    {filesArray[2] ? filesArray[2] : "Photo 3"}
+                  </div>
                 </ReactFileReader>
               </aside>
             </div>
           </div>
+          <button className="validate-btn" onClick={this.submitForm}>
+            Valider
+          </button>
         </div>
       </div>
     );

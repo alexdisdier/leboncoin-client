@@ -5,7 +5,7 @@
 }
 
 .ad-listing img {
-  height: 152px;
+  height: auto;
   width: 170px;
 }
 
@@ -79,7 +79,7 @@
 .react-file-reader-button {
   margin-right: 16px;
   height: 152px;
-  width: 170px;
+  width: 190px;
   background: #f2f2f2;
   border: 1px dashed #ccc;
   padding-top: 10px;
@@ -101,4 +101,34 @@
 .react-file-reader-button svg {
   margin-top: 19px;
   width: 58px;
+}
+
+.box-photo {
+  position: relative;
+}
+
+.close-photo {
+  position: absolute;
+  top: -31px;
+  right: -16px;
+  margin: 0;
+}
+
+.validate-btn {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 40px;
+  width: 20%;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 600;
+  background-color: #4183d7;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
