@@ -37,29 +37,25 @@ class Offer extends Component {
       description,
       created,
       creator,
-      _id
+      pictures
     } = this.state.offer;
-    console.log(this.state.offer);
-    const { isLoading, error } = this.state;
-    let background;
-    if (_id === "5c6da693f180080014ba0c96") {
-      background =
-        "https://res.cloudinary.com/lereacteur/image/upload/v1550689939/leboncoin/5c6d51d5f180080014ba0c3d/Mt1UvBo8QGhMMX8c.png";
-    } else if (_id === "5c6daa40f180080014ba0c97") {
-      background =
-        "https://res.cloudinary.com/lereacteur/image/upload/v1550690880/leboncoin/5c6d51d5f180080014ba0c3d/HXyABtOlZbH1xAG7.png";
-    } else {
-      background = "";
-    }
 
-    let style = {
-      width: "100%",
-      height: "400px",
-      backgroundImage: `url(${background})`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "contain",
-      backgroundPosition: "center"
-    };
+    const { isLoading, error } = this.state;
+    let image;
+    let style;
+
+    if (pictures) {
+      if (pictures.length > 0) {
+        image = pictures[0].secure_url;
+      }
+
+      style = {
+        backgroundImage: `url(${image})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        backgroundPosition: "center"
+      };
+    }
 
     if (!isLoading && error === null) {
       const profileImg = (
