@@ -12,7 +12,7 @@ See demo - https://alexdisdier.github.io/leboncoin-client/
 
 React functionalities:
 
-- Create a cookie to store filters.
+- Create a cookie to store filters
 
 - Publish page:
 
