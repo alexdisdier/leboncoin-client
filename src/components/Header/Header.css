@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 60px;
+  height: 140px;
   background-color: #f56b2a;
   color: #fff;
 }
@@ -15,9 +15,10 @@
 
 .flex {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  height: 100%;
   width: 100%; /* really important otherwise, this flex does not work */
 }
 
@@ -39,11 +40,23 @@
 }
 
 .flex a:nth-child(3) {
-  flex-grow: 1;
   padding-left: 16px;
 }
 
 .header svg {
   width: 140px;
   height: 25px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header {
+    height: 60px;
+  }
+  .flex {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .flex a:nth-child(3) {
+    flex-grow: 1;
+  }
 }

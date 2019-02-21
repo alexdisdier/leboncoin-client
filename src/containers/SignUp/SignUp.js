@@ -65,9 +65,11 @@ class SignUp extends Component {
             <div className="sign-up-flex-left">
               <section>
                 <h2>Pourquoi créer un compte ?</h2>
-                <div className="flex-row">
-                  <ClockIcon />
-                  <div className="flex-row">
+                <div className="flex-row speed">
+                  <div>
+                    <ClockIcon />
+                  </div>
+                  <div className="flex-column">
                     <p>Gagnez du temps</p>
                     <p>
                       Publiez vos annonces rapidement, avec vos informations
@@ -77,8 +79,10 @@ class SignUp extends Component {
                   </div>
                 </div>
                 <div className="flex-row">
-                  <BellIcon />
-                  <div className="flex-row">
+                  <div>
+                    <BellIcon />
+                  </div>
+                  <div className="flex-column">
                     <p>Soyez les premiers informés</p>
                     <p>
                       Créez des alertes Immo ou Emploi et ne manquez jamais
@@ -87,8 +91,10 @@ class SignUp extends Component {
                   </div>
                 </div>
                 <div className="flex-row">
-                  <EyeIcon />
-                  <div className="flex-row">
+                  <div>
+                    <EyeIcon />
+                  </div>
+                  <div className="flex-column">
                     <p>Visibilité</p>
                     <p>
                       Suivez les statistiques de vos annonces (nombre de fois où
@@ -98,10 +104,10 @@ class SignUp extends Component {
                 </div>
               </section>
             </div>
-            <div className="sign-up-flex-right">
+            <div className="sign-up-flex-right connection">
               <section>
                 <h1>Créez un compte</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form className="form" onSubmit={this.handleSubmit}>
                   <div className="form-item">
                     <label htmlFor="username">username *</label>
                     <input
@@ -161,7 +167,7 @@ class SignUp extends Component {
                     </label>
                   </div>
 
-                  <button type="submit">Créer mon Compte Personnel</button>
+                  <button>Créer mon Compte Personnel</button>
                 </form>
               </section>
             </div>

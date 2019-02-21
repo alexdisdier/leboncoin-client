@@ -1,11 +1,28 @@
 .sign-up-page {
-  box-shadow: 0 0 5px 0 #ddd;
-  padding: 3rem 6rem;
   margin-top: 2rem;
+  padding: 30px 60px;
+  font-family: "Open Sans", sans-serif;
+  background: #fff;
+  box-shadow: 0 0 5px 0 #ddd;
+}
+
+.sign-up-page .connection {
+  margin-top: 0;
+}
+
+.sign-up-page h2 {
+  margin-bottom: 12px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .sign-up-page svg {
-  width: 24px;
+  width: 42px;
+  height: 42px;
+  padding-right: 30px;
+  padding-left: 10px;
+  fill: #4183d7;
 }
 
 .sign-up-flex {
@@ -14,19 +31,59 @@
 }
 
 .sign-up-flex-left {
-  flex: 0 0 50%;
-  max-width: 50%;
-  padding-right: 1.5rem;
+  display: none;
+}
+
+.sign-up-flex-right {
+  width: 100%;
+}
+
+.speed {
+  margin-top: 60px;
 }
 
 .flex-row {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column p:first-child {
+  margin-bottom: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+.flex-column p:last-child {
+  font-size: 13px;
+  line-height: 19px;
 }
 
 .form-item {
   display: flex;
   flex-direction: column;
+}
+
+.form-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-password .form-item {
+  flex: 0 1 48%;
+}
+
+.form-checkbox {
+  margin-top: 30px;
 }
 
 .form-item label {
@@ -43,13 +100,14 @@
 }
 
 .form button {
-  height: 32px;
+  height: 40px;
   margin-top: 1rem;
   padding: 0 10px;
   width: 100%;
   font-size: 13px;
   line-height: 19px;
   font-weight: 600;
+  font-family: "Open Sans", sans-serif;
   background-color: #4183d7;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -60,4 +118,19 @@
 
 .form button:hover {
   background-color: #369;
+}
+
+@media only screen and (min-width: 768px) {
+  .sign-up-flex-left {
+    display: block;
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 1.5rem;
+  }
+  .sign-up-flex-right {
+    max-width: 100%;
+  }
+  .form-password {
+    flex-direction: row;
+  }
 }

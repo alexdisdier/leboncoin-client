@@ -28,7 +28,9 @@ const card = props => {
     <li className="card">
       <Link to={`/offer/${props.id}`}>
         <div className="card-body">
-          <div className="card-img">{/* <div className="img" /> */}</div>
+          <div className="card-img">
+            <div className="img" />
+          </div>
           <div className="card-content">
             <div className="card-top">
               <h3 className="card-title">{props.title}</h3>

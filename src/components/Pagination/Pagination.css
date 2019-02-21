@@ -1,9 +1,10 @@
 .pagination {
   height: 60px;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  text-overflow: hidden;
 }
 
 .pagination span {
@@ -19,4 +20,10 @@
 
 .pagination svg {
   width: 14px;
+}
+
+@media only screen and (min-width: 768px) {
+  .pagination {
+    display: flex;
+  }
 }

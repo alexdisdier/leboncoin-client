@@ -1,2 +1,9 @@
-.btn a {
+.account-panel button {
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
 }
