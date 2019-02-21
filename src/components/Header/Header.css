@@ -19,12 +19,13 @@
   justify-content: space-around;
   align-items: center;
   height: 100%;
-  width: 100%; /* really important otherwise, this flex does not work */
+  width: 100%;
 }
 
 .account-panel {
   display: flex;
   flex-direction: row;
+  align-items: inherit;
 }
 
 .account-panel span {

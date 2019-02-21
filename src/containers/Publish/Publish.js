@@ -10,7 +10,10 @@ class Publish extends Component {
     title: "",
     description: "",
     price: "",
-    files: []
+    files: [],
+
+    isLoading: true,
+    error: null
   };
 
   handleFiles = files => {
