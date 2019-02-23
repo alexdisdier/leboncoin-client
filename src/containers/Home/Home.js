@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import Filters from "../../components/Filters/Filters";
 import Card from "../../components/Card/Card";
@@ -21,10 +22,10 @@ class Home extends Component {
     totalPages: 0,
     currentPage: 1,
 
-    title: "",
-    minPrice: "",
-    maxPrice: "",
-    sort: "",
+    title: Cookies.get("title") || "",
+    minPrice: Cookies.get("minPrice") || "",
+    maxPrice: Cookies.get("maxPrice") || "",
+    sort: Cookies.get("sort") || "",
 
     isLoading: true,
     error: null
@@ -36,19 +37,32 @@ class Home extends Component {
 
   goToPage = async pageClicked => {
     try {
-      const skip = (pageClicked - 1) * this.state.limit;
-      const response = await axios.get(
-        `${domain}/offer/with-count?skip=${skip}&limit=${this.state.limit}`
-      );
-      const offers = response.data.offers;
-      const count = response.data.count;
-      this.setState({
-        offers: offers,
-        count: count,
-        totalPages: Math.ceil(count / this.state.limit),
-        currentPage: pageClicked,
-        isLoading: false
-      });
+      if (this.state.title !== "") {
+        const criteria = {
+          title: this.state.title,
+          minPrice: this.state.minPrice,
+          maxPrice: this.state.maxPrice,
+          sort: this.state.sort
+        };
+        this.searchFilters(criteria);
+        this.setState({
+          isLoading: false
+        });
+      } else {
+        const skip = (pageClicked - 1) * this.state.limit;
+        const response = await axios.get(
+          `${domain}/offer/with-count?skip=${skip}&limit=${this.state.limit}`
+        );
+        const offers = response.data.offers;
+        const count = response.data.count;
+        this.setState({
+          offers: offers,
+          count: count,
+          totalPages: Math.ceil(count / this.state.limit),
+          currentPage: pageClicked,
+          isLoading: false
+        });
+      }
     } catch (error) {
       this.setState({
         error: "An error occurred"
@@ -60,6 +74,14 @@ class Home extends Component {
     const name = event.target.name;
     const value = event.target.value;
     const stateToUpdate = {};
+    console.log(value);
+    if (value === "") {
+      Cookies.remove("title");
+      Cookies.remove("minPrice");
+      Cookies.remove("maxPrice");
+      Cookies.remove("sort");
+      this.goToPage(1);
+    }
 
     stateToUpdate[name] = value;
 
@@ -84,8 +106,16 @@ class Home extends Component {
         const count = response.data.count;
         this.setState({
           offers: offers,
-          count: count
+          count: count,
+          title: this.state.title,
+          minPrice: this.state.minPrice,
+          maxPrice: this.state.maxPrice,
+          sort: this.state.sort
         });
+        Cookies.set("title", this.state.title);
+        Cookies.set("minPrice", this.state.minPrice);
+        Cookies.set("maxPrice", this.state.maxPrice);
+        Cookies.set("sort", this.state.sort);
       }
     } catch (error) {
       this.setState({
@@ -96,6 +126,7 @@ class Home extends Component {
 
   submitFilters = event => {
     event.preventDefault();
+    console.log(this.state.title);
 
     const criteria = {
       title: this.state.title,
@@ -103,6 +134,7 @@ class Home extends Component {
       maxPrice: this.state.maxPrice,
       sort: this.state.sort
     };
+    console.log(criteria);
 
     const keys = Object.values(criteria);
 
@@ -113,6 +145,16 @@ class Home extends Component {
       this.searchFilters(criteria);
     } else {
       this.searchFilters();
+      this.setState({
+        title: "",
+        minPrice: "",
+        maxPrice: "",
+        sort: ""
+      });
+      Cookies.remove("title");
+      Cookies.remove("minPrice");
+      Cookies.remove("maxPrice");
+      Cookies.remove("sort");
     }
   };
 
