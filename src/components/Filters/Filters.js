@@ -61,7 +61,7 @@ const filters = props => {
               </select>
             </div>
             <select name="sort" value={sort} onChange={props.handleFilters}>
-              <option value="date-desc">Options de recherche</option>
+              <option value="">Options de recherche</option>
               <option value="date-desc">Tri: Plus récents</option>
               <option value="date-asc">Tri: Plus vieux</option>
               <option value="price-asc">Tri: Moins cher</option>

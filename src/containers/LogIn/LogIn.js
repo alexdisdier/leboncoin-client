@@ -23,7 +23,6 @@ class LogIn extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    console.log("in submit");
     try {
       const response = await axios.post(`${domain}/log_in`, {
         email: this.state.email,

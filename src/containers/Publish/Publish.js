@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactFileReader from "react-file-reader";
+import Loading from "../../components/Loading/Loading";
 import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg";
 
 import "./Publish.css";
@@ -16,7 +17,7 @@ class Publish extends Component {
     price: "",
     files: [],
 
-    isLoading: true,
+    isLoading: false,
     error: null
   };
 
@@ -38,13 +39,15 @@ class Publish extends Component {
     try {
       const { title, description, price, files } = this.state;
       const token = this.props.getUser().token;
-
-      const response = await axios.post(
+      this.setState({
+        isLoading: true
+      });
+      await axios.post(
         `${domain}/publish`,
         {
           title: title,
           description: description,
-          files: files, // to change for pictures
+          pictures: files, // to change for pictures
           price: Number(price)
         },
         {
@@ -53,13 +56,40 @@ class Publish extends Component {
           }
         }
       );
+      this.setState({
+        isLoading: false
+      });
       // console.log("response.data", response.data);
-      this.props.history.push("/");
+      this.props.history.push("/offres");
     } catch (error) {
       console.log({
         error: error.message,
         specific: "The ad was not published"
       });
+    }
+  };
+
+  renderButton = () => {
+    const style = {
+      marginTop: "20px",
+      padding: "16px"
+    };
+    if (!this.state.isLoading) {
+      return (
+        <button className="validate-btn" onClick={this.submitForm}>
+          Valider
+        </button>
+      );
+    } else {
+      return (
+        <>
+          <Loading />
+          <span style={style}>
+            Une fois le chargement terminé, vous serez rediriger vers la page
+            d'accueil. merci de patienter 😃{" "}
+          </span>
+        </>
+      );
     }
   };
 
@@ -162,9 +192,7 @@ class Publish extends Component {
               </aside>
             </div>
           </div>
-          <button className="validate-btn" onClick={this.submitForm}>
-            Valider
-          </button>
+          {this.renderButton()}
         </div>
       </div>
     );

@@ -21,7 +21,8 @@ import "./App.css";
 class App extends Component {
   state = {
     token: Cookies.get("token") || null,
-    username: Cookies.get("username") || null
+    username: Cookies.get("username") || null,
+    phone: Cookies.get("phone") || null
   };
 
   setUser = user => {
@@ -30,11 +31,13 @@ class App extends Component {
       const { token, account } = user;
       this.setState({
         token: token,
-        username: account.username
+        username: account.username,
+        phone: account.phone
       });
 
       Cookies.set("token", token);
       Cookies.set("username", account.username);
+      Cookies.set("phone", account.phone);
     } else {
       console.log("no user was passed in setUser()");
     }
@@ -54,11 +57,13 @@ class App extends Component {
   logOut = () => {
     this.setState({
       token: null,
-      username: null
+      username: null,
+      phone: null
     });
 
     Cookies.remove("token");
     Cookies.remove("username");
+    Cookies.remove("phone");
   };
 
   render() {
