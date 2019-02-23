@@ -5,6 +5,10 @@ import Loading from "../../components/Loading/Loading";
 
 import "./Offer.css";
 
+const local = "http://localhost:3001";
+const server = "https://leboncoin-api.herokuapp.com/api";
+const domain = local;
+
 class Offer extends Component {
   state = {
     offer: [],
@@ -15,8 +19,7 @@ class Offer extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        "https://leboncoin-api.herokuapp.com/api/offer/" +
-          this.props.match.params.offerId
+        domain + "/offer/" + this.props.match.params.offerId
       );
       const offer = response.data;
       this.setState({

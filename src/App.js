@@ -26,6 +26,7 @@ class App extends Component {
 
   setUser = user => {
     if (user) {
+      console.log(user);
       const { token, account } = user;
       this.setState({
         token: token,
@@ -72,7 +73,7 @@ class App extends Component {
           <Switch>
             <Route
               exact={true}
-              path="/"
+              path="/offres"
               render={props => {
                 // props = {
                 //  history (push triggers redirection)

@@ -5,6 +5,10 @@ import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg
 
 import "./Publish.css";
 
+const local = "http://localhost:3001";
+const server = "https://leboncoin-api.herokuapp.com/api";
+const domain = local;
+
 class Publish extends Component {
   state = {
     title: "",
@@ -36,11 +40,11 @@ class Publish extends Component {
       const token = this.props.getUser().token;
 
       const response = await axios.post(
-        "https://leboncoin-api.herokuapp.com/api/offer/publish",
+        `${domain}/publish`,
         {
           title: title,
           description: description,
-          files: files,
+          files: files, // to change for pictures
           price: Number(price)
         },
         {
@@ -49,8 +53,8 @@ class Publish extends Component {
           }
         }
       );
-
-      console.log("response.data", response.data);
+      // console.log("response.data", response.data);
+      this.props.history.push("/");
     } catch (error) {
       console.log({
         error: error.message,

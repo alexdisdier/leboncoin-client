@@ -4,6 +4,10 @@ import axios from "axios";
 
 import "./LogIn.css";
 
+const local = "http://localhost:3001";
+const server = "https://leboncoin-api.herokuapp.com/api";
+const domain = local;
+
 class LogIn extends Component {
   state = {
     email: "",
@@ -19,17 +23,19 @@ class LogIn extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    console.log("in submit");
     try {
-      const response = await axios.post(
-        "https://leboncoin-api.herokuapp.com/api/user/log_in",
-        {
-          email: this.state.email,
-          password: this.state.password
-        }
-      );
+      const response = await axios.post(`${domain}/log_in`, {
+        email: this.state.email,
+        password: this.state.password
+      });
+      if (response.data.message === "wrong password") {
+        console.log("wrong password");
+      }
+      // console.log(response);
       if (response.data.token) {
         this.props.setUser(response.data);
-        this.props.history.push("/");
+        this.props.history.push("/offres");
         console.log("success, check cookies");
       }
     } catch (error) {

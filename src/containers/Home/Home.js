@@ -9,6 +9,10 @@ import Loading from "../../components/Loading/Loading";
 
 import "./Home.css";
 
+const local = "http://localhost:3001";
+const server = "https://leboncoin-api.herokuapp.com/api";
+const domain = local;
+
 class Home extends Component {
   state = {
     offers: [],
@@ -34,9 +38,7 @@ class Home extends Component {
     try {
       const skip = (pageClicked - 1) * this.state.limit;
       const response = await axios.get(
-        `https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=${skip}&limit=${
-          this.state.limit
-        }`
+        `${domain}/offer/with-count?skip=${skip}&limit=${this.state.limit}`
       );
       const offers = response.data.offers;
       const count = response.data.count;
@@ -74,9 +76,9 @@ class Home extends Component {
           maxPrice = "&priceMax=" + criteria.maxPrice;
         }
         const response = await axios.get(
-          `https://leboncoin-api.herokuapp.com/api/offer/with-count?title=${
-            criteria.title
-          }&priceMin=${criteria.minPrice}${maxPrice}&sort=${criteria.sort}`
+          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${
+            criteria.minPrice
+          }${maxPrice}&sort=${criteria.sort}`
         );
         const offers = response.data.offers;
         const count = response.data.count;
@@ -115,32 +117,35 @@ class Home extends Component {
   };
 
   renderMain() {
-    const { isLoading, error, currentPage, totalPages } = this.state;
+    const { isLoading, error, currentPage, totalPages, offers } = this.state;
     if (!isLoading && error === null) {
-      return (
-        <>
-          <div className="wrapper homepage">
-            <ul>
-              {this.state.offers.map(e => (
-                <Card
-                  key={e._id}
-                  pictures={e.pictures}
-                  id={e._id}
-                  title={e.title}
-                  description={e.description}
-                  price={e.price}
-                  date={e.created}
-                />
-              ))}
-            </ul>
-          </div>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            goToPage={this.goToPage}
-          />
-        </>
-      );
+      if (offers !== undefined) {
+        // console.log(offers.pictures);
+        return (
+          <>
+            <div className="wrapper homepage">
+              <ul>
+                {this.state.offers.map(e => (
+                  <Card
+                    key={e._id}
+                    pictures={e.pictures}
+                    id={e._id}
+                    title={e.title}
+                    description={e.description}
+                    price={e.price}
+                    date={e.created}
+                  />
+                ))}
+              </ul>
+            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              goToPage={this.goToPage}
+            />
+          </>
+        );
+      }
     } else if (isLoading && error === null) {
       return <Loading />;
     } else {

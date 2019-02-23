@@ -36,7 +36,7 @@ const header = props => {
           <Logo />
         </a>
         <Button to="/publish">Déposer une annonce</Button>
-        <Button to="/">offres</Button>
+        <Button to="/offres">offres</Button>
         <div className="account-panel">{renderNav}</div>
       </div>
     </header>

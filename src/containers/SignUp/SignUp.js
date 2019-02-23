@@ -6,6 +6,10 @@ import { ReactComponent as EyeIcon } from "../../assets/img/eye.svg";
 
 import "./SignUp.css";
 
+const local = "http://localhost:3001";
+const server = "https://leboncoin-api.herokuapp.com/api";
+const domain = local;
+
 class SignUp extends Component {
   state = {
     username: "",
@@ -28,18 +32,15 @@ class SignUp extends Component {
 
       if (username && email && password && confirmPassword) {
         if (password === confirmPassword) {
-          const response = await axios.post(
-            "https://leboncoin-api.herokuapp.com/api/user/sign_up",
-            {
-              email: email,
-              username: username,
-              password: password
-            }
-          );
+          const response = await axios.post(`${domain}/sign_up`, {
+            email: email,
+            username: username,
+            password: password
+          });
 
           if (response.data.token) {
             this.props.setUser(response.data);
-            this.props.history.push("/");
+            this.props.history.push("/offres");
             console.log("Success, user created");
           } else {
             alert("an error occurred");
