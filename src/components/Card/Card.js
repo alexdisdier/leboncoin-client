@@ -35,7 +35,7 @@ const card = props => {
   return (
     <li className="card">
       {deleteAd}
-      <Link to={`/offer/${props.id}`}>
+      <Link to={`/leboncoin-client/offer/${props.id}`}>
         <div className="card-body">
           <div className="card-img">
             <div className="img" style={style} />

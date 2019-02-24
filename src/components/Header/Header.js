@@ -32,7 +32,7 @@ const header = props => {
   return (
     <header className="header">
       <div className="wrapper flex">
-        <Button to="/">
+        <Button to="/leboncoin-client">
           <Logo />
         </Button>
         <Button to="/leboncoin-client/publish">Déposer une annonce</Button>

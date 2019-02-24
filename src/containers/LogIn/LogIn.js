@@ -77,7 +77,7 @@ class LogIn extends Component {
 
             <div className="create-account-redirect">
               <p>Vous n'avez pas de compte ?</p>
-              <Link className="btn" to="/signup">
+              <Link className="btn" to="/leboncoin-client/signup">
                 Créer un compte
               </Link>
             </div>
