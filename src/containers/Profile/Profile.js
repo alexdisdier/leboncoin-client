@@ -20,6 +20,10 @@ class Profile extends Component {
   };
 
   async componentDidMount() {
+    this.fetchOffer();
+  }
+
+  fetchOffer = async () => {
     try {
       const token = this.props.getUser().token;
       const response = await axios.get(domain + "/profile", {
@@ -38,17 +42,18 @@ class Profile extends Component {
         error: error.message
       });
     }
-  }
+  };
 
-  deleteOffer = id => {
+  deleteOffer = async id => {
     try {
       const token = this.props.getUser().token;
 
-      axios.delete(`${domain}/delete/${id}`, {
+      await axios.delete(`${domain}/delete/${id}`, {
         headers: {
           authorization: "Bearer " + token
         }
       });
+      this.fetchOffer();
     } catch (error) {
       console.log("not deleted");
     }

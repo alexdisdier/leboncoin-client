@@ -116,6 +116,7 @@ class SignUp extends Component {
                       name="username"
                       value={username}
                       onChange={this.handleChange}
+                      required
                     />
                   </div>
 
@@ -126,6 +127,7 @@ class SignUp extends Component {
                       name="email"
                       value={email}
                       onChange={this.handleChange}
+                      required
                     />
                   </div>
 
@@ -137,6 +139,7 @@ class SignUp extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
+                        required
                       />
                     </div>
                     <div className="form-item">
@@ -148,6 +151,7 @@ class SignUp extends Component {
                         name="confirmPassword"
                         value={confirmPassword}
                         onChange={this.handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -161,7 +165,7 @@ class SignUp extends Component {
                   </div>
 
                   <div className="form-checkbox">
-                    <input type="checkbox" name="legal" />
+                    <input type="checkbox" name="legal" required />
                     <label htmlFor="legal">
                       "&nbsp;J'accepte les&nbsp;
                       <span>Conditions Générales de Vente</span>"

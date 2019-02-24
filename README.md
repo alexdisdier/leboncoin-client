@@ -12,12 +12,8 @@ See demo - https://alexdisdier.github.io/leboncoin-client/
 
 React functionalities:
 
-- Create a cookie to store filters
-
 - Publish page:
 
-  - Loading messages for Publish page.
-  - Error message when missing a field.
   - Camera logo
   - Add caroussel (react-responsive-carousel)
 

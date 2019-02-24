@@ -119,6 +119,7 @@
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 40px;
+  margin-bottom: 20px;
   width: 20%;
   font-size: 13px;
   line-height: 19px;
@@ -131,4 +132,8 @@
   text-decoration: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.validate-btn:hover {
+  background-color: #369;
 }

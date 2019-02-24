@@ -35,7 +35,8 @@ class Publish extends Component {
     });
   };
 
-  submitForm = async () => {
+  submitForm = async event => {
+    event.preventDefault();
     try {
       const { title, description, price, files } = this.state;
       const token = this.props.getUser().token;
@@ -75,11 +76,7 @@ class Publish extends Component {
       padding: "16px"
     };
     if (!this.state.isLoading) {
-      return (
-        <button className="validate-btn" onClick={this.submitForm}>
-          Valider
-        </button>
-      );
+      return <button className="validate-btn">Valider</button>;
     } else {
       return (
         <>
@@ -123,76 +120,82 @@ class Publish extends Component {
 
           <div className="ad-listing-container">
             <h2>Votre annonce</h2>
+            <form onSubmit={this.submitForm}>
+              <div className="ad-listing-body">
+                <label htmlFor="title">Titre de l'annonce</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={title}
+                  maxLength="50"
+                  onChange={this.handleChange}
+                  required
+                />
+                <label htmlFor="description">Texte de l'annonce</label>
+                <textarea
+                  rows="10"
+                  name="description"
+                  value={description}
+                  maxLength="4000"
+                  onChange={this.handleChange}
+                  required
+                />
+                <label htmlFor="price">Prix</label>
+                <input
+                  type="text"
+                  name="price"
+                  value={price}
+                  maxLength="8"
+                  onChange={this.handleChange}
+                  required
+                />
+                <p>
+                  <span>Photos :</span> Une annonce avec photo est 7 fois plus
+                  consultée qu'une annonce sans photo
+                </p>
+                <aside>
+                  <ReactFileReader
+                    fileTypes={[".png", ".jpg"]}
+                    base64={true}
+                    multiplesFiles={false} // false for one single image
+                    handleFiles={this.handleFiles}
+                  >
+                    <div className="box-photo">
+                      <span className="close-photo">⤫</span>
+                      {filesArray.length > 0
+                        ? filesArray[0]
+                        : "Photo principale"}
+                    </div>
+                  </ReactFileReader>
 
-            <div className="ad-listing-body">
-              <label htmlFor="title">Titre de l'annonce</label>
-              <input
-                type="text"
-                name="title"
-                value={title}
-                maxLength="50"
-                onChange={this.handleChange}
-              />
-              <label htmlFor="description">Texte de l'annonce</label>
-              <textarea
-                rows="10"
-                name="description"
-                value={description}
-                maxLength="4000"
-                onChange={this.handleChange}
-              />
-              <label htmlFor="price">Prix</label>
-              <input
-                type="text"
-                name="price"
-                value={price}
-                maxLength="8"
-                onChange={this.handleChange}
-              />
-              <p>
-                <span>Photos :</span> Une annonce avec photo est 7 fois plus
-                consultée qu'une annonce sans photo
-              </p>
-              <aside>
-                <ReactFileReader
-                  fileTypes={[".png", ".jpg"]}
-                  base64={true}
-                  multiplesFiles={false} // false for one single image
-                  handleFiles={this.handleFiles}
-                >
-                  <div className="box-photo">
-                    <span className="close-photo">⤫</span>
-                    {filesArray.length > 0 ? filesArray[0] : "Photo principale"}
-                  </div>
-                </ReactFileReader>
+                  <ReactFileReader
+                    fileTypes={[".png", ".jpg"]}
+                    base64={true}
+                    multiplesFiles={false} // false for one single image
+                    handleFiles={this.handleFiles}
+                  >
+                    <div className="box-photo">
+                      <span className="close-photo">⤫</span>
+                      {filesArray[1] ? filesArray[1] : "Photo 2"}
+                    </div>
+                  </ReactFileReader>
 
-                <ReactFileReader
-                  fileTypes={[".png", ".jpg"]}
-                  base64={true}
-                  multiplesFiles={false} // false for one single image
-                  handleFiles={this.handleFiles}
-                >
-                  <div className="box-photo">
-                    <span className="close-photo">⤫</span>
-                    {filesArray[1] ? filesArray[1] : "Photo 2"}
-                  </div>
-                </ReactFileReader>
-
-                <ReactFileReader
-                  fileTypes={[".png", ".jpg"]}
-                  base64={true}
-                  multiplesFiles={false} // false for one single image
-                  handleFiles={this.handleFiles}
-                >
-                  <div className="box-photo">
-                    <span className="close-photo">⤫</span>
-                    {filesArray[2] ? filesArray[2] : "Photo 3"}
-                  </div>
-                </ReactFileReader>
-              </aside>
-            </div>
+                  <ReactFileReader
+                    fileTypes={[".png", ".jpg"]}
+                    base64={true}
+                    multiplesFiles={false} // false for one single image
+                    handleFiles={this.handleFiles}
+                  >
+                    <div className="box-photo">
+                      <span className="close-photo">⤫</span>
+                      {filesArray[2] ? filesArray[2] : "Photo 3"}
+                    </div>
+                  </ReactFileReader>
+                </aside>
+                {this.renderButton()}
+              </div>
+            </form>
           </div>
-          {this.renderButton()}
         </div>
       </div>
     );

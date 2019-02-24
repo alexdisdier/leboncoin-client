@@ -58,6 +58,7 @@ class LogIn extends Component {
                   value={email}
                   onChange={this.handleChange}
                   placeholder="mern@gmail.com"
+                  required
                 />
               </div>
 
@@ -69,6 +70,7 @@ class LogIn extends Component {
                     name="password"
                     value={password}
                     onChange={this.handleChange}
+                    required
                   />
                 </div>
               </div>
