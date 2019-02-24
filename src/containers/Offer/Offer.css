@@ -1,11 +1,12 @@
 .section-offer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 }
 
 .section-main {
-  width: 67%;
+  width: 100%;
 }
 
 .section-sidebar {
@@ -94,4 +95,15 @@
   margin-left: 10px;
   font-weight: 700;
   color: #1a1a1a;
+}
+
+@media only screen and (min-width: 768px) {
+  .section-offer {
+    flex-direction: row;
+    align-items: unset;
+  }
+
+  .section-main {
+    width: 67%;
+  }
 }

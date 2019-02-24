@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import domain from "../../assets/domain";
 import { ReactComponent as ClockIcon } from "../../assets/img/clock.svg";
 import { ReactComponent as BellIcon } from "../../assets/img/bell.svg";
 import { ReactComponent as EyeIcon } from "../../assets/img/eye.svg";
 
 import "./SignUp.css";
-
-const local = "http://localhost:3001";
-const server = "https://leboncoin-api.herokuapp.com/api";
-const domain = local;
 
 class SignUp extends Component {
   state = {

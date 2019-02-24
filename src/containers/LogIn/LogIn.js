@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import domain from "../../assets/domain";
 
 import "./LogIn.css";
-
-const local = "http://localhost:3001";
-const server = "https://leboncoin-api.herokuapp.com/api";
-const domain = local;
 
 class LogIn extends Component {
   state = {

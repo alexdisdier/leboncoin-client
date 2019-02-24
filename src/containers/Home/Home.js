@@ -11,10 +11,10 @@ class Home extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="sign-up-page homepage">
+        <div className="sign-up-page homepage" style={{ display: "block" }}>
           <h1>Bienvenue sur mon clone du boncoin</h1>
           <div className="sign-up-flex">
-            <div className="sign-up-flex-left">
+            <div className="sign-up-flex-left" style={{ display: "block" }}>
               <section>
                 <h2>Front End </h2>
                 <div className="flex-row speed">
@@ -84,7 +84,7 @@ class Home extends Component {
                 </div>
               </section>
             </div>
-            <div className="sign-up-flex-left">
+            <div className="sign-up-flex-left" style={{ display: "block" }}>
               <section>
                 <h2>Back End</h2>
                 <div className="flex-row speed">

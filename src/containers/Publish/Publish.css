@@ -87,6 +87,7 @@
 .ad-listing-body aside {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .react-file-reader input {

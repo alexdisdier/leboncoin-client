@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import domain from "../../assets/domain";
 
 import Filters from "../../components/Filters/Filters";
 import Card from "../../components/Card/Card";
@@ -9,10 +10,6 @@ import Pagination from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading/Loading";
 
 import "./Offers.css";
-
-const local = "http://localhost:3001";
-const server = "https://leboncoin-api.herokuapp.com/api";
-const domain = local;
 
 class Offers extends Component {
   state = {

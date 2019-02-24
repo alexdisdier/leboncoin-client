@@ -3,14 +3,11 @@ import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { format } from "date-fns";
+import domain from "../../assets/domain";
 
 import Loading from "../../components/Loading/Loading";
 
 import "./Offer.css";
-
-const local = "http://localhost:3001";
-const server = "https://leboncoin-api.herokuapp.com/api";
-const domain = local;
 
 class Offer extends Component {
   state = {
@@ -73,6 +70,11 @@ class Offer extends Component {
           <section className="section-offer">
             <div className="section-main">
               <div className="section-card">
+                {imgUrl.length === 0 ? (
+                  <div className="gallery-container" />
+                ) : (
+                  ""
+                )}
                 <Carousel>
                   {imgUrl.map((img, index) => {
                     return (

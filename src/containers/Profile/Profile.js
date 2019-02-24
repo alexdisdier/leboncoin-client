@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import domain from "../../assets/domain";
 
 import Card from "../../components/Card/Card";
 import Loading from "../../components/Loading/Loading";
 
 import "./Profile.css";
-
-const local = "http://localhost:3001";
-const server = "https://leboncoin-api.herokuapp.com/api";
-const domain = local;
 
 class Profile extends Component {
   state = {

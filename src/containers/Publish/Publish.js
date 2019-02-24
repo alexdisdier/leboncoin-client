@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactFileReader from "react-file-reader";
 import Loading from "../../components/Loading/Loading";
+import domain from "../../assets/domain";
 import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg";
 
 import "./Publish.css";
-
-const local = "http://localhost:3001";
-const server = "https://leboncoin-api.herokuapp.com/api";
-const domain = local;
 
 class Publish extends Component {
   state = {
