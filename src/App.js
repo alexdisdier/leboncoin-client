@@ -85,7 +85,7 @@ class App extends Component {
           <Switch>
             <Route
               exact={true}
-              path="/"
+              path="/leboncoin-client"
               render={props => {
                 // props = {
                 //  history (push triggers redirection)
@@ -97,7 +97,7 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/offres"
+              path="/leboncoin-client/offres"
               render={props => {
                 // props = {
                 //  history (push triggers redirection)
@@ -108,35 +108,35 @@ class App extends Component {
               }}
             />
             <Route
-              path="/offer/:offerId"
+              path="/leboncoin-client/offer/:offerId"
               render={props => <Offer {...props} />}
             />
             <Route
-              path="/sign_up"
+              path="/leboncoin-client/sign_up"
               render={props => <SignUp setUser={this.setUser} {...props} />}
             />
 
             <Route
-              path="/log_in"
+              path="/leboncoin-client/log_in"
               render={props => <LogIn setUser={this.setUser} {...props} />}
             />
             <Route
-              path="/publish"
+              path="/leboncoin-client/publish"
               render={props => {
                 if (this.state.token) {
                   return <Publish getUser={this.getUser} {...props} />;
                 } else {
-                  return <Redirect to="/log_in" />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
+                  return <Redirect to="/leboncoin-client/log_in" />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
                 }
               }}
             />
             <Route
-              path="/profile"
+              path="/leboncoin-client/profile"
               render={props => {
                 if (this.state.token) {
                   return <Profile getUser={this.getUser} {...props} />;
                 } else {
-                  return <Redirect to="/offres" />;
+                  return <Redirect to="/leboncoin-client/offres" />;
                 }
               }}
             />
