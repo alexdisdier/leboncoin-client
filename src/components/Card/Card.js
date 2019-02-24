@@ -16,8 +16,24 @@ const card = props => {
     backgroundPosition: "center"
   };
 
+  let deleteAd;
+
+  if (props.isDelete) {
+    deleteAd = (
+      <span
+        id="delete-ad"
+        onClick={() => {
+          props.deleteOffer(props.id);
+        }}
+      >
+        ⤫
+      </span>
+    );
+  }
+
   return (
     <li className="card">
+      {deleteAd}
       <Link to={`/offer/${props.id}`}>
         <div className="card-body">
           <div className="card-img">

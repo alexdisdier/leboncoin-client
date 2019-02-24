@@ -25,7 +25,7 @@ const filters = props => {
                 value={minPrice}
                 onChange={props.handleFilters}
               >
-                <option value="0">Prix min</option>
+                <option value="">Prix min</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>

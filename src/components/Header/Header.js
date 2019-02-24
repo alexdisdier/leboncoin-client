@@ -18,7 +18,7 @@ const header = props => {
 
   const logIn = (
     <>
-      <span>Hello {username}</span>
+      <Button to="/profile">Hello {username}</Button>
       <button onClick={() => props.logOut()}>Se déconnecter</button>
     </>
   );

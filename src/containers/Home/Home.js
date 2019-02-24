@@ -36,13 +36,14 @@ class Home extends Component {
   }
 
   goToPage = async pageClicked => {
+    const { title, minPrice, maxPrice, sort } = this.state;
     try {
-      if (this.state.title !== "") {
+      if (title !== "" || minPrice !== "" || maxPrice !== "" || sort !== "") {
         const criteria = {
-          title: this.state.title,
-          minPrice: this.state.minPrice,
-          maxPrice: this.state.maxPrice,
-          sort: this.state.sort
+          title: title,
+          minPrice: minPrice,
+          maxPrice: maxPrice,
+          sort: sort
         };
         this.searchFilters(criteria);
         this.setState({
@@ -74,7 +75,7 @@ class Home extends Component {
     const name = event.target.name;
     const value = event.target.value;
     const stateToUpdate = {};
-    console.log(value);
+
     if (value === "") {
       Cookies.remove("title");
       Cookies.remove("minPrice");
@@ -126,7 +127,6 @@ class Home extends Component {
 
   submitFilters = event => {
     event.preventDefault();
-    console.log(this.state.title);
 
     const criteria = {
       title: this.state.title,
@@ -134,7 +134,6 @@ class Home extends Component {
       maxPrice: this.state.maxPrice,
       sort: this.state.sort
     };
-    console.log(criteria);
 
     const keys = Object.values(criteria);
 
@@ -160,9 +159,9 @@ class Home extends Component {
 
   renderMain() {
     const { isLoading, error, currentPage, totalPages, offers } = this.state;
+
     if (!isLoading && error === null) {
       if (offers !== undefined) {
-        // console.log(offers.pictures);
         return (
           <>
             <div className="wrapper homepage">
@@ -204,7 +203,6 @@ class Home extends Component {
           minPrice={minPrice}
           maxPrice={maxPrice}
           sort={sort}
-          // filters={this.state.filters}
           handleFilters={this.handleFilters}
           submitFilters={this.submitFilters}
         />

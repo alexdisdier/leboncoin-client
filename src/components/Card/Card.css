@@ -63,6 +63,18 @@
   color: #f56b2a;
 }
 
+#delete-ad {
+  position: absolute;
+  margin: 0;
+  font-size: 24px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+#delete-ad:hover {
+  color: red;
+}
+
 @media only screen and (min-width: 768px) {
   .card .img {
     height: 172px;
