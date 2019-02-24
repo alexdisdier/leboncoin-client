@@ -18,3 +18,7 @@ header,
   padding-left: 16px;
   padding-right: 16px;
 }
+
+p {
+  word-wrap: break-word;
+}

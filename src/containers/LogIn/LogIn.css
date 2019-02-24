@@ -55,3 +55,6 @@
 .connection .btn:hover {
   background-color: rgba(51, 102, 153, 0.1);
 }
+
+@media only screen and (min-width: 768px) {
+}

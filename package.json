@@ -11,6 +11,8 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-file-reader": "^1.1.4",
+    "react-lines-ellipsis": "^0.14.0",
+    "react-responsive-carousel": "^3.1.47",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5"
   },

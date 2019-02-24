@@ -67,6 +67,19 @@
   line-height: 19px;
 }
 
+.ad-listing-body .loading-message {
+  font-size: 21px;
+  line-height: 1.5;
+  margin: 0;
+  position: absolute;
+  top: 39%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  text-align: center;
+}
+
 .ad-listing-body p span {
   font-weight: 600;
 }
@@ -74,6 +87,10 @@
 .ad-listing-body aside {
   display: flex;
   flex-direction: row;
+}
+
+.react-file-reader input {
+  min-width: 0;
 }
 
 .react-file-reader-button {

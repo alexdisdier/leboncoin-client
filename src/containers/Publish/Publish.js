@@ -39,6 +39,7 @@ class Publish extends Component {
     event.preventDefault();
     try {
       const { title, description, price, files } = this.state;
+      console.log(files);
       const token = this.props.getUser().token;
       this.setState({
         isLoading: true
@@ -71,17 +72,13 @@ class Publish extends Component {
   };
 
   renderButton = () => {
-    const style = {
-      marginTop: "20px",
-      padding: "16px"
-    };
     if (!this.state.isLoading) {
       return <button className="validate-btn">Valider</button>;
     } else {
       return (
         <>
           <Loading />
-          <span style={style}>
+          <span className="loading-message">
             Une fois le chargement terminé, vous serez rediriger vers la page
             d'accueil. merci de patienter 😃{" "}
           </span>
@@ -161,7 +158,7 @@ class Publish extends Component {
                     handleFiles={this.handleFiles}
                   >
                     <div className="box-photo">
-                      <span className="close-photo">⤫</span>
+                      {/* <span className="close-photo">⤫</span> */}
                       {filesArray.length > 0
                         ? filesArray[0]
                         : "Photo principale"}
@@ -175,7 +172,7 @@ class Publish extends Component {
                     handleFiles={this.handleFiles}
                   >
                     <div className="box-photo">
-                      <span className="close-photo">⤫</span>
+                      {/* <span className="close-photo">⤫</span> */}
                       {filesArray[1] ? filesArray[1] : "Photo 2"}
                     </div>
                   </ReactFileReader>
@@ -187,7 +184,7 @@ class Publish extends Component {
                     handleFiles={this.handleFiles}
                   >
                     <div className="box-photo">
-                      <span className="close-photo">⤫</span>
+                      {/* <span className="close-photo">⤫</span> */}
                       {filesArray[2] ? filesArray[2] : "Photo 3"}
                     </div>
                   </ReactFileReader>

@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import Header from "./components/Header/Header";
 
 import Home from "./containers/Home/Home";
+import Offers from "./containers/Offers/Offers";
 import Offer from "./containers/Offer/Offer";
 import SignUp from "./containers/SignUp/SignUp";
 import LogIn from "./containers/LogIn/LogIn";
@@ -84,7 +85,7 @@ class App extends Component {
           <Switch>
             <Route
               exact={true}
-              path="/offres"
+              path="/"
               render={props => {
                 // props = {
                 //  history (push triggers redirection)
@@ -92,6 +93,18 @@ class App extends Component {
                 //  location
                 // }
                 return <Home {...props} />;
+              }}
+            />
+            <Route
+              exact={true}
+              path="/offres"
+              render={props => {
+                // props = {
+                //  history (push triggers redirection)
+                //  match
+                //  location
+                // }
+                return <Offers {...props} />;
               }}
             />
             <Route

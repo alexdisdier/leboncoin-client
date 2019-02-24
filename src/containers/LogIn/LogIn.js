@@ -62,7 +62,7 @@ class LogIn extends Component {
                 />
               </div>
 
-              <div className="form-item form-password">
+              <div className="form-item">
                 <div className="form-item">
                   <label htmlFor="password">Mot de passe</label>
                   <input

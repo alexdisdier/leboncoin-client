@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import LinesEllipsis from "react-lines-ellipsis";
 
 import "./Card.css";
 const card = props => {
@@ -45,8 +46,16 @@ const card = props => {
               <span className="card-price">{props.price}&nbsp;€</span>
             </div>
             <div className="card-bottom" />
-            <p>{props.description}</p>
-            <span>{format(props.date, "MMMM DD, YYYY")}</span>
+            <LinesEllipsis
+              text={props.description}
+              maxLine="1"
+              ellipsis="..."
+              trimRight
+              basedOn="letters"
+            />
+            <span style={{ marginTop: "-16px" }}>
+              {format(props.date, "MMMM DD, YYYY")}
+            </span>
           </div>
         </div>
       </Link>

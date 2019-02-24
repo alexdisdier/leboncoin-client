@@ -3,3 +3,7 @@
   padding-bottom: 36px;
   border-bottom: 1px solid #ccc;
 }
+
+.profile-details p {
+  line-height: 1.5;
+}

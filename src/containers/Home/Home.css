@@ -1,3 +1,35 @@
 .homepage {
   margin-top: 20px;
 }
+
+.homepage h1 {
+  font-size: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 2px solid #f56b2a;
+}
+
+.homepage ul {
+  list-style-type: square;
+  line-height: 1.5;
+}
+
+.homepage .speed {
+  margin-top: 20px;
+}
+
+.homepage .sign-up-flex {
+  flex-direction: column;
+}
+
+.homepage .sign-up-left {
+  display: block;
+}
+
+@media only screen and (min-width: 768px) {
+  .homepage .sign-up-flex {
+    flex-direction: row;
+  }
+}

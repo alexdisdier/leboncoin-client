@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import { format } from "date-fns";
 
 import Loading from "../../components/Loading/Loading";
 
@@ -44,20 +47,14 @@ class Offer extends Component {
     } = this.state.offer;
 
     const { isLoading, error } = this.state;
-    let image;
-    let style;
+    const imgUrl = [];
 
     if (pictures) {
       if (pictures.length > 0) {
-        image = pictures[0].secure_url;
+        for (let i = 0; i < pictures.length; i++) {
+          imgUrl.push(pictures[i].secure_url);
+        }
       }
-
-      style = {
-        backgroundImage: `url(${image})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        backgroundPosition: "center"
-      };
     }
 
     if (!isLoading && error === null) {
@@ -76,11 +73,20 @@ class Offer extends Component {
           <section className="section-offer">
             <div className="section-main">
               <div className="section-card">
-                <div className="gallery-container" style={style} />
+                <Carousel>
+                  {imgUrl.map((img, index) => {
+                    return (
+                      <div key={index}>
+                        <img src={img} />
+                      </div>
+                    );
+                  })}
+                </Carousel>
+
                 <div className="section-card-body">
                   <h1>{title}</h1>
                   <span>{price}&nbsp;€</span>
-                  <div>{created}</div>
+                  <div>{format(created, "MMMM DD, YYYY")}</div>
                 </div>
               </div>
               <div className="section-description">
