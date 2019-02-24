@@ -31,7 +31,7 @@ class LogIn extends Component {
       // console.log(response);
       if (response.data.token) {
         this.props.setUser(response.data);
-        this.props.history.push("/offres");
+        this.props.history.push("/leboncoin-client/offres");
         console.log("success, check cookies");
       }
     } catch (error) {
