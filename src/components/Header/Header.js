@@ -11,14 +11,14 @@ const header = props => {
 
   const logOut = (
     <>
-      <Button to="/leboncoin-client/log_in">Se connecter</Button>
-      <Button to="/leboncoin-client/sign_up">Créer un compte</Button>
+      <Button to="/log_in">Se connecter</Button>
+      <Button to="/sign_up">Créer un compte</Button>
     </>
   );
 
   const logIn = (
     <>
-      <Button to="/leboncoin-client/profile">Hello {username}</Button>
+      <Button to="/profile">Hello {username}</Button>
       <button onClick={() => props.logOut()}>Se déconnecter</button>
     </>
   );
@@ -32,11 +32,11 @@ const header = props => {
   return (
     <header className="header">
       <div className="wrapper flex">
-        <Button to="/leboncoin-client">
+        <Button to="/">
           <Logo />
         </Button>
-        <Button to="/leboncoin-client/publish">Déposer une annonce</Button>
-        <Button to="/leboncoin-client/offres">offres</Button>
+        <Button to="/publish">Déposer une annonce</Button>
+        <Button to="/offres">offres</Button>
         <div className="account-panel">{renderNav}</div>
       </div>
     </header>

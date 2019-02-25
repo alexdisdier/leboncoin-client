@@ -59,7 +59,7 @@ class Publish extends Component {
         isLoading: false
       });
       // console.log("response.data", response.data);
-      this.props.history.push("/leboncoin-client/offres");
+      this.props.history.push("/offres");
     } catch (error) {
       console.log({
         error: error.message,

@@ -33,10 +33,7 @@ class Home extends Component {
                     <p>Fonctionalités</p>
                     <ul>
                       <li>
-                        Afficher toutes{" "}
-                        <Button to="/leboncoin-client/offres">
-                          les offres
-                        </Button>{" "}
+                        Afficher toutes <Button to="/offres">les offres</Button>{" "}
                         avec un componsant loading en attendant le chargement.
                       </li>
                       <li>Afficher une offre spécifique.</li>
@@ -47,23 +44,18 @@ class Home extends Component {
                         recherche
                       </li>
                       <li>
-                        <Button to="/leboncoin-client/sign_up">
-                          Créer un compte
-                        </Button>{" "}
+                        <Button to="/sign_up">Créer un compte</Button>{" "}
                         d'utilisateur
                       </li>
                       <li>
-                        <Button to="/leboncoin-client/sign_up">
-                          Se connecter
-                        </Button>{" "}
-                        à son compte
+                        <Button to="/sign_up">Se connecter</Button> à son compte
                       </li>
                       <li>
-                        <Button to="/leboncoin-client/publish">Publier</Button>{" "}
-                        une annonce avec Cloudinary
+                        <Button to="/publish">Publier</Button> une annonce avec
+                        Cloudinary
                       </li>
                       <li>
-                        <Button to="/leboncoin-client/profile">
+                        <Button to="/profile">
                           Voir son profile d'utilisateur
                         </Button>{" "}
                         avec les annonces que l'on a publié.

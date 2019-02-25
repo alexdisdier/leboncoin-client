@@ -37,7 +37,7 @@ class SignUp extends Component {
 
           if (response.data.token) {
             this.props.setUser(response.data);
-            this.props.history.push("/leboncoin-client/offres");
+            this.props.history.push("/offres");
             console.log("Success, user created");
           } else {
             alert("an error occurred");

@@ -31,7 +31,7 @@ class LogIn extends Component {
       // console.log(response);
       if (response.data.token) {
         this.props.setUser(response.data);
-        this.props.history.push("/leboncoin-client/offres");
+        this.props.history.push("/offres");
         console.log("success, check cookies");
       }
     } catch (error) {
@@ -77,7 +77,7 @@ class LogIn extends Component {
 
             <div className="create-account-redirect">
               <p>Vous n'avez pas de compte ?</p>
-              <Link className="btn" to="/leboncoin-client/signup">
+              <Link className="btn" to="/signup">
                 Créer un compte
               </Link>
             </div>
