@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactFileReader from "react-file-reader";
 import Loading from "../../components/Loading/Loading";
 import domain from "../../assets/domain";
-import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg";
+// import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg";
 
 import "./Publish.css";
 

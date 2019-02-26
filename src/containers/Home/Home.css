@@ -1,8 +1,17 @@
-.homepage {
+.card {
   margin-top: 20px;
+  margin-top: 2rem;
+  padding: 30px 30px;
+  font-family: "Open Sans", sans-serif;
+  background: #fff;
+  box-shadow: 0 0 5px 0 #ddd;
 }
 
-.homepage h1 {
+.card-left {
+  display: none;
+}
+
+.card h1 {
   font-size: 18px;
   margin-bottom: 24px;
   padding-bottom: 16px;
@@ -11,21 +20,32 @@
   border-bottom: 2px solid #f56b2a;
 }
 
-.homepage ul {
+.card ul {
   list-style-type: square;
   line-height: 1.5;
 }
 
-.homepage .speed {
+.card .speed {
   margin-top: 20px;
 }
 
-.homepage .sign-up-flex {
+.card .card-wrapper {
+  display: flex;
   flex-direction: column;
 }
 
+.card-wrapper h2 {
+  margin-bottom: 12px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 @media only screen and (min-width: 768px) {
-  .homepage .sign-up-flex {
+  .card {
+    padding: 30px 60px;
+  }
+  .card .card-wrapper {
     flex-direction: row;
   }
 }

@@ -5,7 +5,8 @@
 }
 
 .ad-listing img {
-  height: auto;
+  object-fit: contain;
+  max-height: 143px;
   width: 170px;
 }
 

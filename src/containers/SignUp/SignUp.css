@@ -1,6 +1,7 @@
+/* Card */
 .sign-up-page {
   margin-top: 2rem;
-  padding: 30px 60px;
+  padding: 30px 60px; /* 30px in .card */
   font-family: "Open Sans", sans-serif;
   background: #fff;
   box-shadow: 0 0 5px 0 #ddd;
@@ -25,11 +26,13 @@
   fill: #4183d7;
 }
 
+/* card-wrapper */
 .sign-up-flex {
   display: flex;
   flex-direction: row;
 }
 
+/* card-left */
 .sign-up-flex-left {
   display: none;
 }
