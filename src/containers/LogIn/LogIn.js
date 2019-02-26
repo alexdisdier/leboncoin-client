@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Validation from "../../Validation/Validation";
 import domain from "../../assets/domain";
 
 import "./LogIn.css";
@@ -9,7 +10,8 @@ class LogIn extends Component {
   state = {
     email: "",
     password: "",
-    error: null
+    error: null,
+    isValid: true
   };
 
   handleChange = event => {
@@ -27,10 +29,16 @@ class LogIn extends Component {
       });
       if (response.data.message === "wrong password") {
         console.log("wrong password");
+        this.setState({
+          isValid: false
+        });
       }
       // console.log(response);
       if (response.data.token) {
         this.props.setUser(response.data);
+        await this.setState({
+          isValid: true
+        });
         this.props.history.push("/offres");
         console.log("success, check cookies");
       }
@@ -63,6 +71,9 @@ class LogIn extends Component {
                 <div className="form-item">
                   <label htmlFor="password">Mot de passe</label>
                   <input
+                    style={{
+                      boxShadow: !this.state.isValid && "0 0 0 3px red inset"
+                    }}
                     type="password"
                     name="password"
                     value={password}
@@ -70,6 +81,7 @@ class LogIn extends Component {
                     required
                   />
                 </div>
+                <Validation isValid={this.state.isValid} />
               </div>
 
               <button type="submit">Se connecter</button>

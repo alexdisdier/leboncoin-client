@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactFileReader from "react-file-reader";
+import faker from "faker";
 import Loading from "../../components/Loading/Loading";
 import domain from "../../assets/domain";
 // import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg";

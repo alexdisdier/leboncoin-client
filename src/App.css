@@ -22,3 +22,9 @@ header,
 p {
   word-wrap: break-word;
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
