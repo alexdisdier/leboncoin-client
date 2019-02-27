@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 140px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   background-color: #f56b2a;
   color: #fff;
 }
@@ -14,12 +15,21 @@
 }
 
 .flex {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.hidden-xs {
+  display: none;
+}
+
+.nav a:nth-child(2) {
+  flex-grow: 1;
 }
 
 .account-panel {
@@ -36,28 +46,74 @@
   padding-right: 16px;
 }
 
-.flex a:nth-child(2) {
-  padding-left: 16px;
-}
-
 .flex a:nth-child(3) {
   padding-left: 16px;
 }
 
-.header svg {
+.header svg:focus {
+  outline: none;
+}
+
+a svg {
   width: 140px;
   height: 25px;
 }
 
+menu svg {
+  width: 25px;
+  height: 25px;
+  fill: #fff;
+}
+
+.show-xs {
+  display: flex;
+}
+
+menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.flex-xs {
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.menu-open {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.menu-open a {
+  font-size: 19px;
+  padding-bottom: 20px;
+}
+
 @media only screen and (min-width: 768px) {
-  .header {
-    height: 60px;
-  }
   .flex {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
   }
+
   .flex a:nth-child(3) {
     flex-grow: 1;
+  }
+
+  .flex a:nth-child(2) {
+    padding-left: 16px;
+  }
+
+  .nav {
+    display: flex;
+    padding-left: 15px;
+    width: 100%;
+  }
+
+  .show-xs {
+    display: none;
   }
 }

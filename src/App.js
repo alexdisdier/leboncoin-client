@@ -25,7 +25,8 @@ class App extends Component {
     token: Cookies.get("token") || null,
     email: Cookies.get("email") || null,
     username: Cookies.get("username") || null,
-    phone: Cookies.get("phone") || null
+    phone: Cookies.get("phone") || null,
+    isToggle: false
   };
 
   setUser = user => {
@@ -73,6 +74,13 @@ class App extends Component {
     Cookies.remove("phone");
   };
 
+  toggleMenu = () => {
+    const isToggle = this.state.isToggle;
+    this.setState({
+      isToggle: !isToggle
+    });
+  };
+
   render() {
     return (
       <Router>
@@ -81,6 +89,8 @@ class App extends Component {
             token={this.state.token}
             logOut={this.logOut}
             username={this.state.username}
+            isToggle={this.state.isToggle}
+            toggleMenu={this.toggleMenu}
           />
           <Switch>
             <Route

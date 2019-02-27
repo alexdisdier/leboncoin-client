@@ -31,7 +31,7 @@ class Home extends Component {
                 <div className="flex-row">
                   <div className="flex-column">
                     <p>Fonctionalités</p>
-                    <ul>
+                    <ul className="p-20">
                       <li>
                         Afficher toutes <Button to="/offres">les offres</Button>{" "}
                         avec un componsant loading en attendant le chargement.
