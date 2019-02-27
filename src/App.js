@@ -26,7 +26,14 @@ class App extends Component {
     email: Cookies.get("email") || null,
     username: Cookies.get("username") || null,
     phone: Cookies.get("phone") || null,
-    isToggle: false
+    isToggle: false,
+    windowWidth: null
+  };
+
+  componentDidMount = () => {
+    window.addEventListener("resize", () =>
+      this.setState({ windowWidth: window.innerWidth })
+    );
   };
 
   setUser = user => {
@@ -87,9 +94,10 @@ class App extends Component {
         <>
           <Header
             token={this.state.token}
-            logOut={this.logOut}
             username={this.state.username}
             isToggle={this.state.isToggle}
+            windowWidth={this.state.windowWidth}
+            logOut={this.logOut}
             toggleMenu={this.toggleMenu}
           />
           <Switch>

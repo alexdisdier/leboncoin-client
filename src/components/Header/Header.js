@@ -13,10 +13,18 @@ const header = props => {
 
   const logOut = (
     <>
-      <Button to="/log_in" toggleMenu={props.toggleMenu}>
+      <Button
+        to="/log_in"
+        toggleMenu={props.toggleMenu}
+        windowWidth={props.windowWidth}
+      >
         Se connecter
       </Button>
-      <Button to="/sign_up" toggleMenu={props.toggleMenu}>
+      <Button
+        to="/sign_up"
+        toggleMenu={props.toggleMenu}
+        windowWidth={props.windowWidth}
+      >
         Créer un compte
       </Button>
     </>
@@ -24,7 +32,11 @@ const header = props => {
 
   const logIn = (
     <>
-      <Button to="/profile" toggleMenu={props.toggleMenu}>
+      <Button
+        to="/profile"
+        toggleMenu={props.toggleMenu}
+        windowWidth={props.windowWidth}
+      >
         Hello {username}
       </Button>
       <button onClick={() => props.logOut()}>Se déconnecter</button>
@@ -41,11 +53,7 @@ const header = props => {
     <header className="header">
       <div className={`wrapper flex ${props.isToggle ? "flex-xs" : ""}`}>
         <Button to="/">
-          <Logo
-            onClick={() => {
-              props.toggleMenu();
-            }}
-          />
+          <Logo />
         </Button>
         <menu
           id="menu"
@@ -57,10 +65,18 @@ const header = props => {
           {props.isToggle ? <CloseBtn /> : <MenuBtn />}
         </menu>
         <div className={`nav ${props.isToggle ? "menu-open" : "hidden-xs"}`}>
-          <Button to="/publish" toggleMenu={props.toggleMenu}>
+          <Button
+            to="/publish"
+            toggleMenu={props.toggleMenu}
+            windowWidth={props.windowWidth}
+          >
             Déposer une annonce
           </Button>
-          <Button to="/offres" toggleMenu={props.toggleMenu}>
+          <Button
+            to="/offres"
+            toggleMenu={props.toggleMenu}
+            windowWidth={props.windowWidth}
+          >
             offres
           </Button>
           <div className="account-panel">{renderNav}</div>
