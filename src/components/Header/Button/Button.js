@@ -7,9 +7,9 @@ const button = props => (
   <Link
     className={`btn ${props.to}`}
     to={props.to}
-    onClick={() => {
-      props.toggleMenu();
-    }}
+    // onClick={() => {
+    //   props.toggleMenu();
+    // }}
   >
     {props.children}
   </Link>
