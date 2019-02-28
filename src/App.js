@@ -27,7 +27,7 @@ class App extends Component {
     username: Cookies.get("username") || null,
     phone: Cookies.get("phone") || null,
     isToggle: false,
-    windowWidth: 1024
+    windowWidth: window.innerWidth
   };
 
   componentDidMount = () => {
