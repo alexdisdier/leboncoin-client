@@ -28,7 +28,7 @@ class Profile extends Component {
           authorization: "Bearer " + token
         }
       });
-      console.log(response.data);
+
       const offer = response.data;
       this.setState({
         offers: offer,

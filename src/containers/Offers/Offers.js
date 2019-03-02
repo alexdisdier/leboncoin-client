@@ -15,7 +15,7 @@ class Offers extends Component {
   state = {
     offers: [],
     count: 0,
-    limit: 25,
+    limit: 10, // Products per page
     totalPages: 0,
     currentPage: 1,
 
@@ -29,7 +29,13 @@ class Offers extends Component {
   };
 
   async componentDidMount() {
-    await this.goToPage(1);
+    const response = await axios.get(`${domain}/offer/with-count`);
+    await this.setState({
+      offers: response.data.offers,
+      count: response.data.count,
+      totalPages: Math.ceil(response.data.count / this.state.limit)
+    });
+    this.goToPage(1);
   }
 
   goToPage = async pageClicked => {
@@ -52,11 +58,9 @@ class Offers extends Component {
           `${domain}/offer/with-count?skip=${skip}&limit=${this.state.limit}`
         );
         const offers = response.data.offers;
-        const count = response.data.count;
+
         this.setState({
           offers: offers,
-          count: count,
-          totalPages: Math.ceil(count / this.state.limit),
           currentPage: pageClicked,
           isLoading: false
         });
