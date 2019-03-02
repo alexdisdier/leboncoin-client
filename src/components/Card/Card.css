@@ -23,6 +23,8 @@
 }
 
 .card-body {
+  flex-direction: column;
+  align-items: center;
   display: flex;
   position: relative;
   padding: 0;
@@ -33,27 +35,30 @@
   background-color: #fff;
 }
 
+.card-top {
+  padding-bottom: 16px;
+}
+
 .card .img {
   max-height: 100%;
   max-width: 100%;
   margin: 10px;
-  height: 86px;
-  width: 115px;
+  height: 172px;
+  width: 230px;
   background: #fafafa;
 }
 
 .card-content {
   position: relative;
-  padding: 1.2rem;
-  vertical-align: top;
+  padding-top: 1.2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
+  text-align: center;
 }
 
 .card-title {
-  font-size: 2rem;
+  font-size: 24px;
   line-height: 2.4rem;
   transition: 0.3s;
   padding-bottom: 8px;
@@ -61,6 +66,12 @@
 
 .card-price {
   color: #f56b2a;
+}
+
+.date-fns {
+  padding-top: 8px;
+  line-height: 1.5;
+  font-size: 12px;
 }
 
 #delete-ad {
@@ -75,9 +86,19 @@
   color: red;
 }
 
+.LinesEllipsis {
+  line-height: 1.5;
+}
+
 @media only screen and (min-width: 768px) {
-  .card .img {
-    height: 172px;
-    width: 230px;
+  .card-title {
+    font-size: 2rem;
+  }
+  .card-body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .card-content {
+    text-align: left;
   }
 }

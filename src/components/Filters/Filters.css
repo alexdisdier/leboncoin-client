@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   padding-top: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -28,15 +27,12 @@
 }
 
 .search input,
-.price-range select {
-  margin-right: 10px;
-  margin-left: 10px;
+.price-range select,
+.filters select {
   padding: 8px 10px;
-  width: 95%;
   background: #fff;
   border: 1px solid #cad1d9;
   border-radius: 4px;
-  vertical-align: middle;
   outline: none;
   font-size: 13px;
 }
@@ -47,6 +43,7 @@ input[name="title"] {
 
 .filters select {
   height: 37px;
+  width: 100%;
 }
 
 .search button {
@@ -73,13 +70,12 @@ input[name="title"] {
 .price-range {
   display: flex;
   flex-direction: row;
-  flex: 0 1 50%;
   align-items: center;
+  padding-bottom: 16px;
 }
 
 .price-range label {
-  width: 100px;
-  margin-right: 40px;
+  padding-right: 8px;
   font-size: 12px;
 }
 
@@ -105,6 +101,16 @@ input[name="title"] {
   }
   .search button {
     margin-left: 10px;
+    width: 20%;
+  }
+  .price-range {
+    flex: 0 1 50%;
+  }
+  .price-range {
+    padding-bottom: 0;
+  }
+
+  .filters select[name="sort"] {
     width: 20%;
   }
 }

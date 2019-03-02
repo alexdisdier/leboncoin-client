@@ -53,7 +53,7 @@ const card = props => {
               trimRight
               basedOn="letters"
             />
-            <span style={{ marginTop: "-16px" }}>
+            <span className="date-fns">
               {format(props.date, "MMMM DD, YYYY")}
             </span>
           </div>

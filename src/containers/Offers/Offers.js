@@ -184,6 +184,7 @@ class Offers extends Component {
               currentPage={currentPage}
               totalPages={totalPages}
               goToPage={this.goToPage}
+              windowWidth={this.props.windowWidth}
             />
           </>
         );

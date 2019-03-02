@@ -122,7 +122,9 @@ class App extends Component {
                 //  match
                 //  location
                 // }
-                return <Offers {...props} />;
+                return (
+                  <Offers {...props} windowWidth={this.state.windowWidth} />
+                );
               }}
             />
             <Route

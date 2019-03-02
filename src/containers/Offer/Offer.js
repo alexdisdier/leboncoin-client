@@ -79,7 +79,7 @@ class Offer extends Component {
                   {imgUrl.map((img, index) => {
                     return (
                       <div key={index}>
-                        <img src={img} />
+                        <img src={img} alt="carousel slider" />
                       </div>
                     );
                   })}

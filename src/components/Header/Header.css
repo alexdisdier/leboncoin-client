@@ -79,18 +79,21 @@ menu {
 .flex-xs {
   height: 100vh;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .menu-open {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding-top: 16px;
 }
 
 .menu-open a {
   font-size: 19px;
-  padding-bottom: 20px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  /* padding-bottom: 20px; */
 }
 
 @media only screen and (min-width: 768px) {
@@ -115,5 +118,9 @@ menu {
 
   .show-xs {
     display: none;
+  }
+
+  .header a {
+    margin-bottom: 0;
   }
 }

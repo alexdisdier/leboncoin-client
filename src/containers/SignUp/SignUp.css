@@ -1,7 +1,7 @@
 /* Card */
 .sign-up-page {
   margin-top: 2rem;
-  padding: 30px 60px; /* 30px in .card */
+  padding: 30px 40px; /* 30px in .card */
   font-family: "Open Sans", sans-serif;
   background: #fff;
   box-shadow: 0 0 5px 0 #ddd;
@@ -135,5 +135,8 @@
   }
   .form-password {
     flex-direction: row;
+  }
+  .sign-up-page {
+    padding: 30px 60px; /* 30px in .card */
   }
 }

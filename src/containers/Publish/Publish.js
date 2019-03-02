@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactFileReader from "react-file-reader";
-import faker from "faker";
 import Loading from "../../components/Loading/Loading";
 import domain from "../../assets/domain";
-// import { ReactComponent as PhotoCamera } from "../../assets/img/photo-camera.svg";
 
 import "./Publish.css";
 
@@ -78,7 +76,10 @@ class Publish extends Component {
           <Loading />
           <span className="loading-message">
             Une fois le chargement terminé, vous serez rediriger vers la page
-            d'accueil. merci de patienter 😃{" "}
+            d'accueil. merci de patienter{" "}
+            <span role="img" aria-label="smily face">
+              😃
+            </span>{" "}
           </span>
         </>
       );
