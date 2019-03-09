@@ -21,9 +21,9 @@ const pagination = props => {
         >
           <ChevronLeft />
         </span>
-        <span>{currentPage}</span>
+        <span key="1">{currentPage}</span>
         <span
-          key="1"
+          key="2"
           onClick={() => {
             if (currentPage < totalPages) {
               goToPage(currentPage + 1);

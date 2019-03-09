@@ -105,10 +105,10 @@ class Offers extends Component {
           }${maxPrice}&sort=${criteria.sort}`
         );
         const offers = response.data.offers;
-        const count = response.data.count;
+
         this.setState({
           offers: offers,
-          count: count,
+          totalPages: Math.ceil(response.data.count / this.state.limit),
           title: this.state.title,
           minPrice: this.state.minPrice,
           maxPrice: this.state.maxPrice,
