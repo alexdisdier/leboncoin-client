@@ -2,7 +2,7 @@
 
 <p align="center" >
    <a href="https://leboncoin-alex-client.herokuapp.com/">
-    <img alt="leboncoin.fr copycat by alex disdier" src="https://res.cloudinary.com/dvrkxmxkw/image/upload/v1552170221/github-screenshot-gif/leboncoin.gif" width="684" height="481" />
+    <img alt="leboncoin.fr copycat by alex disdier" src="https://res.cloudinary.com/dvrkxmxkw/image/upload/v1552170591/github-screenshot-gif/leboncoin-desktop.gif" width="684" height="481" />
  </a>
 
 # Mobile Responsive
