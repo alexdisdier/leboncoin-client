@@ -1,5 +1,7 @@
 # Desktop
 
+![leboncoin.fr copycat by alex disdier](/screenshot.gif?raw=true "Gif leboncoin.fr copycat by alex disdier")
+
 <p align="center" >
    <a href="https://leboncoin-alex-client.herokuapp.com/">
     <img alt="leboncoin.fr copycat by alex disdier" src="https://res.cloudinary.com/dvrkxmxkw/image/upload/v1552170591/github-screenshot-gif/leboncoin-desktop.gif" width="684" height="481" />
