@@ -2,7 +2,7 @@
 
 <p align="center" >
    <a href="https://leboncoin-alex-client.herokuapp.com/">
-    <img alt="leboncoin.fr copycat by alex disdier" src="" width="778" height="473" />
+    <img alt="leboncoin.fr copycat by alex disdier" src="https://res.cloudinary.com/dvrkxmxkw/image/upload/v1552170221/github-screenshot-gif/leboncoin.gif" width="684" height="481" />
  </a>
 
 # Mobile Responsive
@@ -117,4 +117,5 @@ npm run build
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - [React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel).
+- [Faker](https://www.npmjs.com/package/faker).
 - Deploy React to github pages [codeburst](https://codeburst.io/deploy-react-to-github-pages-to-create-an-amazing-website-42d8b09cd4d)
