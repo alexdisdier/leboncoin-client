@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import Cookies from "js-cookie";
 
+import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header/Header";
-
 import Home from "./containers/Home/Home";
 import Offers from "./containers/Offers/Offers";
 import Offer from "./containers/Offer/Offer";
@@ -91,77 +91,69 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <>
-          <Header
-            token={this.state.token}
-            username={this.state.username}
-            isToggle={this.state.isToggle}
-            windowWidth={this.state.windowWidth}
-            logOut={this.logOut}
-            toggleMenu={this.toggleMenu}
-          />
-          <Switch>
-            <Route
-              exact={true}
-              path="/"
-              render={props => {
-                // props = {
-                //  history (push triggers redirection)
-                //  match
-                //  location
-                // }
-                return <Home {...props} />;
-              }}
+        <ScrollToTop>
+          <>
+            <Header
+              token={this.state.token}
+              username={this.state.username}
+              isToggle={this.state.isToggle}
+              windowWidth={this.state.windowWidth}
+              logOut={this.logOut}
+              toggleMenu={this.toggleMenu}
             />
-            <Route
-              exact={true}
-              path="/offres"
-              render={props => {
-                // props = {
-                //  history (push triggers redirection)
-                //  match
-                //  location
-                // }
-                return (
-                  <Offers {...props} windowWidth={this.state.windowWidth} />
-                );
-              }}
-            />
-            <Route
-              path="/offer/:offerId"
-              render={props => <Offer {...props} />}
-            />
-            <Route
-              path="/sign_up"
-              render={props => <SignUp setUser={this.setUser} {...props} />}
-            />
+            <Switch>
+              <Route
+                exact={true}
+                path="/"
+                render={props => {
+                  return <Home {...props} />;
+                }}
+              />
+              <Route
+                exact={true}
+                path="/offres"
+                render={props => {
+                  return (
+                    <Offers {...props} windowWidth={this.state.windowWidth} />
+                  );
+                }}
+              />
+              <Route
+                path="/offer/:offerId"
+                render={props => <Offer {...props} />}
+              />
+              <Route
+                path="/sign_up"
+                render={props => <SignUp setUser={this.setUser} {...props} />}
+              />
 
-            <Route
-              path="/log_in"
-              render={props => <LogIn setUser={this.setUser} {...props} />}
-            />
-            <Route
-              path="/publish"
-              render={props => {
-                if (this.state.token) {
-                  return <Publish getUser={this.getUser} {...props} />;
-                } else {
-                  return <Redirect to="/log_in" />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
-                }
-              }}
-            />
-            <Route
-              path="/profile"
-              render={props => {
-                if (this.state.token) {
-                  return <Profile getUser={this.getUser} {...props} />;
-                } else {
-                  return <Redirect to="/offres" />;
-                }
-              }}
-            />
-          </Switch>
-        </>
+              <Route
+                path="/log_in"
+                render={props => <LogIn setUser={this.setUser} {...props} />}
+              />
+              <Route
+                path="/publish"
+                render={props => {
+                  if (this.state.token) {
+                    return <Publish getUser={this.getUser} {...props} />;
+                  } else {
+                    return <Redirect to="/log_in" />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
+                  }
+                }}
+              />
+              <Route
+                path="/profile"
+                render={props => {
+                  if (this.state.token) {
+                    return <Profile getUser={this.getUser} {...props} />;
+                  } else {
+                    return <Redirect to="/offres" />;
+                  }
+                }}
+              />
+            </Switch>
+          </>
+        </ScrollToTop>
       </Router>
     );
   }

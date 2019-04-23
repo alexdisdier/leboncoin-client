@@ -82,7 +82,6 @@ class Offers extends Component {
       Cookies.remove("minPrice");
       Cookies.remove("maxPrice");
       Cookies.remove("sort");
-      this.goToPage(1);
     }
 
     stateToUpdate[name] = value;
@@ -90,8 +89,6 @@ class Offers extends Component {
     this.setState(stateToUpdate);
   };
 
-  // I could also use query-string
-  // source: https://www.npmjs.com/package/query-string
   searchFilters = async criteria => {
     try {
       if (criteria !== undefined) {
@@ -155,6 +152,7 @@ class Offers extends Component {
       Cookies.remove("minPrice");
       Cookies.remove("maxPrice");
       Cookies.remove("sort");
+      this.goToPage(1);
     }
   };
 

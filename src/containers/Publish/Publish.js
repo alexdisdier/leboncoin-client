@@ -35,7 +35,6 @@ class Publish extends Component {
     event.preventDefault();
     try {
       const { title, description, price, files } = this.state;
-      console.log(files);
       const token = this.props.getUser().token;
       this.setState({
         isLoading: true
