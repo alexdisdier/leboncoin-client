@@ -11,7 +11,7 @@ import "./Offer.css";
 
 class Offer extends Component {
   state = {
-    offer: [],
+    offer: {},
     isLoading: true,
     error: null
   };
@@ -22,6 +22,7 @@ class Offer extends Component {
         domain + "/offer/" + this.props.match.params.offerId
       );
       const offer = response.data;
+
       this.setState({
         offer: offer,
         isLoading: false

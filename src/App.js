@@ -31,9 +31,15 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    window.addEventListener("resize", () =>
-      this.setState({ windowWidth: window.innerWidth })
-    );
+    window.addEventListener("resize", this.handleResize);
+  };
+
+  componentWillUnmount = () => {
+    window.removeEventListener("resize", this.handleResize);
+  };
+
+  handleResize = () => {
+    this.setState({ windowWidth: window.innerWidth });
   };
 
   setUser = user => {
