@@ -13,18 +13,10 @@ const header = props => {
 
   const logOut = (
     <>
-      <Button
-        to="/log_in"
-        toggleMenu={props.toggleMenu}
-        windowWidth={props.windowWidth}
-      >
+      <Button to="/log_in" toggleMenu={props.toggleMenu}>
         Se connecter
       </Button>
-      <Button
-        to="/sign_up"
-        toggleMenu={props.toggleMenu}
-        windowWidth={props.windowWidth}
-      >
+      <Button to="/sign_up" toggleMenu={props.toggleMenu}>
         Créer un compte
       </Button>
     </>
@@ -32,11 +24,7 @@ const header = props => {
 
   const logIn = (
     <>
-      <Button
-        to="/profile"
-        toggleMenu={props.toggleMenu}
-        windowWidth={props.windowWidth}
-      >
+      <Button to="/profile" toggleMenu={props.toggleMenu}>
         Hello {username}
       </Button>
       <button onClick={() => props.logOut()}>Se déconnecter</button>
@@ -65,18 +53,10 @@ const header = props => {
           {props.isToggle ? <CloseBtn /> : <MenuBtn />}
         </menu>
         <div className={`nav ${props.isToggle ? "menu-open" : "hidden-xs"}`}>
-          <Button
-            to="/publish"
-            toggleMenu={props.toggleMenu}
-            windowWidth={props.windowWidth}
-          >
+          <Button to="/publish" toggleMenu={props.toggleMenu}>
             Déposer une annonce
           </Button>
-          <Button
-            to="/offres"
-            toggleMenu={props.toggleMenu}
-            windowWidth={props.windowWidth}
-          >
+          <Button to="/offres" toggleMenu={props.toggleMenu}>
             offres
           </Button>
           <div className="account-panel">{renderNav}</div>

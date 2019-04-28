@@ -103,7 +103,6 @@ class App extends Component {
               token={this.state.token}
               username={this.state.username}
               isToggle={this.state.isToggle}
-              windowWidth={this.state.windowWidth}
               logOut={this.logOut}
               toggleMenu={this.toggleMenu}
             />
