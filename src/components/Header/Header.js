@@ -6,7 +6,7 @@ import { ReactComponent as CloseBtn } from "../../assets/img/close-button.svg";
 
 import "./Header.css";
 
-const header = props => {
+function Header(props) {
   const { token, username } = props;
 
   let renderNav;
@@ -64,6 +64,6 @@ const header = props => {
       </div>
     </header>
   );
-};
+}
 
-export default header;
+export default Header;
