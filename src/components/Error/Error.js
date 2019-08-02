@@ -4,11 +4,13 @@ import image from "../../assets/img/Cloud_Warning.svg";
 import "./Error.css";
 
 const error = props => {
+  const { error } = props;
+
   return (
     <div id="error-loading" className="absolute">
       <div className="relative">
         <img src={image} alt="cloud warning error" />
-        <span>{props.error}</span>
+        <span>{error}</span>
       </div>
     </div>
   );

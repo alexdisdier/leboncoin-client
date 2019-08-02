@@ -2,29 +2,33 @@ import React from "react";
 
 import "./Filters.css";
 const filters = props => {
-  const { title, minPrice, maxPrice, sort } = props;
+  const {
+    title,
+    minPrice,
+    maxPrice,
+    sort,
+    handleFilters,
+    submitFilters
+  } = props;
+
   return (
     <div className="filters-container">
       <div className="wrapper">
-        <form onSubmit={props.submitFilters}>
+        <form onSubmit={submitFilters}>
           <div className="search">
             <input
               type="text"
               placeholder="Que recherchez-vous?"
               name="title"
               value={title}
-              onChange={props.handleFilters}
+              onChange={handleFilters}
             />
             <button type="submit">Rechercher</button>
           </div>
           <div className="filters">
             <div className="price-range">
               <label htmlFor="price">Prix&nbsp;entre</label>
-              <select
-                name="minPrice"
-                value={minPrice}
-                onChange={props.handleFilters}
-              >
+              <select name="minPrice" value={minPrice} onChange={handleFilters}>
                 <option value="">Prix min</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -40,11 +44,7 @@ const filters = props => {
                 <option value="1000">1000</option>
               </select>
               <span>et</span>
-              <select
-                name="maxPrice"
-                value={maxPrice}
-                onChange={props.handleFilters}
-              >
+              <select name="maxPrice" value={maxPrice} onChange={handleFilters}>
                 <option value="">Prix max</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -60,7 +60,7 @@ const filters = props => {
                 <option value="1000">1000</option>
               </select>
             </div>
-            <select name="sort" value={sort} onChange={props.handleFilters}>
+            <select name="sort" value={sort} onChange={handleFilters}>
               <option value="">Options de recherche</option>
               <option value="date-desc">Tri: Plus récents</option>
               <option value="date-asc">Tri: Plus vieux</option>

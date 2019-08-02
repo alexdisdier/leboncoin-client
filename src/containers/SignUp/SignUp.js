@@ -5,6 +5,8 @@ import { ReactComponent as ClockIcon } from "../../assets/img/clock.svg";
 import { ReactComponent as BellIcon } from "../../assets/img/bell.svg";
 import { ReactComponent as EyeIcon } from "../../assets/img/eye.svg";
 
+import { ROUTE_SIGNUP, ROUTE_OFFERS } from "../../constant/routes";
+
 import "./SignUp.css";
 
 class SignUp extends Component {
@@ -16,28 +18,29 @@ class SignUp extends Component {
     error: null
   };
 
-  handleChange = event => {
+  handleChange = event =>
     this.setState({
       [event.target.name]: event.target.value
     });
-  };
 
   handleSubmit = async event => {
+    const { setUser, history } = this.props;
+
     event.preventDefault();
     try {
       const { username, email, password, confirmPassword } = this.state;
 
       if (username && email && password && confirmPassword) {
         if (password === confirmPassword) {
-          const response = await axios.post(`${domain}/sign_up`, {
+          const response = await axios.post(domain + ROUTE_SIGNUP, {
             email: email,
             username: username,
             password: password
           });
 
           if (response.data.token) {
-            this.props.setUser(response.data);
-            this.props.history.push("/offres");
+            setUser(response.data);
+            history.push(ROUTE_OFFERS);
             console.log("Success, user created");
           } else {
             alert("an error occurred");

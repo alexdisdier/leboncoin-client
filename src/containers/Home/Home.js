@@ -1,9 +1,16 @@
 import React from "react";
 import Button from "../../components/Header/Button/Button";
 
+import {
+  ROUTE_OFFERS,
+  ROUTE_SIGNUP,
+  ROUTE_PUBLISH,
+  ROUTE_PROFILE
+} from "../../constant/routes";
+
 import "./Home.css";
 
-const home = props => {
+const home = () => {
   return (
     <div className="wrapper">
       <div className="card" style={{ display: "block" }}>
@@ -28,8 +35,9 @@ const home = props => {
                   <p>Fonctionalités</p>
                   <ul className="p-20">
                     <li>
-                      Afficher toutes <Button to="/offres">les offres</Button>{" "}
-                      avec un componsant loading en attendant le chargement.
+                      Afficher toutes{" "}
+                      <Button to={ROUTE_OFFERS}>les offres</Button> avec un
+                      componsant loading en attendant le chargement.
                     </li>
                     <li>Afficher une offre spécifique.</li>
                     <li>Filtres de recherches d'offre</li>
@@ -39,18 +47,19 @@ const home = props => {
                       recherche
                     </li>
                     <li>
-                      <Button to="/sign_up">Créer un compte</Button>{" "}
+                      <Button to={ROUTE_SIGNUP}>Créer un compte</Button>{" "}
                       d'utilisateur
                     </li>
                     <li>
-                      <Button to="/sign_up">Se connecter</Button> à son compte
+                      <Button to={ROUTE_SIGNUP}>Se connecter</Button> à son
+                      compte
                     </li>
                     <li>
-                      <Button to="/publish">Publier</Button> une annonce avec
-                      Cloudinary
+                      <Button to={ROUTE_PUBLISH}>Publier</Button> une annonce
+                      avec Cloudinary
                     </li>
                     <li>
-                      <Button to="/profile">
+                      <Button to={ROUTE_PROFILE}>
                         Voir son profile d'utilisateur
                       </Button>{" "}
                       avec les annonces que l'on a publié.

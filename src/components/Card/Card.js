@@ -4,10 +4,21 @@ import { format } from "date-fns";
 import LinesEllipsis from "react-lines-ellipsis";
 
 import "./Card.css";
+import { ROUTE_OFFER } from "../../constant/routes";
 const card = props => {
+  const {
+    id,
+    title,
+    price,
+    description,
+    date,
+    pictures,
+    isDelete,
+    deleteOffer
+  } = props;
   let image;
-  if (props.pictures.length > 0) {
-    image = props.pictures[0].secure_url;
+  if (pictures.length > 0) {
+    image = pictures[0].secure_url;
   }
 
   let style = {
@@ -19,12 +30,12 @@ const card = props => {
 
   let deleteAd;
 
-  if (props.isDelete) {
+  if (isDelete) {
     deleteAd = (
       <span
         id="delete-ad"
         onClick={() => {
-          props.deleteOffer(props.id);
+          deleteOffer(id);
         }}
       >
         ⤫
@@ -35,27 +46,25 @@ const card = props => {
   return (
     <li className="card">
       {deleteAd}
-      <Link to={`/offer/${props.id}`}>
+      <Link to={`${ROUTE_OFFER}/${id}`}>
         <div className="card-body">
           <div className="card-img">
             <div className="img" style={style} />
           </div>
           <div className="card-content">
             <div className="card-top">
-              <h3 className="card-title">{props.title}</h3>
-              <span className="card-price">{props.price}&nbsp;€</span>
+              <h3 className="card-title">{title}</h3>
+              <span className="card-price">{price}&nbsp;€</span>
             </div>
             <div className="card-bottom" />
             <LinesEllipsis
-              text={props.description}
+              text={description}
               maxLine="1"
               ellipsis="..."
               trimRight
               basedOn="letters"
             />
-            <span className="date-fns">
-              {format(props.date, "MMMM DD, YYYY")}
-            </span>
+            <span className="date-fns">{format(date, "MMMM DD, YYYY")}</span>
           </div>
         </div>
       </Link>

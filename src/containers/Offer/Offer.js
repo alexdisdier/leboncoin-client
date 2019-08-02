@@ -7,6 +7,8 @@ import domain from "../../assets/domain";
 
 import Loading from "../../components/Loading/Loading";
 
+import { ROUTE_OFFER } from "../../constant/routes";
+
 import "./Offer.css";
 
 class Offer extends Component {
@@ -19,7 +21,7 @@ class Offer extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        domain + "/offer/" + this.props.match.params.offerId
+        domain + ROUTE_OFFER + "/" + this.props.match.params.id
       );
       const offer = response.data;
 
@@ -36,15 +38,10 @@ class Offer extends Component {
 
   renderSection() {
     const {
-      title,
-      price,
-      description,
-      created,
-      creator,
-      pictures
-    } = this.state.offer;
-
-    const { isLoading, error } = this.state;
+      isLoading,
+      error,
+      offer: { title, price, description, created, creator, pictures }
+    } = this.state;
     const imgUrl = [];
 
     if (pictures) {

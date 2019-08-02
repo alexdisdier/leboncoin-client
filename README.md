@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/alexdisdier/leboncoin-client/branches/refactoring/badge.svg)](https://semaphoreci.com/alexdisdier/leboncoin-client)
+
 # Desktop
 
 ![leboncoin.fr copycat by alex disdier](/screenshot.gif?raw=true "Gif leboncoin.fr copycat by alex disdier")

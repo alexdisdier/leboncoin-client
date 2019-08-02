@@ -4,6 +4,8 @@ import axios from "axios";
 import Validation from "../../Validation/Validation";
 import domain from "../../assets/domain";
 
+import { ROUTE_LOGIN, ROUTE_OFFERS, ROUTE_SIGNUP } from "../../constant/routes";
+
 import "./LogIn.css";
 
 class LogIn extends Component {
@@ -21,11 +23,14 @@ class LogIn extends Component {
   };
 
   handleSubmit = async event => {
+    const { email, password } = this.state;
+    const { history, setUser } = this.props;
+
     event.preventDefault();
     try {
-      const response = await axios.post(`${domain}/log_in`, {
-        email: this.state.email,
-        password: this.state.password
+      const response = await axios.post(domain + ROUTE_LOGIN, {
+        email: email,
+        password: password
       });
       if (response.data.message === "wrong password") {
         console.log("wrong password");
@@ -35,11 +40,11 @@ class LogIn extends Component {
       }
       // console.log(response);
       if (response.data.token) {
-        this.props.setUser(response.data);
+        setUser(response.data);
         await this.setState({
           isValid: true
         });
-        this.props.history.push("/offres");
+        history.push(ROUTE_OFFERS);
         console.log("success, check cookies");
       }
     } catch (error) {
@@ -48,7 +53,8 @@ class LogIn extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, isValid } = this.state;
+
     return (
       <div className="wrapper connection">
         <div className="sign-in-flex">
@@ -72,7 +78,7 @@ class LogIn extends Component {
                   <label htmlFor="password">Mot de passe</label>
                   <input
                     style={{
-                      boxShadow: !this.state.isValid && "0 0 0 3px red inset"
+                      boxShadow: !isValid && "0 0 0 3px red inset"
                     }}
                     type="password"
                     name="password"
@@ -81,7 +87,7 @@ class LogIn extends Component {
                     required
                   />
                 </div>
-                <Validation isValid={this.state.isValid} />
+                <Validation isValid={isValid} />
               </div>
 
               <button type="submit">Se connecter</button>
@@ -89,7 +95,7 @@ class LogIn extends Component {
 
             <div className="create-account-redirect">
               <p>Vous n'avez pas de compte ?</p>
-              <Link className="btn" to="/signup">
+              <Link className="btn" to={ROUTE_SIGNUP}>
                 Créer un compte
               </Link>
             </div>

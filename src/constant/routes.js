@@ -1,0 +1,9 @@
+export const ROUTE_HOME = "/";
+export const ROUTE_SIGNUP = "/sign_up";
+export const ROUTE_LOGIN = "/log_in";
+export const ROUTE_PROFILE = "/profile";
+export const ROUTE_PUBLISH = "/publish";
+export const ROUTE_OFFERS = "/offres";
+export const ROUTE_OFFER = "/offer";
+export const ROUTE_OFFER_WITH_COUNT = "/offer/with-count";
+export const ROUTE_DELETE = "/delete/:id";

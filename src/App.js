@@ -17,6 +17,16 @@ import LogIn from "./containers/LogIn/LogIn";
 import Publish from "./containers/Publish/Publish";
 import Profile from "./containers/Profile/Profile";
 
+import {
+  ROUTE_HOME,
+  ROUTE_SIGNUP,
+  ROUTE_LOGIN,
+  ROUTE_PUBLISH,
+  ROUTE_OFFERS,
+  ROUTE_OFFER,
+  ROUTE_PROFILE
+} from "./constant/routes";
+
 import "./assets/css/reset.css";
 import "./App.css";
 
@@ -44,29 +54,35 @@ class App extends Component {
 
   setUser = user => {
     if (user) {
-      const { token, email, account } = user;
+      const {
+        token,
+        email,
+        account: { username, phone }
+      } = user;
       this.setState({
         token: token,
         email: email,
-        username: account.username,
-        phone: account.phone
+        username: username,
+        phone: phone
       });
 
       Cookies.set("token", token);
       Cookies.set("email", email);
-      Cookies.set("username", account.username);
-      Cookies.set("phone", account.phone);
+      Cookies.set("username", username);
+      Cookies.set("phone", phone);
     } else {
       console.log("no user was passed in setUser()");
     }
   };
 
   getUser = () => {
-    if (this.state.token) {
+    const { token, email, username } = this.state;
+
+    if (token) {
       return {
-        token: this.state.token,
-        email: this.state.email,
-        username: this.state.username
+        token: token,
+        email: email,
+        username: username
       };
     } else {
       console.log("getUser() does not find a user, check token");
@@ -87,72 +103,70 @@ class App extends Component {
     Cookies.remove("phone");
   };
 
-  toggleMenu = () => {
-    const isToggle = this.state.isToggle;
+  toggleMenu = () =>
     this.setState({
-      isToggle: !isToggle
+      isToggle: !this.state.isToggle
     });
-  };
 
   render() {
+    const { token, username, isToggle, windowWidth } = this.state;
+
     return (
       <Router>
         <ScrollToTop>
           <>
             <Header
-              token={this.state.token}
-              username={this.state.username}
-              isToggle={this.state.isToggle}
+              token={token}
+              username={username}
+              isToggle={isToggle}
               logOut={this.logOut}
               toggleMenu={this.toggleMenu}
             />
             <Switch>
               <Route
                 exact={true}
-                path="/"
+                path={ROUTE_HOME}
                 render={props => {
                   return <Home {...props} />;
                 }}
               />
               <Route
                 exact={true}
-                path="/offres"
+                path={ROUTE_OFFERS}
                 render={props => {
-                  return (
-                    <Offers {...props} windowWidth={this.state.windowWidth} />
-                  );
+                  return <Offers {...props} windowWidth={windowWidth} />;
                 }}
               />
               <Route
-                path="/offer/:offerId"
+                path={ROUTE_OFFER + "/:id"}
                 render={props => <Offer {...props} />}
               />
               <Route
-                path="/sign_up"
+                path={ROUTE_SIGNUP}
                 render={props => <SignUp setUser={this.setUser} {...props} />}
               />
 
               <Route
-                path="/log_in"
+                path={ROUTE_LOGIN}
                 render={props => <LogIn setUser={this.setUser} {...props} />}
               />
               <Route
-                path="/publish"
+                path={ROUTE_PUBLISH}
                 render={props => {
-                  if (this.state.token) {
+                  if (token) {
                     return <Publish getUser={this.getUser} {...props} />;
                   } else {
-                    return <Redirect to="/log_in" />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
+                    return <Redirect to={ROUTE_LOGIN} />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
                   }
                 }}
               />
               <Route
-                path="/profile"
+                path={ROUTE_PROFILE}
                 render={props => {
-                  if (this.state.token) {
+                  if (token) {
                     return <Profile getUser={this.getUser} {...props} />;
                   } else {
-                    return <Redirect to="/offres" />;
+                    return <Redirect to={ROUTE_OFFERS} />;
                   }
                 }}
               />

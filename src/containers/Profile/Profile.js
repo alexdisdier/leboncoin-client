@@ -5,6 +5,8 @@ import domain from "../../assets/domain";
 import Card from "../../components/Card/Card";
 import Loading from "../../components/Loading/Loading";
 
+import { ROUTE_PROFILE } from "../../constant/routes";
+
 import "./Profile.css";
 
 class Profile extends Component {
@@ -21,9 +23,11 @@ class Profile extends Component {
   }
 
   fetchOffer = async () => {
+    const { getUser } = this.props;
+
     try {
-      const token = this.props.getUser().token;
-      const response = await axios.get(domain + "/profile", {
+      const token = getUser().token;
+      const response = await axios.get(domain + ROUTE_PROFILE, {
         headers: {
           authorization: "Bearer " + token
         }
@@ -42,8 +46,10 @@ class Profile extends Component {
   };
 
   deleteOffer = async id => {
+    const { getUser } = this.props;
+
     try {
-      const token = this.props.getUser().token;
+      const token = getUser().token;
 
       await axios.delete(`${domain}/delete/${id}`, {
         headers: {
@@ -57,7 +63,7 @@ class Profile extends Component {
   };
 
   renderOffers() {
-    const { isLoading, error, offers } = this.state;
+    const { isLoading, error, offers, isDelete } = this.state;
 
     if (!isLoading && error === null) {
       if (offers !== undefined) {
@@ -67,7 +73,7 @@ class Profile extends Component {
               <ul>
                 {this.state.offers.map(e => (
                   <Card
-                    isDelete={this.state.isDelete}
+                    isDelete={isDelete}
                     deleteOffer={this.deleteOffer}
                     key={e._id}
                     pictures={e.pictures}
@@ -91,14 +97,16 @@ class Profile extends Component {
   }
 
   render() {
+    const { getUser } = this.props;
+
     return (
       <>
         <div className="wrapper">
           <div className="ad-listing">
             <h1>Votre profil</h1>
             <div className="profile-details">
-              <p>Username: {this.props.getUser().username}</p>
-              <p>Email: {this.props.getUser().email}</p>
+              <p>Username: {getUser().username}</p>
+              <p>Email: {getUser().email}</p>
             </div>
             {this.renderOffers()}
           </div>
