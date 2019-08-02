@@ -5,6 +5,7 @@ import "./Button.css";
 
 const button = props => {
   const [width, setWidth] = useState(window.innerWidth);
+  const { to, children, toggleMenu } = props;
 
   useEffect(() => {
     const handleResize = () => {
@@ -13,23 +14,23 @@ const button = props => {
     window.addEventListener("resize", handleResize);
     // clean up, unsubscribe by returning a function to remove EventListener
     return () => window.removeEventListener("resize", handleResize);
-  });
+  }, []);
   if (width < 768) {
     return (
       <Link
-        className={`btn ${props.to}`}
-        to={props.to}
+        className={`btn ${to}`}
+        to={to}
         onClick={() => {
-          props.toggleMenu();
+          toggleMenu();
         }}
       >
-        {props.children}
+        {children}
       </Link>
     );
   } else {
     return (
-      <Link className={`btn ${props.to}`} to={props.to}>
-        {props.children}
+      <Link className={`btn ${to}`} to={to}>
+        {children}
       </Link>
     );
   }

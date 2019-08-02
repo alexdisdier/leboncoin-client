@@ -4,6 +4,8 @@ import ReactFileReader from "react-file-reader";
 import Loading from "../../components/Loading/Loading";
 import domain from "../../assets/domain";
 
+import { ROUTE_PUBLISH, ROUTE_OFFERS } from "../../constant/routes";
+
 import "./Publish.css";
 
 class Publish extends Component {
@@ -32,15 +34,17 @@ class Publish extends Component {
   };
 
   submitForm = async event => {
+    const { title, description, price, files } = this.state;
+    const { getUser } = this.props;
+
     event.preventDefault();
     try {
-      const { title, description, price, files } = this.state;
-      const token = this.props.getUser().token;
+      const token = getUser().token;
       this.setState({
         isLoading: true
       });
       await axios.post(
-        `${domain}/publish`,
+        domain + ROUTE_PUBLISH,
         {
           title: title,
           description: description,
@@ -56,8 +60,7 @@ class Publish extends Component {
       this.setState({
         isLoading: false
       });
-      // console.log("response.data", response.data);
-      this.props.history.push("/offres");
+      this.props.history.push(ROUTE_OFFERS);
     } catch (error) {
       console.log({
         error: error.message,
@@ -67,7 +70,9 @@ class Publish extends Component {
   };
 
   renderButton = () => {
-    if (!this.state.isLoading) {
+    const { isLoading } = this.state;
+
+    if (!isLoading) {
       return <button className="validate-btn">Valider</button>;
     } else {
       return (
@@ -86,7 +91,7 @@ class Publish extends Component {
   };
 
   render() {
-    const { title, description, price } = this.state;
+    const { title, description, price, files } = this.state;
 
     const filesArray = [];
     for (let i = 0; i < this.state.files.length; i++) {
@@ -95,13 +100,13 @@ class Publish extends Component {
           <img
             key={i}
             onClick={() => {
-              const newFiles = [...this.state.files];
+              const newFiles = [...files];
               newFiles.splice(i, 1);
               this.setState({
                 files: newFiles
               });
             }}
-            src={this.state.files[i]}
+            src={files[i]}
             alt="annonce"
           />
         </>

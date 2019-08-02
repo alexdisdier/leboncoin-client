@@ -4,19 +4,27 @@ import { ReactComponent as Logo } from "../../assets/img/logo.svg";
 import { ReactComponent as MenuBtn } from "../../assets/img/menu-button.svg";
 import { ReactComponent as CloseBtn } from "../../assets/img/close-button.svg";
 
+import {
+  ROUTE_SIGNUP,
+  ROUTE_LOGIN,
+  ROUTE_PROFILE,
+  ROUTE_PUBLISH,
+  ROUTE_OFFERS
+} from "../../constant/routes";
+
 import "./Header.css";
 
 function Header(props) {
-  const { token, username } = props;
+  const { token, username, toggleMenu, isToggle } = props;
 
   let renderNav;
 
   const logOut = (
     <>
-      <Button to="/log_in" toggleMenu={props.toggleMenu}>
+      <Button to={ROUTE_LOGIN} toggleMenu={toggleMenu}>
         Se connecter
       </Button>
-      <Button to="/sign_up" toggleMenu={props.toggleMenu}>
+      <Button to={ROUTE_SIGNUP} toggleMenu={toggleMenu}>
         Créer un compte
       </Button>
     </>
@@ -24,7 +32,7 @@ function Header(props) {
 
   const logIn = (
     <>
-      <Button to="/profile" toggleMenu={props.toggleMenu}>
+      <Button to={ROUTE_PROFILE} toggleMenu={toggleMenu}>
         Hello {username}
       </Button>
       <button onClick={() => props.logOut()}>Se déconnecter</button>
@@ -39,7 +47,7 @@ function Header(props) {
 
   return (
     <header className="header">
-      <div className={`wrapper flex ${props.isToggle ? "flex-xs" : ""}`}>
+      <div className={`wrapper flex ${isToggle ? "flex-xs" : ""}`}>
         <Button to="/">
           <Logo />
         </Button>
@@ -47,16 +55,16 @@ function Header(props) {
           id="menu"
           className="show-xs"
           onClick={() => {
-            props.toggleMenu();
+            toggleMenu();
           }}
         >
-          {props.isToggle ? <CloseBtn /> : <MenuBtn />}
+          {isToggle ? <CloseBtn /> : <MenuBtn />}
         </menu>
-        <div className={`nav ${props.isToggle ? "menu-open" : "hidden-xs"}`}>
-          <Button to="/publish" toggleMenu={props.toggleMenu}>
+        <div className={`nav ${isToggle ? "menu-open" : "hidden-xs"}`}>
+          <Button to={ROUTE_PUBLISH} toggleMenu={toggleMenu}>
             Déposer une annonce
           </Button>
-          <Button to="/offres" toggleMenu={props.toggleMenu}>
+          <Button to={ROUTE_OFFERS} toggleMenu={toggleMenu}>
             offres
           </Button>
           <div className="account-panel">{renderNav}</div>
