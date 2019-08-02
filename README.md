@@ -1,4 +1,4 @@
-[![Build Status](https://semaphoreci.com/api/v1/alexdisdier/leboncoin-client/branches/refactoring/badge.svg)](https://semaphoreci.com/alexdisdier/leboncoin-client)
+[![Build Status](https://semaphoreci.com/api/v1/alexdisdier/leboncoin-client/branches/refactoring/badge.svg)]
 
 # Desktop
 
