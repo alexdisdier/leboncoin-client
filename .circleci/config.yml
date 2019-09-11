@@ -68,11 +68,11 @@ workflows:
     jobs:
       - build
       - test:
-        requires:
-          - build
+          requires:
+            - build
       - coverage:
-        requires:
-          - build
+          requires:
+            - build
       - readyToDeploy:
-        requires:
-          - test
+          requires:
+            - test
