@@ -1,4 +1,4 @@
-[![Build Status](https://semaphoreci.com/api/v1/alexdisdier/leboncoin-client/branches/initial-project/shields_badge.svg)](https://semaphoreci.com/alexdisdier/leboncoin-client)
+[![CircleCI](https://circleci.com/gh/alexdisdier/leboncoin-client.svg?style=svg)](https://circleci.com/gh/alexdisdier/leboncoin-client)
 
 # Desktop
 
