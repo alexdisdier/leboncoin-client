@@ -5,6 +5,7 @@ commands:
     description: |
       Create a production build
     steps:
+      - run: yarn global add npm@latest
       - run:
           command: mkdir -p artifacts
           name: Ensure artifacts directory is present
