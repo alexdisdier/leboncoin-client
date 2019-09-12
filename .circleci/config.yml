@@ -14,7 +14,7 @@ commands:
     description: |
       Generate coverage report using Jest and Istanbul
     steps:
-      - run: yarn test --collectCoverage --coverageDirectory=./artifacts/coverage
+      - run: npm run test --collectCoverage --coverageDirectory=./artifacts/coverage
   eslint:
     description: |
       Lint JS
@@ -22,12 +22,12 @@ commands:
       - run:
           command: mkdir -p reports/eslint
           name: Ensure artifacts directory is present
-      - run: yarn eslint --max-warnings=0 --format junit --output-file ./reports/eslint/eslint.xml
+      - run: npm run eslint --max-warnings=0 --format junit --output-file ./reports/eslint/eslint.xml
   install:
     description: |
       Install dependencies
     steps:
-      - run: yarn install
+      - run: npm install
   stylelint:
     description: |
       Lint style files
@@ -36,17 +36,17 @@ commands:
           command: mkdir -p artifacts/stylelint
           name: Ensure artifacts directory is present
       - run:
-          yarn --silent stylelint --custom-formatter './node_modules/stylelint-junit-formatter'
+          npm run --silent stylelint --custom-formatter './node_modules/stylelint-junit-formatter'
           > ./artifacts/stylelint/stylelint.xml
   test:
     description: |
       Run tests using Jest
     steps:
       - run:
-          command: yarn add --dev jest-junit
+          command: npm install --dev jest-junit
           name: Install JUnit reporter
       - run:
-          command: yarn test --ci --runInBand --reporters=default --reporters=jest-junit
+          command: npm run test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
           name: Run tests with JUnit as reporter
