@@ -53,9 +53,12 @@ jobs:
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
       - run: npm test
+
+  codecov:
+    steps:
       - codecov/upload:
-          file: coverage/*.js
-          flags: frontend
+        file: coverage/*.js
+        flags: frontend
 
   build:
     <<: *defaults
