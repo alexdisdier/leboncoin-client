@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/alexdisdier/leboncoin-client.svg?style=svg)](https://circleci.com/gh/alexdisdier/leboncoin-client)
+[![codecov](https://codecov.io/gh/alexdisdier/leboncoin-client/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdisdier/leboncoin-client)
 
 # Desktop
 

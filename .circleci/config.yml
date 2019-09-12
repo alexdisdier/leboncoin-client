@@ -4,6 +4,8 @@ defaults: &defaults
     - image: circleci/node:8.11
   working_directory: ~/repo
 version: 2
+orbs:
+  codecov: codecov/codecov@1.0.4
 jobs:
   checkout_code:
     <<: *defaults
@@ -30,9 +32,7 @@ jobs:
           keys:
             - depens-{{ checksum "package.json" }}
             - depens-
-      - run:
-          name: Install Dependencies
-          command: npm install
+      - run: npm install
       - save_cache:
           paths:
             - node_modules
@@ -52,9 +52,10 @@ jobs:
           key: source-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
-      - run:
-          name: Run Tests
-          command: npm test
+      - run: npm test
+      - codecov/upload:
+          file: coverage/*.js
+          flags: frontend
 
   build:
     <<: *defaults
@@ -64,9 +65,7 @@ jobs:
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
 
-      - run:
-          name: Run Build
-          command: npm run build
+      - run: npm run build
 
       - persist_to_workspace:
           root: ~/repo
@@ -82,15 +81,6 @@ jobs:
       - store_artifacts:
           path: ~/repo/build
           destination: prod-dist
-  deploy_dev:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      # modify below others like run aws deploy cmd or scp files to a ftp server
-      - store_artifacts:
-          path: ~/repo/build
-          destination: dev-dist
   # analyze:
   #   <<: *defaults
   #   steps:
