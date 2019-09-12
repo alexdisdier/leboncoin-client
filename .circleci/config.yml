@@ -8,7 +8,7 @@ commands:
       - run:
           command: mkdir -p artifacts
           name: Ensure artifacts directory is present
-      - run: NODE_ENV=production yarn build
+      - run: NODE_ENV=production npm build
       - run: cp -r build artifacts
   coverage:
     description: |
