@@ -54,11 +54,11 @@ jobs:
           key: depens-{{ checksum "package.json" }}
       - run: npm test
 
-  codecov:
-    steps:
-      - codecov/upload:
-        file: coverage/*.js
-        flags: frontend
+  # codecov:
+  #   steps:
+  #     - codecov/upload:
+  #       file: coverage/*.js
+  #       flags: frontend
 
   build:
     <<: *defaults
