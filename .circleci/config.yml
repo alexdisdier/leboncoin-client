@@ -1,19 +1,173 @@
-orbs:
-  react: "thefrontside/react@dev:alpha"
+# This code is licensed from CircleCI to the user under the MIT license. See
+# https://circleci.com/orbs/registry/licensing for details.
+commands:
+  build:
+    description: |
+      Create a production build
+    steps:
+      - run:
+          command: mkdir -p artifacts
+          name: Ensure artifacts directory is present
+      - run: NODE_ENV=production yarn build
+      - run: cp -r build artifacts
+  coverage:
+    description: |
+      Generate coverage report using Jest and Istanbul
+    steps:
+      - run: yarn test --collectCoverage --coverageDirectory=./artifacts/coverage
+  eslint:
+    description: |
+      Lint JS
+    steps:
+      - run:
+          command: mkdir -p reports/eslint
+          name: Ensure artifacts directory is present
+      - run: yarn eslint --max-warnings=0 --format junit --output-file ./reports/eslint/eslint.xml
+  install:
+    description: |
+      Install dependencies
+    steps:
+      - run: yarn install
+  stylelint:
+    description: |
+      Lint style files
+    steps:
+      - run:
+          command: mkdir -p artifacts/stylelint
+          name: Ensure artifacts directory is present
+      - run:
+          yarn --silent stylelint --custom-formatter './node_modules/stylelint-junit-formatter'
+          > ./artifacts/stylelint/stylelint.xml
+  test:
+    description: |
+      Run tests using Jest
+    steps:
+      - run:
+          command: yarn add --dev jest-junit
+          name: Install JUnit reporter
+      - run:
+          command: yarn test --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
+          name: Run tests with JUnit as reporter
+description: |
+  Production ready workflow for testing and building React.js applications. Full orb source code: https://github.com/thefrontside/circleci-react-orb
+examples:
+  react-dev-workflows:
+    description: |
+      Run tests and generate coverage report on every push
+    usage:
+      orbs:
+        react: thefrontside/react@dev:alpha
+      version: 2.1
+      workflows:
+        push:
+          jobs:
+            - react/install
+            - react/eslint:
+                requires:
+                  - react/install
+            - react/stylelint:
+                requires:
+                  - react/install
+            - react/test:
+                requires:
+                  - react/install
+            - react/coverage:
+                requires:
+                  - react/install
+executors:
+  default:
+    description: |
+      Node 10 runtime environment
+    docker:
+      - image: circleci/node:<<parameters.node>>
+    parameters:
+      node:
+        default: "10"
+        type: string
+jobs:
+  build:
+    description: |
+      Build the application in production mode. The built assets are stored in artifacts.
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - build
+      - store_artifacts:
+          path: ./artifacts
+  coverage:
+    description: |
+      Run the tests and generate coverage reports. The results are stored into artifacts.
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - coverage
+      - store_artifacts:
+          path: ./artifacts
+  eslint:
+    description: |
+      Run ESLint on the source code. The generated report is stored in artifacts.
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - eslint
+      - store_test_results:
+          path: reports/eslint
+      - store_artifacts:
+          path: reports/eslint
+  install:
+    description: |
+      Install dependencies. Checkout is called before install. (Optional) To prevent checkout from being called, pass your steps to before_install.
+    executor: default
+    parameters:
+      before_install:
+        default:
+          - checkout
+        description: |
+          Steps to be executed before restoring cache and running install. Default is to run 'checkout' command.
+        type: steps
+    steps:
+      - steps: <<parameters.before_install>>
+      - restore_cache:
+          key: v1-node-modules-{{ checksum "yarn.lock" }}
+      - install
+      - persist_to_workspace:
+          paths:
+            - project
+          root: ~/
+      - save_cache:
+          key: v1-node-modules-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/project/node_modules
+  stylelint:
+    description: |
+      Run stylelint command on CSS files. The result is stored in artifacts.
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: mkdir -p artifacts/stylelint
+          name: Set up artifacts directory
+      - stylelint
+      - store_test_results:
+          path: ./artifacts
+      - store_artifacts:
+          path: ./artifacts
+  test:
+    description: |
+      Run tests and show results in the test summary.
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - test
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
 version: 2.1
-workflows:
-  push:
-    jobs:
-      - react/install
-      - react/eslint:
-          requires:
-            - react/install
-      - react/stylelint:
-          requires:
-            - react/install
-      - react/test:
-          requires:
-            - react/install
-      - react/coverage:
-          requires:
-            - react/install
