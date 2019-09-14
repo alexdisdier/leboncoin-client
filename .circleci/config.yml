@@ -108,7 +108,7 @@ jobs:
       - run: npm test
       - codecov/upload:
           # file: coverage/*.json
-          file: coverage/.xml
+          file: coverage/*.xml
           flags: frontend
       # - run: bash <(curl -s https://codecov.io/bash)
 
