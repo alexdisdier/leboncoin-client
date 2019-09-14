@@ -69,15 +69,15 @@ jobs:
           paths:
             - build
             - package.json
-  deploy:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      # modify below others like run aws deploy cmd or scp files to a ftp server
-      - store_artifacts:
-          path: ~/repo/build
-          destination: prod-dist
+  # deploy:
+  #   <<: *defaults
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/repo
+  #     # modify below others like run aws deploy cmd or scp files to a ftp server
+  #     - store_artifacts:
+  #         path: ~/repo/build
+  #         destination: prod-dist
   # analyze:
   #   <<: *defaults
   #   steps:
@@ -140,41 +140,40 @@ workflows:
       - codecov:
           requires:
             - test
-
-  build_and_deploy:
-    jobs:
-      - checkout_code:
-          filters:
-            branches:
-              only:
-                - master
-                - develop
-      - install_dependencies:
-          requires:
-            - checkout_code
-      - test:
-          requires:
-            - install_dependencies
-      - build:
-          requires:
-            - install_dependencies
-      - deploy:
-          type: approval
-          requires:
-            - build
-            - test
-          filters:
-            branches:
-              only:
-                - master
-      - deploy_dev:
-          requires:
-            - build
-            - test
-          filters:
-            branches:
-              only:
-                - develop
+  # build_and_deploy:
+  #   jobs:
+  #     - checkout_code:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - develop
+  #     - install_dependencies:
+  #         requires:
+  #           - checkout_code
+  #     - test:
+  #         requires:
+  #           - install_dependencies
+  #     - build:
+  #         requires:
+  #           - install_dependencies
+  #     - deploy:
+  #         type: approval
+  #         requires:
+  #           - build
+  #           - test
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #     - deploy_dev:
+  #         requires:
+  #           - build
+  #           - test
+  #         filters:
+  #           branches:
+  #             only:
+  #               - develop
   # build_and_analyze:
   #   jobs:
   #     - checkout_code
