@@ -1,2 +1,2 @@
-#!/bin/sh
-curl --data-binary @codecov.yml https://codecov.io/validate
+#!/bin/bash -eo pipefail
+bash <(curl -s https://codecov.io/bash)
