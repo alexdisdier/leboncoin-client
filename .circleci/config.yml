@@ -110,6 +110,7 @@ jobs:
           file: coverage/*.json
           # file: coverage/*.xml
           flags: frontend
+          token: 2ffe860b-be0c-4795-a348-ec5945a42864
       # - run: bash <(curl -s https://codecov.io/bash)
 
 workflows:
