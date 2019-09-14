@@ -27,3 +27,6 @@ parsers:
 comment:
   layout: "header, diff"
   behavior: default
+
+codecov:
+  token: 2ffe860b-be0c-4795-a348-ec5945a42864
