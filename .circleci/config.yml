@@ -3,7 +3,9 @@ defaults: &defaults
   docker:
     - image: circleci/node:8.11
   working_directory: ~/repo
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.4
 jobs:
   checkout_code:
     <<: *defaults
@@ -67,15 +69,15 @@ jobs:
           paths:
             - build
             - package.json
-  deploy:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      # modify below others like run aws deploy cmd or scp files to a ftp server
-      - store_artifacts:
-          path: ~/repo/build
-          destination: prod-dist
+  # deploy:
+  #   <<: *defaults
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/repo
+  #     # modify below others like run aws deploy cmd or scp files to a ftp server
+  #     - store_artifacts:
+  #         path: ~/repo/build
+  #         destination: prod-dist
   # analyze:
   #   <<: *defaults
   #   steps:
@@ -95,6 +97,21 @@ jobs:
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
       - run: npm test -- --coverage
+
+  codecov:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: source-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: depens-{{ checksum "package.json" }}
+      - run: npm test -- --coverage
+      - codecov/upload:
+          file: coverage/*.json
+          # file: coverage/*.xml
+          flags: frontend
+      # - run: bash <(curl -s https://codecov.io/bash)
+
 workflows:
   version: 2
   lint_and_build:
@@ -122,41 +139,43 @@ workflows:
       - coverage:
           requires:
             - test
-
-  build_and_deploy:
-    jobs:
-      - checkout_code:
-          filters:
-            branches:
-              only:
-                - master
-                - develop
-      - install_dependencies:
+      - codecov:
           requires:
-            - checkout_code
-      - test:
-          requires:
-            - install_dependencies
-      - build:
-          requires:
-            - install_dependencies
-      - deploy:
-          type: approval
-          requires:
-            - build
             - test
-          filters:
-            branches:
-              only:
-                - master
-      - deploy_dev:
-          requires:
-            - build
-            - test
-          filters:
-            branches:
-              only:
-                - develop
+  # build_and_deploy:
+  #   jobs:
+  #     - checkout_code:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - develop
+  #     - install_dependencies:
+  #         requires:
+  #           - checkout_code
+  #     - test:
+  #         requires:
+  #           - install_dependencies
+  #     - build:
+  #         requires:
+  #           - install_dependencies
+  #     - deploy:
+  #         type: approval
+  #         requires:
+  #           - build
+  #           - test
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #     - deploy_dev:
+  #         requires:
+  #           - build
+  #           - test
+  #         filters:
+  #           branches:
+  #             only:
+  #               - develop
   # build_and_analyze:
   #   jobs:
   #     - checkout_code
