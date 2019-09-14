@@ -97,9 +97,9 @@ jobs:
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
       - run: npm test -- --coverage
-  
-  codecov: 
-      <<: *defaults
+
+  codecov:
+    <<: *defaults
     steps:
       - restore_cache:
           key: source-{{ .Branch }}-{{ .Revision }}
