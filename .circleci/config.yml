@@ -106,8 +106,9 @@ jobs:
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
       - run: npm test
+      # - run: bash <(curl -s https://codecov.io/bash)
       - codecov/upload:
-          file: coverage/*.json
+          file: ../coverage/*.json
           flags: frontend
 
 workflows:
