@@ -4,8 +4,7 @@ import { ReactComponent as ChevronRight } from "../../assets/img/chevronRight.sv
 
 import "./Pagination.css";
 
-const pagination = props => {
-  const { totalPages, currentPage, goToPage, windowWidth } = props;
+const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
   const pages = [];
 
   if (windowWidth < 768) {
