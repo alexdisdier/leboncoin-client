@@ -97,9 +97,7 @@ class Offers extends Component {
           maxPrice = "&priceMax=" + criteria.maxPrice;
         }
         const response = await axios.get(
-          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${
-            criteria.minPrice
-          }${maxPrice}&sort=${criteria.sort}`
+          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPrice}&sort=${criteria.sort}`
         );
         const offers = response.data.offers;
 
