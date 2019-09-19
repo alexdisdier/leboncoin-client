@@ -3,6 +3,11 @@ import { shallow } from "enzyme";
 
 import Home from "./Home";
 
+jest.mock("../../components/Header/Button/Button", () => ({
+  __esModule: true,
+  default: "Button"
+}));
+
 describe("Home", () => {
   it("render()", () => {
     const wrapper = shallow(<Home />);
@@ -76,11 +81,11 @@ describe("Home", () => {
                 <li>
                   Afficher toutes
                    
-                  <button
+                  <Button
                     to="/offres"
                   >
                     les offres
-                  </button>
+                  </Button>
                    avec un componsant loading en attendant le chargement.
                 </li>
                 <li>
@@ -96,36 +101,36 @@ describe("Home", () => {
                   Cookies implémentés pour sauvegarder les filtres de recherche
                 </li>
                 <li>
-                  <button
+                  <Button
                     to="/sign_up"
                   >
                     Créer un compte
-                  </button>
+                  </Button>
                    
                   d'utilisateur
                 </li>
                 <li>
-                  <button
+                  <Button
                     to="/sign_up"
                   >
                     Se connecter
-                  </button>
+                  </Button>
                    à son compte
                 </li>
                 <li>
-                  <button
+                  <Button
                     to="/publish"
                   >
                     Publier
-                  </button>
+                  </Button>
                    une annonce avec Cloudinary
                 </li>
                 <li>
-                  <button
+                  <Button
                     to="/profile"
                   >
                     Voir son profile d'utilisateur
-                  </button>
+                  </Button>
                    
                   avec les annonces que l'on a publié.
                 </li>

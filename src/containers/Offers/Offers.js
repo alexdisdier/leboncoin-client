@@ -29,13 +29,17 @@ class Offers extends Component {
   };
 
   async componentDidMount() {
-    const response = await axios.get(`${domain}/offer/with-count`);
-    await this.setState({
-      offers: response.data.offers,
-      count: response.data.count,
-      totalPages: Math.ceil(response.data.count / this.state.limit)
-    });
-    this.goToPage(1);
+    try {
+      const response = await axios.get(`${domain}/offer/with-count`);
+      await this.setState({
+        offers: response.data.offers,
+        count: response.data.count,
+        totalPages: Math.ceil(response.data.count / this.state.limit)
+      });
+      this.goToPage(1);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   goToPage = async pageClicked => {
@@ -163,9 +167,9 @@ class Offers extends Component {
           <>
             <div className="wrapper Offerspage">
               <ul>
-                {this.state.offers.map(e => (
+                {this.state.offers.map((index, e) => (
                   <Card
-                    key={e._id}
+                    key={index}
                     pictures={e.pictures}
                     id={e._id}
                     title={e.title}
