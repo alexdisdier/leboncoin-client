@@ -6,16 +6,18 @@ import Card from "./Card";
 describe("Card", () => {
   let props;
 
-  props = {
-    id: "id",
-    title: "title",
-    price: 15,
-    description: "description",
-    date: "date",
-    pictures: ["test"],
-    isDelete: jest.fn(),
-    deleteOffer: jest.fn()
-  };
+  beforeEach(() => {
+    props = {
+      id: "id",
+      title: "title",
+      price: 15,
+      description: "description",
+      date: "date",
+      pictures: ["test"],
+      isDelete: jest.fn(),
+      deleteOffer: jest.fn()
+    };
+  });
 
   it("render()", () => {
     const wrapper = shallow(<Card {...props} />);
