@@ -38,11 +38,7 @@ class Profile extends Component {
         offers: offer,
         isLoading: false
       });
-    } catch (error) {
-      console.log({
-        error: error.message
-      });
-    }
+    } catch (error) {}
   };
 
   deleteOffer = async id => {
