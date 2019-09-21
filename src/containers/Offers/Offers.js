@@ -38,12 +38,14 @@ class Offers extends Component {
       });
       this.goToPage(1);
     } catch (error) {
-      console.log(error);
+      this.setState({
+        error: error
+      });
     }
   }
 
   goToPage = async pageClicked => {
-    const { title, minPrice, maxPrice, sort } = this.state;
+    const { title, minPrice, maxPrice, sort, limit } = this.state;
     try {
       if (title !== "" || minPrice !== "" || maxPrice !== "" || sort !== "") {
         const criteria = {
@@ -57,9 +59,9 @@ class Offers extends Component {
           isLoading: false
         });
       } else {
-        const skip = (pageClicked - 1) * this.state.limit;
+        const skip = (pageClicked - 1) * limit;
         const response = await axios.get(
-          `${domain}/offer/with-count?skip=${skip}&limit=${this.state.limit}`
+          `${domain}/offer/with-count?skip=${skip}&limit=${limit}`
         );
         const offers = response.data.offers;
 
@@ -167,7 +169,7 @@ class Offers extends Component {
           <>
             <div className="wrapper Offerspage">
               <ul>
-                {this.state.offers.map((index, e) => (
+                {this.state.offers.map((e, index) => (
                   <Card
                     key={index}
                     pictures={e.pictures}
