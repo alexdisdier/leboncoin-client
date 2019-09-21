@@ -117,7 +117,7 @@ describe("Offers", () => {
   >
     <ul>
       <Card
-        key="[object Object]"
+        key="0"
       />
     </ul>
   </div>
