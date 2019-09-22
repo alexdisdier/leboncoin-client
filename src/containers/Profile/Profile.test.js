@@ -15,13 +15,14 @@ describe("Profile", () => {
     };
   });
 
-  it("renders the Section correctly", () => {
-    props.getUser.mockReturnValueOnce("username");
-    props.getUser.mockReturnValueOnce("email");
-    props.getUser.mockReturnValueOnce("token");
+  describe("render()", () => {
+    it("renders the Section correctly", () => {
+      props.getUser.mockReturnValueOnce("username");
+      props.getUser.mockReturnValueOnce("email");
+      props.getUser.mockReturnValueOnce("token");
 
-    const wrapper = shallow(<Profile {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+      const wrapper = shallow(<Profile {...props} />);
+      expect(wrapper).toMatchInlineSnapshot(`
 <Fragment>
   <div
     className="wrapper"
@@ -47,5 +48,6 @@ describe("Profile", () => {
   </div>
 </Fragment>
 `);
+    });
   });
 });

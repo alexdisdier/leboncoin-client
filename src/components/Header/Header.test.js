@@ -13,7 +13,8 @@ describe("Header", () => {
       token: "token",
       username: "username",
       toggleMenu: jest.fn(),
-      isToggle: false
+      isToggle: false,
+      logOut: jest.fn()
     };
   });
 
@@ -26,6 +27,16 @@ describe("Header", () => {
         .simulate("click");
 
       expect(props.toggleMenu).toHaveBeenCalledTimes(1);
+    });
+
+    it("logs out", () => {
+      const wrapper = shallow(<Header {...props} />);
+      wrapper
+        .find("button")
+        .at(0)
+        .simulate("click");
+
+      expect(props.logOut).toHaveBeenCalledTimes(1);
     });
   });
 
