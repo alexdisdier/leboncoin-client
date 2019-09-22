@@ -3,6 +3,8 @@ import { shallow } from "enzyme";
 
 import Publish from "./Publish";
 
+jest.mock("../../components/Loading/Loading", () => "Loading");
+
 describe("Publish", () => {
   it("render()", () => {
     const wrapper = shallow(<Publish />);

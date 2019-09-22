@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 
 import "./Button.css";
 
-const button = props => {
+const button = ({ to, children, toggleMenu }) => {
   const [width, setWidth] = useState(window.innerWidth);
-  const { to, children, toggleMenu } = props;
 
   useEffect(() => {
     const handleResize = () => {
@@ -15,7 +14,8 @@ const button = props => {
     // clean up, unsubscribe by returning a function to remove EventListener
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  if (width < 768) {
+
+  if (width < 768)
     return (
       <Link
         className={`btn ${to}`}
@@ -27,13 +27,12 @@ const button = props => {
         {children}
       </Link>
     );
-  } else {
-    return (
-      <Link className={`btn ${to}`} to={to}>
-        {children}
-      </Link>
-    );
-  }
+
+  return (
+    <Link className={`btn ${to}`} to={to}>
+      {children}
+    </Link>
+  );
 };
 
 export default button;

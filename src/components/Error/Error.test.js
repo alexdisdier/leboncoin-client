@@ -4,8 +4,15 @@ import { shallow } from "enzyme";
 import Error from "./Error";
 
 describe("Error", () => {
-  it("render()", () => {
-    const wrapper = shallow(<Error />);
+  let props;
+
+  beforeEach(() => {
+    props = {
+      error: "error"
+    };
+  });
+  it("renders an error", () => {
+    const wrapper = shallow(<Error {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
 <div
   className="absolute"
@@ -18,7 +25,9 @@ describe("Error", () => {
       alt="cloud warning error"
       src="Cloud_Warning.svg"
     />
-    <span />
+    <span>
+      error
+    </span>
   </div>
 </div>
 `);

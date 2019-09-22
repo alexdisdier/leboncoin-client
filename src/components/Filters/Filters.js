@@ -1,16 +1,15 @@
 import React from "react";
 
 import "./Filters.css";
-const filters = props => {
-  const {
-    title,
-    minPrice,
-    maxPrice,
-    sort,
-    handleFilters,
-    submitFilters
-  } = props;
 
+const filters = ({
+  title,
+  minPrice,
+  maxPrice,
+  sort,
+  handleFilters,
+  submitFilters
+}) => {
   return (
     <div className="filters-container">
       <div className="wrapper">

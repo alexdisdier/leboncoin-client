@@ -3,21 +3,47 @@ import { shallow } from "enzyme";
 
 import Header from "./Header";
 
+jest.mock("./Button/Button", () => "Button");
+
 describe("Header", () => {
-  it("renders the Header correctly", () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper).toMatchInlineSnapshot(`
+  let props;
+
+  beforeEach(() => {
+    props = {
+      token: "token",
+      username: "username",
+      toggleMenu: jest.fn(),
+      isToggle: false
+    };
+  });
+
+  describe("actions", () => {
+    it("toggles the menu", () => {
+      const wrapper = shallow(<Header {...props} />);
+      wrapper
+        .find("menu")
+        .at(0)
+        .simulate("click");
+
+      expect(props.toggleMenu).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("render()", () => {
+    it("renders the Header correctly", () => {
+      const wrapper = shallow(<Header {...props} />);
+      expect(wrapper).toMatchInlineSnapshot(`
 <header
   className="header"
 >
   <div
     className="wrapper flex "
   >
-    <button
+    <Button
       to="/"
     >
       <ReactComponent />
-    </button>
+    </Button>
     <menu
       className="show-xs"
       id="menu"
@@ -28,33 +54,38 @@ describe("Header", () => {
     <div
       className="nav hidden-xs"
     >
-      <button
+      <Button
         to="/publish"
+        toggleMenu={[MockFunction]}
       >
         Déposer une annonce
-      </button>
-      <button
+      </Button>
+      <Button
         to="/offres"
+        toggleMenu={[MockFunction]}
       >
         offres
-      </button>
+      </Button>
       <div
         className="account-panel"
       >
-        <button
-          to="/log_in"
+        <Button
+          to="/profile"
+          toggleMenu={[MockFunction]}
         >
-          Se connecter
-        </button>
+          Hello 
+          username
+        </Button>
         <button
-          to="/sign_up"
+          onClick={[Function]}
         >
-          Créer un compte
+          Se déconnecter
         </button>
       </div>
     </div>
   </div>
 </header>
 `);
+    });
   });
 });
