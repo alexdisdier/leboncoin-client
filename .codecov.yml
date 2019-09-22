@@ -31,6 +31,8 @@ comment:
 ignore: 
   - "src/constant" 
   - "src/assets/domain.js"
+  - "src/index.js"
+  - "src/serviceWorker.js"
   - "src/setupTests.js"
 
 codecov:

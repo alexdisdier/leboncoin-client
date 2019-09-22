@@ -4,19 +4,21 @@ import { format } from "date-fns";
 import LinesEllipsis from "react-lines-ellipsis";
 
 import "./Card.css";
+
 import { ROUTE_OFFER } from "../../constant/routes";
-const card = props => {
-  const {
-    id,
-    title,
-    price,
-    description,
-    date,
-    pictures,
-    isDelete,
-    deleteOffer
-  } = props;
+
+const card = ({
+  id,
+  title,
+  price,
+  description,
+  date,
+  pictures,
+  isDelete,
+  deleteOffer
+}) => {
   let image;
+
   if (pictures.length > 0) {
     image = pictures[0].secure_url;
   }

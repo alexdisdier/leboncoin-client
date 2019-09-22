@@ -9,7 +9,7 @@ describe("Pagination", () => {
   props = {
     totalPages: 4,
     currentPage: 2,
-    goToPage: 3,
+    goToPage: jest.fn(),
     windowWidth: 600
   };
 
@@ -20,7 +20,10 @@ describe("Pagination", () => {
       wrapper
         .find("span")
         .at(0)
-        .simulate("onClick");
+        .simulate("click");
+
+      expect(props.goToPage).toHaveBeenCalledTimes(1);
+      expect(props.goToPage).toHaveBeenCalledWith(1);
     });
   });
 

@@ -1,5 +1,6 @@
 import React from "react";
 
+/* istanbul ignore next */
 class ScrollToTopOnMount extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);

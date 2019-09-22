@@ -3,6 +3,12 @@ import { shallow } from "enzyme";
 
 import Card from "./Card";
 
+jest.mock("react-lines-ellipsis", () => "LinesEllipsis");
+
+jest.mock("date-fns", () => ({
+  format: date => "23/09/2019"
+}));
+
 describe("Card", () => {
   let props;
 
@@ -17,6 +23,15 @@ describe("Card", () => {
       isDelete: jest.fn(),
       deleteOffer: jest.fn()
     };
+  });
+  it("deletes an offer", () => {
+    const wrapper = shallow(<Card {...props} />);
+    wrapper
+      .find("#delete-ad")
+      .at(0)
+      .simulate("click");
+
+    expect(props.deleteOffer).toHaveBeenCalledTimes(1);
   });
 
   it("render()", () => {
@@ -76,18 +91,15 @@ describe("Card", () => {
         />
         <LinesEllipsis
           basedOn="letters"
-          className=""
-          component="div"
           ellipsis="..."
           maxLine="1"
-          onReflow={[Function]}
           text="description"
           trimRight={true}
         />
         <span
           className="date-fns"
         >
-          Invalid Date
+          23/09/2019
         </span>
       </div>
     </div>
