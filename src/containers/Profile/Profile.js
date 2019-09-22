@@ -54,7 +54,7 @@ class Profile extends Component {
       });
       this.fetchOffer();
     } catch (error) {
-      console.log("not deleted");
+      console.error("not deleted", error);
     }
   };
 

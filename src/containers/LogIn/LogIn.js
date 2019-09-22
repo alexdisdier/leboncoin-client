@@ -38,7 +38,7 @@ class LogIn extends Component {
           isValid: false
         });
       }
-      // console.log(response);
+
       if (response.data.token) {
         setUser(response.data);
         await this.setState({

@@ -20,23 +20,35 @@ describe("Card", () => {
       description: "description",
       date: "date",
       pictures: ["test"],
-      isDelete: jest.fn(),
+      isDelete: true,
       deleteOffer: jest.fn()
     };
   });
-  it("deletes an offer", () => {
-    const wrapper = shallow(<Card {...props} />);
-    wrapper
-      .find("#delete-ad")
-      .at(0)
-      .simulate("click");
 
-    expect(props.deleteOffer).toHaveBeenCalledTimes(1);
+  describe("action", () => {
+    it("deletes an offer", () => {
+      const wrapper = shallow(<Card {...props} />);
+      wrapper
+        .find("#delete-ad")
+        .at(0)
+        .simulate("click");
+
+      expect(props.deleteOffer).toHaveBeenCalledTimes(1);
+      expect(props.deleteOffer).toHaveBeenCalledWith("id");
+    });
   });
 
-  it("render()", () => {
-    const wrapper = shallow(<Card {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+  describe("render()", () => {
+    it(`doesn't render the delete button`, () => {
+      props.isDelete = false;
+
+      const wrapper = shallow(<Card {...props} />);
+      expect(wrapper.find("#delete-ad").at(0).length).toBe(0);
+    });
+
+    it("render()", () => {
+      const wrapper = shallow(<Card {...props} />);
+      expect(wrapper).toMatchInlineSnapshot(`
 <li
   className="card"
 >
@@ -106,5 +118,6 @@ describe("Card", () => {
   </Link>
 </li>
 `);
+    });
   });
 });

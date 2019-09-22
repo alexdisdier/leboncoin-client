@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Button.css";
@@ -6,7 +6,7 @@ import "./Button.css";
 const button = ({ to, children, toggleMenu }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };

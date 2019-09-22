@@ -65,13 +65,13 @@ describe("Offers", () => {
             }
           ]);
 
-          const spyPreventDefault = jest.spyOn(wrapper.instance(), "goToPage");
+          const spyGoToPage = jest.spyOn(wrapper.instance(), "goToPage");
 
           wrapper.instance().forceUpdate();
           wrapper.instance().goToPage(1);
 
-          expect(spyPreventDefault).toHaveBeenCalledTimes(1);
-          expect(spyPreventDefault).toHaveBeenCalledWith(1);
+          expect(spyGoToPage).toHaveBeenCalledTimes(1);
+          expect(spyGoToPage).toHaveBeenCalledWith(1);
 
           done();
         });
@@ -99,8 +99,24 @@ describe("Offers", () => {
 `);
     });
 
-    it("renders the offers container", () => {
-      wrapper.setState({ isLoading: false });
+    it("renders no cards", () => {
+      wrapper.setState({ isLoading: true, error: "error" });
+      expect(wrapper).toMatchInlineSnapshot(`
+<Fragment>
+  <Filters
+    handleFilters={[Function]}
+    maxPrice=""
+    minPrice=""
+    sort=""
+    submitFilters={[Function]}
+    title=""
+  />
+</Fragment>
+`);
+    });
+
+    it("renders the offers cards", () => {
+      wrapper.setState({ isLoading: false, error: null });
 
       expect(wrapper).toMatchInlineSnapshot(`
 <Fragment>
