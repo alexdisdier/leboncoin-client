@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Login from "./Login";
+import LogIn from "./LogIn";
 
 /**
  * Unit tests should be run in isolation;
@@ -13,19 +13,19 @@ jest.mock("axios");
 
 jest.mock("../../Validation/Validation", () => "Validation");
 
-describe("Login", () => {
+describe("LogIn", () => {
   describe("api calls", () => {
-    it("fetches Logins on #componentDidMount", () => {
-      // const wrapper = shallow(<Login />);
-      // expect(wrapper.state()).toHaveProperty("Login", {});
+    it("fetches LogIns on #componentDidMount", () => {
+      // const wrapper = shallow(<LogIn />);
+      // expect(wrapper.state()).toHaveProperty("LogIn", {});
       // wrapper.instance().componentDidMount();
     });
   });
 });
 
-describe("Login", () => {
+describe("LogIn", () => {
   it("render()", () => {
-    const wrapper = shallow(<Login />);
+    const wrapper = shallow(<LogIn />);
     expect(wrapper).toMatchInlineSnapshot(`
 <div
   className="wrapper connection"
