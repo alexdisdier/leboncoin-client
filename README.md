@@ -16,11 +16,11 @@
 
 This is a clone of Le boncoin website built with React. All rights reserved to Leboncoin.fr
 
-I also built the backend. If you would like to take a look, click on [click here](https://github.com/alexdisdier/leboncoin-api)
+I also built the back-end. If you would like to take a look, [click here](https://github.com/alexdisdier/leboncoin-api)
 
 ## Usage example
 
-See demo - https://leboncoin-alex-client.herokuapp.com/
+[See demo](https://leboncoin-alex-client.herokuapp.com/)
 
 ## ✅ Functionalities
 
@@ -38,44 +38,7 @@ See demo - https://leboncoin-alex-client.herokuapp.com/
 - Loading component implemented.
 - Mobile Responsive
 
-## Directory Structure
-
-```bash
-
-leboncoin-client
-├── public
-├── src
-│   ├── assets
-│   │   ├── css
-│   │   ├── fonts
-│   │   └── img
-│   ├── components
-│   │   ├── Card
-│   │   ├── Error
-│   │   ├── Filters
-│   │   ├── Header
-│   │   ├── Loading
-│   │   └── Pagination
-│   ├── containers
-│   │   ├── Home
-│   │   ├── Login
-│   │   ├── Offer
-│   │   ├── Profile
-│   │   ├── Publish
-│   │   └──SignUp
-│   ├── Validation
-│   ├── App.css
-│   ├── App.js
-│   ├── App.test.js
-│   ├── index.css
-│   ├── index.js
-│   └── serviceWorker.js
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── README.md
-
-```
+````
 
 ## Running the project
 
@@ -85,7 +48,7 @@ Clone this repository :
 git clone https://github.com/alexdisdier/leboncoin-client.git
 
 cd leboncoin-client
-```
+````
 
 Start the server:
 
