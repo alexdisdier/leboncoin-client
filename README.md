@@ -38,8 +38,6 @@ I also built the back-end. If you would like to take a look, [click here](https:
 - Loading component implemented.
 - Mobile Responsive
 
-````
-
 ## Running the project
 
 Clone this repository :
@@ -48,7 +46,7 @@ Clone this repository :
 git clone https://github.com/alexdisdier/leboncoin-client.git
 
 cd leboncoin-client
-````
+```
 
 Start the server:
 
