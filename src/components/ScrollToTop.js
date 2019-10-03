@@ -1,8 +1,6 @@
-/* istanbul ignore next */
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-/* istanbul ignore next */
 class ScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
