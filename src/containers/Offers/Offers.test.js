@@ -1,89 +1,85 @@
-import React from "react";
-import axios from "axios";
-import { get, set, remove } from "js-cookie";
-import { shallow } from "enzyme";
+import React from 'react';
+import { get, set, remove } from 'js-cookie';
+import { shallow } from 'enzyme';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
-import Offers from "./Offers";
+import Offers from './Offers';
 
-import domain from "../../assets/domain";
+import domain from '../../assets/domain';
 
-/**
- * Unit tests should be run in isolation;
- * Thus we shouldn't make any external calls to the server.
- * Mocking axios module
- * makes unit tests independent of the network
- */
-jest.mock("axios");
+const mockOffers = {
+  count: 2,
+  offers: [
+    {
+      created: '2019-03-02T18:40:44.613Z',
+      creator: {
+        account: { phone: '123456789', username: 'faker' }
+      },
+      description: 'description-1',
+      pictures: [],
+      price: 675,
+      title: 'offer-1'
+    },
+    {
+      created: '2019-03-02T18:40:44.613Z',
+      creator: {
+        account: { phone: '123456789', username: 'faker' }
+      },
+      description: 'description-2',
+      pictures: [],
+      price: 675,
+      title: 'offer-2'
+    }
+  ]
+};
 
-jest.mock("js-cookie", () => ({
+jest.mock('js-cookie', () => ({
   get: jest.fn(),
   set: jest.fn(),
   remove: jest.fn()
 }));
 
-jest.mock("../../components/Filters/Filters", () => "Filters");
-jest.mock("../../components/Card/Card", () => "Card");
-jest.mock("../../components/Pagination/Pagination", () => "Pagination");
-jest.mock("../../components/Loading/Loading", () => "Loading");
+jest.mock('../../components/Filters/Filters', () => 'Filters');
+jest.mock('../../components/Card/Card', () => 'Card');
+jest.mock('../../components/Pagination/Pagination', () => 'Pagination');
+jest.mock('../../components/Loading/Loading', () => 'Loading');
 
-describe("Offers", () => {
-  describe("api calls", () => {
+describe('Offers', () => {
+  describe('actions', () => {
+    let mock;
+
     beforeEach(() => {
+      mock = new MockAdapter(axios);
       get.mockClear();
       set.mockClear();
       remove.mockClear();
     });
 
-    it("fetches offers on #componentDidMount", done => {
+    afterEach(() => {
+      mock.restore();
+      mock.reset();
+    });
+
+    it('fetches offers on #componentDidMount', done => {
       const wrapper = shallow(<Offers />);
-      expect(wrapper.state()).toHaveProperty("offers", []);
+      expect(wrapper.state()).toHaveProperty('offers', []);
+
+      mock.onGet(`${domain}/offer/with-count`).reply(200, mockOffers);
+
       wrapper
         .instance()
         .componentDidMount()
         .then(() => {
-          expect(axios.get).toHaveBeenCalled();
-          expect(axios.get).toHaveBeenCalledWith(`${domain}/offer/with-count`);
-          expect(wrapper.state()).toHaveProperty("offers", [
-            {
-              count: 1,
-              offers: [
-                {
-                  __v: 0,
-                  _id: "5c7ace2c3fe94a001750770b",
-                  created: "2019-03-02T18:40:44.613Z",
-                  creator: {
-                    _id: "5c7a850dd4bf7a00174c015e",
-                    account: { phone: "0600000000", username: "faker" }
-                  },
-                  description:
-                    "I'll connect the mobile AI system, that should monitor the USB system!",
-                  pictures: [],
-                  price: 675,
-                  title: "Handcrafted Soft Mouse"
-                },
-                {
-                  __v: 0,
-                  _id: "5c7ace2c3fe94a001750770b",
-                  created: "2019-03-02T18:40:44.613Z",
-                  creator: {
-                    _id: "5c7a850dd4bf7a00174c015e",
-                    account: { phone: "0600000000", username: "faker" }
-                  },
-                  description: "another product offer!",
-                  pictures: [],
-                  price: 100,
-                  title: "Handcrafted Soft Mouse"
-                }
-              ]
-            }
-          ]);
+          expect(wrapper.state()).toHaveProperty('offers');
+          expect(wrapper.state('offers')).toEqual(mockOffers.offers);
 
-          wrapper.setState({ title: "title" });
+          wrapper.setState({ title: 'title' });
 
-          const spyGoToPage = jest.spyOn(wrapper.instance(), "goToPage");
+          const spyGoToPage = jest.spyOn(wrapper.instance(), 'goToPage');
           const spySearchFilters = jest.spyOn(
             wrapper.instance(),
-            "searchFilters"
+            'searchFilters'
           );
 
           wrapper.instance().forceUpdate();
@@ -94,47 +90,47 @@ describe("Offers", () => {
 
           expect(spySearchFilters).toHaveBeenCalledTimes(1);
           expect(spySearchFilters).toHaveBeenCalledWith({
-            maxPrice: "",
-            minPrice: "",
-            sort: "",
-            title: "title"
+            maxPrice: '',
+            minPrice: '',
+            sort: '',
+            title: 'title'
           });
 
           done();
         });
     });
 
-    it("handles filters", () => {
+    it('handles filters', () => {
       const wrapper = shallow(<Offers />);
 
       wrapper.setState({
-        maxPrice: "",
-        minPrice: "",
-        sort: "",
-        title: ""
+        maxPrice: '',
+        minPrice: '',
+        sort: '',
+        title: ''
       });
 
-      const spyHandleFilters = jest.spyOn(wrapper.instance(), "handleFilters");
+      const spyHandleFilters = jest.spyOn(wrapper.instance(), 'handleFilters');
 
       wrapper.instance().forceUpdate();
-      wrapper.instance().handleFilters({ target: { value: "" } });
+      wrapper.instance().handleFilters({ target: { value: '' } });
 
       expect(spyHandleFilters).toHaveBeenCalledTimes(1);
       expect(remove).toHaveBeenCalled();
     });
 
-    it("submit filters", () => {
+    it('submit filters', () => {
       const wrapper = shallow(<Offers />);
 
       wrapper.setState({
-        maxPrice: "",
-        minPrice: "",
-        sort: "",
-        title: "title"
+        maxPrice: '',
+        minPrice: '',
+        sort: '',
+        title: 'title'
       });
 
-      const spySubmitFilters = jest.spyOn(wrapper.instance(), "submitFilters");
-      const spySearchFilters = jest.spyOn(wrapper.instance(), "searchFilters");
+      const spySubmitFilters = jest.spyOn(wrapper.instance(), 'submitFilters');
+      const spySearchFilters = jest.spyOn(wrapper.instance(), 'searchFilters');
 
       wrapper.instance().forceUpdate();
       wrapper.instance().submitFilters({ preventDefault() {} });
@@ -142,25 +138,25 @@ describe("Offers", () => {
       expect(spySubmitFilters).toHaveBeenCalledTimes(1);
       expect(spySearchFilters).toHaveBeenCalledTimes(1);
       expect(spySearchFilters).toHaveBeenCalledWith({
-        maxPrice: "",
-        minPrice: "",
-        sort: "",
-        title: "title"
+        maxPrice: '',
+        minPrice: '',
+        sort: '',
+        title: 'title'
       });
     });
 
-    it("clear filters  & cookies", () => {
+    it('clear filters  & cookies', () => {
       const wrapper = shallow(<Offers />);
 
       wrapper.setState({
-        maxPrice: "",
-        minPrice: "",
-        sort: "",
-        title: ""
+        maxPrice: '',
+        minPrice: '',
+        sort: '',
+        title: ''
       });
 
-      const spySubmitFilters = jest.spyOn(wrapper.instance(), "submitFilters");
-      const spySearchFilters = jest.spyOn(wrapper.instance(), "searchFilters");
+      const spySubmitFilters = jest.spyOn(wrapper.instance(), 'submitFilters');
+      const spySearchFilters = jest.spyOn(wrapper.instance(), 'searchFilters');
 
       wrapper.instance().forceUpdate();
       wrapper.instance().submitFilters({ preventDefault() {} });
@@ -171,10 +167,10 @@ describe("Offers", () => {
     });
   });
 
-  describe("render()", () => {
+  describe('render()', () => {
     const wrapper = shallow(<Offers />);
 
-    it("rendres a loading component", () => {
+    it('rendres a loading component', () => {
       wrapper.setState({ isLoading: true });
 
       expect(wrapper).toMatchInlineSnapshot(`
@@ -192,8 +188,8 @@ describe("Offers", () => {
 `);
     });
 
-    it("renders no cards", () => {
-      wrapper.setState({ isLoading: true, error: "error" });
+    it('renders no cards', () => {
+      wrapper.setState({ isLoading: true, error: 'error' });
       expect(wrapper).toMatchInlineSnapshot(`
 <Fragment>
   <Filters
@@ -208,8 +204,13 @@ describe("Offers", () => {
 `);
     });
 
-    it("renders the offers cards", () => {
-      wrapper.setState({ isLoading: false, error: null });
+    it('renders the offers cards', () => {
+      wrapper.setState({
+        isLoading: false,
+        error: null,
+        offers: mockOffers.offers,
+        totalPages: 1
+      });
 
       expect(wrapper).toMatchInlineSnapshot(`
 <Fragment>
@@ -226,14 +227,27 @@ describe("Offers", () => {
   >
     <ul>
       <Card
+        date="2019-03-02T18:40:44.613Z"
+        description="description-1"
         key="0"
+        pictures={Array []}
+        price={675}
+        title="offer-1"
+      />
+      <Card
+        date="2019-03-02T18:40:44.613Z"
+        description="description-2"
+        key="1"
+        pictures={Array []}
+        price={675}
+        title="offer-2"
       />
     </ul>
   </div>
   <Pagination
     currentPage={1}
     goToPage={[Function]}
-    totalPages={NaN}
+    totalPages={1}
   />
 </Fragment>
 `);
