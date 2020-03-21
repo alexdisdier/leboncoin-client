@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-import { format } from "date-fns";
-import domain from "../../assets/domain";
+import React, { Component } from 'react';
+import axios from 'axios';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
+import { format } from 'date-fns';
+import domain from '../../assets/domain';
 
-import Loading from "../../components/Loading/Loading";
+import Loading from '../../components/Loading/Loading';
 
-import { ROUTE_OFFER } from "../../constant/routes";
+import { ROUTE_OFFER } from '../../constant/routes';
 
-import "./Offer.css";
+import './Offer.css';
 
 class Offer extends Component {
   state = {
@@ -21,7 +21,7 @@ class Offer extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        domain + ROUTE_OFFER + "/" + this.props.match.params.id
+        domain + ROUTE_OFFER + '/' + this.props.match.params.id
       );
       const offer = response.data;
 
@@ -31,7 +31,7 @@ class Offer extends Component {
       });
     } catch (error) {
       this.setState({
-        error: "An error occurred"
+        error: 'An error occurred'
       });
     }
   }
@@ -71,7 +71,7 @@ class Offer extends Component {
                 {imgUrl.length === 0 ? (
                   <div className="gallery-container" />
                 ) : (
-                  ""
+                  ''
                 )}
                 <Carousel>
                   {imgUrl.map((img, index) => {
@@ -86,7 +86,7 @@ class Offer extends Component {
                 <div className="section-card-body">
                   <h1>{title}</h1>
                   <span>{price}&nbsp;€</span>
-                  <div>{format(created, "MMMM DD, YYYY")}</div>
+                  <div>{format(created, 'MMMM DD, YYYY')}</div>
                 </div>
               </div>
               <div className="section-description">
@@ -107,7 +107,7 @@ class Offer extends Component {
     } else if (isLoading && error === null) {
       return <Loading />;
     } else {
-      return null;
+      return error;
     }
   }
 

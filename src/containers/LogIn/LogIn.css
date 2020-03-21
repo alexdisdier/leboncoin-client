@@ -56,5 +56,13 @@
   background-color: rgba(51, 102, 153, 0.1);
 }
 
+.btn {
+  width: 100%;
+}
+
+.btn:focus {
+  outline: none;
+}
+
 @media only screen and (min-width: 768px) {
 }

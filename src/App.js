@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect
-} from "react-router-dom";
-import Cookies from "js-cookie";
+} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-import ScrollToTop from "./components/ScrollToTop";
-import Header from "./components/Header/Header";
-import Home from "./containers/Home/Home";
-import Offers from "./containers/Offers/Offers";
-import Offer from "./containers/Offer/Offer";
-import SignUp from "./containers/SignUp/SignUp";
-import LogIn from "./containers/LogIn/LogIn";
-import Publish from "./containers/Publish/Publish";
-import Profile from "./containers/Profile/Profile";
+import ScrollToTop from './components/ScrollToTop';
+import Header from './components/Header/Header';
+import Home from './containers/Home/Home';
+import Offers from './containers/Offers/Offers';
+import Offer from './containers/Offer/Offer';
+import SignUp from './containers/SignUp/SignUp';
+import LogIn from './containers/LogIn/LogIn';
+import Publish from './containers/Publish/Publish';
+import Profile from './containers/Profile/Profile';
 
 import {
   ROUTE_HOME,
@@ -25,27 +25,27 @@ import {
   ROUTE_OFFERS,
   ROUTE_OFFER,
   ROUTE_PROFILE
-} from "./constant/routes";
+} from './constant/routes';
 
-import "./assets/css/reset.css";
-import "./App.css";
+import './assets/css/reset.css';
+import './App.css';
 
 class App extends Component {
   state = {
-    token: Cookies.get("token") || null,
-    email: Cookies.get("email") || null,
-    username: Cookies.get("username") || null,
-    phone: Cookies.get("phone") || null,
+    token: Cookies.get('token') || null,
+    email: Cookies.get('email') || null,
+    username: Cookies.get('username') || null,
+    phone: Cookies.get('phone') || null,
     isToggle: false,
     windowWidth: window.innerWidth
   };
 
   componentDidMount = () => {
-    window.addEventListener("resize", this.handleResize);
+    window.addEventListener('resize', this.handleResize);
   };
 
   componentWillUnmount = () => {
-    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener('resize', this.handleResize);
   };
 
   handleResize = () => {
@@ -66,12 +66,12 @@ class App extends Component {
         phone: phone
       });
 
-      Cookies.set("token", token);
-      Cookies.set("email", email);
-      Cookies.set("username", username);
-      Cookies.set("phone", phone);
+      Cookies.set('token', token);
+      Cookies.set('email', email);
+      Cookies.set('username', username);
+      Cookies.set('phone', phone);
     } else {
-      console.log("no user was passed in setUser()");
+      console.error('no user was passed in setUser()');
     }
   };
 
@@ -85,7 +85,7 @@ class App extends Component {
         username: username
       };
     } else {
-      console.log("getUser() does not find a user, check token");
+      console.error('getUser() does not find a user, check token');
     }
   };
 
@@ -97,10 +97,10 @@ class App extends Component {
       phone: null
     });
 
-    Cookies.remove("token");
-    Cookies.remove("email");
-    Cookies.remove("username");
-    Cookies.remove("phone");
+    Cookies.remove('token');
+    Cookies.remove('email');
+    Cookies.remove('username');
+    Cookies.remove('phone');
   };
 
   toggleMenu = () =>
@@ -138,7 +138,7 @@ class App extends Component {
                 }}
               />
               <Route
-                path={ROUTE_OFFER + "/:id"}
+                path={ROUTE_OFFER + '/:id'}
                 render={props => <Offer {...props} />}
               />
               <Route
