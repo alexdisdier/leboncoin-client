@@ -60,7 +60,11 @@ class LogIn extends Component {
         <div className="sign-in-flex">
           <section>
             <h1>Connexion</h1>
-            <form onSubmit={this.handleSubmit} className="form">
+            <form
+              data-testid="login"
+              onSubmit={this.handleSubmit}
+              className="form"
+            >
               <div className="form-item">
                 <label htmlFor="email">Adresse email</label>
                 <input
@@ -92,9 +96,7 @@ class LogIn extends Component {
                 <Validation isValid={isValid} />
               </div>
 
-              <button data-testid="login" type="submit">
-                Se connecter
-              </button>
+              <button type="submit">Se connecter</button>
             </form>
 
             <div className="create-account-redirect">

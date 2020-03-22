@@ -10,7 +10,9 @@ import LogIn from './LogIn';
 jest.mock('../../Validation/Validation', () => 'Validation');
 
 const loginSuccessMock = {
-  token: '123456789'
+  data: {
+    token: '123456789'
+  }
 };
 // const loginFailsMock = {
 //   message: 'wrong password'
@@ -46,7 +48,7 @@ describe('LogIn', () => {
 
       getByTestId(wrapper, 'input-email').simulate('change', emailEvent);
       getByTestId(wrapper, 'input-password').simulate('change', passwordEvent);
-      getByTestId(wrapper, 'login').simulate('click', {
+      getByTestId(wrapper, 'login').simulate('submit', {
         preventDefault: () => {}
       });
 
@@ -57,17 +59,13 @@ describe('LogIn', () => {
 
       mock.onPost(`${domain}/log_in`, header).reply(200, loginSuccessMock);
 
-      // expect(props.setUser).toHaveBeenCalled();
-
-      axios.get(`${domain}/log_in`, header).then(function(response) {
-        console.log(response.data);
+      axios.post(`${domain}/log_in`, header).then(() => {
+        expect(wrapper.state('isValid')).toBeTruthy();
       });
 
-      // console.log(wrapper.debug());
-      // expect(wrapper.state()).toHaveProperty("LogIn", {});
-      // wrapper.instance().componentDidMount();
       done();
     });
+
     it('navigates to sign up for an account', () => {
       const wrapper = shallow(<LogIn {...props} />);
       getByTestId(wrapper, 'go-to-signup').simulate('click');
@@ -90,6 +88,7 @@ describe('LogIn', () => {
       </h1>
       <form
         className="form"
+        data-testid="login"
         onSubmit={[Function]}
       >
         <div
@@ -140,7 +139,6 @@ describe('LogIn', () => {
           />
         </div>
         <button
-          data-testid="login"
           type="submit"
         >
           Se connecter
