@@ -170,7 +170,7 @@ describe('Offers', () => {
   describe('render()', () => {
     const wrapper = shallow(<Offers />);
 
-    it('rendres a loading component', () => {
+    it('renders a loader', () => {
       wrapper.setState({ isLoading: true });
 
       expect(wrapper).toMatchInlineSnapshot(`

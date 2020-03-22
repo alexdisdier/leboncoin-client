@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import axios from "axios";
-import domain from "../../assets/domain";
+import React, { Component } from 'react';
+import axios from 'axios';
+import domain from '../../assets/domain';
 
-import Card from "../../components/Card/Card";
-import Loading from "../../components/Loading/Loading";
+import Card from '../../components/Card/Card';
+import Loading from '../../components/Loading/Loading';
 
-import { ROUTE_PROFILE } from "../../constant/routes";
+import { ROUTE_PROFILE } from '../../constant/routes';
 
-import "./Profile.css";
+import './Profile.css';
 
 class Profile extends Component {
   state = {
@@ -29,7 +29,7 @@ class Profile extends Component {
       const token = getUser().token;
       const response = await axios.get(domain + ROUTE_PROFILE, {
         headers: {
-          authorization: "Bearer " + token
+          authorization: 'Bearer ' + token
         }
       });
 
@@ -49,12 +49,12 @@ class Profile extends Component {
 
       await axios.delete(`${domain}/delete/${id}`, {
         headers: {
-          authorization: "Bearer " + token
+          authorization: 'Bearer ' + token
         }
       });
       this.fetchOffer();
     } catch (error) {
-      console.error("not deleted", error);
+      console.error('not deleted', error);
     }
   };
 
@@ -62,16 +62,17 @@ class Profile extends Component {
     const { isLoading, error, offers, isDelete } = this.state;
 
     if (!isLoading && error === null) {
-      if (offers !== undefined) {
+      if (offers && offers) {
         return (
           <>
             <div className="wrapper homepage">
               <ul>
-                {this.state.offers.map(e => (
+                {offers.map(e => (
                   <Card
+                    dataTestId="profile-ad-card"
                     isDelete={isDelete}
                     deleteOffer={this.deleteOffer}
-                    key={e._id}
+                    key={e._id + e.title}
                     pictures={e.pictures}
                     id={e._id}
                     title={e.title}

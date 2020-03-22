@@ -51,6 +51,7 @@ describe("Card", () => {
       expect(wrapper).toMatchInlineSnapshot(`
 <li
   className="card"
+  data-testid="card"
 >
   <span
     id="delete-ad"

@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import axios from "axios";
-import ReactFileReader from "react-file-reader";
-import Loading from "../../components/Loading/Loading";
-import domain from "../../assets/domain";
+import React, { Component } from 'react';
+import axios from 'axios';
+import ReactFileReader from 'react-file-reader';
+import Loading from '../../components/Loading/Loading';
+import domain from '../../assets/domain';
 
-import { ROUTE_PUBLISH, ROUTE_OFFERS } from "../../constant/routes";
+import { ROUTE_PUBLISH, ROUTE_OFFERS } from '../../constant/routes';
 
-import "./Publish.css";
+import './Publish.css';
 
 class Publish extends Component {
   state = {
-    title: "",
-    description: "",
-    price: "",
+    title: '',
+    description: '',
+    price: '',
     files: [],
 
     isLoading: false,
@@ -53,7 +53,7 @@ class Publish extends Component {
         },
         {
           headers: {
-            authorization: "Bearer " + token
+            authorization: 'Bearer ' + token
           }
         }
       );
@@ -64,7 +64,7 @@ class Publish extends Component {
     } catch (error) {
       console.log({
         error: error.message,
-        specific: "The ad was not published"
+        specific: 'The ad was not published'
       });
     }
   };
@@ -73,17 +73,21 @@ class Publish extends Component {
     const { isLoading } = this.state;
 
     if (!isLoading) {
-      return <button className="validate-btn">Valider</button>;
+      return (
+        <button data-testid="submit" className="validate-btn">
+          Valider
+        </button>
+      );
     } else {
       return (
         <>
           <Loading />
-          <span className="loading-message">
+          <span data-testid="loading" className="loading-message">
             Une fois le chargement terminé, vous serez rediriger vers la page
-            d'accueil. merci de patienter{" "}
+            d'accueil. merci de patienter
             <span role="img" aria-label="smily face">
               😃
-            </span>{" "}
+            </span>
           </span>
         </>
       );
@@ -155,7 +159,7 @@ class Publish extends Component {
                 </p>
                 <aside>
                   <ReactFileReader
-                    fileTypes={[".png", ".jpg"]}
+                    fileTypes={['.png', '.jpg']}
                     base64={true}
                     multiplesFiles={false} // false for one single image
                     handleFiles={this.handleFiles}
@@ -164,31 +168,31 @@ class Publish extends Component {
                       {/* <span className="close-photo">⤫</span> */}
                       {filesArray.length > 0
                         ? filesArray[0]
-                        : "Photo principale"}
+                        : 'Photo principale'}
                     </div>
                   </ReactFileReader>
 
                   <ReactFileReader
-                    fileTypes={[".png", ".jpg"]}
+                    fileTypes={['.png', '.jpg']}
                     base64={true}
                     multiplesFiles={false} // false for one single image
                     handleFiles={this.handleFiles}
                   >
                     <div className="box-photo">
                       {/* <span className="close-photo">⤫</span> */}
-                      {filesArray[1] ? filesArray[1] : "Photo 2"}
+                      {filesArray[1] ? filesArray[1] : 'Photo 2'}
                     </div>
                   </ReactFileReader>
 
                   <ReactFileReader
-                    fileTypes={[".png", ".jpg"]}
+                    fileTypes={['.png', '.jpg']}
                     base64={true}
                     multiplesFiles={false} // false for one single image
                     handleFiles={this.handleFiles}
                   >
                     <div className="box-photo">
                       {/* <span className="close-photo">⤫</span> */}
-                      {filesArray[2] ? filesArray[2] : "Photo 3"}
+                      {filesArray[2] ? filesArray[2] : 'Photo 3'}
                     </div>
                   </ReactFileReader>
                 </aside>

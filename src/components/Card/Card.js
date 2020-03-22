@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { format } from "date-fns";
-import LinesEllipsis from "react-lines-ellipsis";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
+import LinesEllipsis from 'react-lines-ellipsis';
 
-import "./Card.css";
+import './Card.css';
 
-import { ROUTE_OFFER } from "../../constant/routes";
+import { ROUTE_OFFER } from '../../constant/routes';
 
 const card = ({
   id,
@@ -15,7 +15,8 @@ const card = ({
   date,
   pictures,
   isDelete,
-  deleteOffer
+  deleteOffer,
+  dataTestId
 }) => {
   let image;
 
@@ -25,9 +26,9 @@ const card = ({
 
   let style = {
     backgroundImage: `url(${image})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "contain",
-    backgroundPosition: "center"
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    backgroundPosition: 'center'
   };
 
   let deleteAd;
@@ -46,7 +47,7 @@ const card = ({
   }
 
   return (
-    <li className="card">
+    <li data-testid={dataTestId ? dataTestId : 'card'} className="card">
       {deleteAd}
       <Link to={`${ROUTE_OFFER}/${id}`}>
         <div className="card-body">
@@ -66,7 +67,7 @@ const card = ({
               trimRight
               basedOn="letters"
             />
-            <span className="date-fns">{format(date, "MMMM DD, YYYY")}</span>
+            <span className="date-fns">{format(date, 'MMMM DD, YYYY')}</span>
           </div>
         </div>
       </Link>
