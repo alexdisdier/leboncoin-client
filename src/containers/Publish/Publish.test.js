@@ -1,14 +1,43 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import Publish from "./Publish";
+import Publish from './Publish';
 
-jest.mock("../../components/Loading/Loading", () => "Loading");
+import { getByTestId } from '../../utils';
 
-describe("Publish", () => {
-  it("render()", () => {
-    const wrapper = shallow(<Publish />);
-    expect(wrapper).toMatchInlineSnapshot(`
+jest.mock('../../components/Loading/Loading', () => 'Loading');
+
+describe('Publish', () => {
+  let props;
+
+  beforeEach(() => {
+    props = {
+      getUser: jest.fn()
+    };
+  });
+
+  describe('actions', () => {
+    it('handles adding files ready to be uploaded', () => {});
+
+    it('handles editing details such as title, description and price', () => {});
+
+    it('upload new ad', () => {});
+  });
+
+  describe('render()', () => {
+    it('renders a loader while uploading', () => {
+      const wrapper = shallow(<Publish />);
+      wrapper.setState({
+        isLoading: true
+      });
+
+      expect(wrapper.find('Loading')).toBeTruthy();
+      expect(getByTestId(wrapper, 'loading')).toBeTruthy();
+    });
+
+    it('renders the publish page', () => {
+      const wrapper = shallow(<Publish />);
+      expect(wrapper).toMatchInlineSnapshot(`
 <div
   className="wrapper"
 >
@@ -136,6 +165,7 @@ describe("Publish", () => {
           </aside>
           <button
             className="validate-btn"
+            data-testid="submit"
           >
             Valider
           </button>
@@ -145,5 +175,6 @@ describe("Publish", () => {
   </div>
 </div>
 `);
+    });
   });
 });

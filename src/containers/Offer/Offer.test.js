@@ -29,7 +29,7 @@ describe('Offer', () => {
   let mock;
 
   beforeEach(() => {
-    mock = new MockAdapter(axios, { delayResponse: 2000 });
+    mock = new MockAdapter(axios);
   });
 
   afterEach(() => {
@@ -37,7 +37,7 @@ describe('Offer', () => {
     mock.reset();
   });
 
-  it('fetches one offer', () => {
+  it('fetches one offer', done => {
     const wrapper = shallow(<Offer />);
     expect(wrapper.state()).toHaveProperty('offer', {});
 
@@ -47,13 +47,18 @@ describe('Offer', () => {
 
     expect(wrapper.state()).toHaveProperty('offer');
 
-    axios
-      .get(`${domain}/offer`, { params: { id: '123' } })
-      .then(function(response) {
-        console.log(response.data);
+    wrapper
+      .instance()
+      .componentDidMount()
+      .then(() => {
+        axios
+          .get(`${domain}/offer`, { params: { id: '123' } })
+          .then(response => {
+            // console.log(response.data);
+            expect(wrapper.state('offer')).toEqual({});
+          });
+        done();
       });
-
-    // expect(wrapper.state('offer')).toEqual(mockOffer);
   });
 
   describe('render()', () => {

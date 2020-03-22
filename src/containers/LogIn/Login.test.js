@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import domain from '../../assets/domain';
-import { getByTestId } from '../../utils/test';
+import { getByTestId } from '../../utils';
 
 import LogIn from './LogIn';
 
