@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import axios from "axios";
-import domain from "../../assets/domain";
-import { ReactComponent as ClockIcon } from "../../assets/img/clock.svg";
-import { ReactComponent as BellIcon } from "../../assets/img/bell.svg";
-import { ReactComponent as EyeIcon } from "../../assets/img/eye.svg";
+import React, { Component } from 'react';
+import axios from 'axios';
+import domain from '../../assets/domain';
+import { ReactComponent as ClockIcon } from '../../assets/img/clock.svg';
+import { ReactComponent as BellIcon } from '../../assets/img/bell.svg';
+import { ReactComponent as EyeIcon } from '../../assets/img/eye.svg';
 
-import { ROUTE_SIGNUP, ROUTE_OFFERS } from "../../constant/routes";
+import { ROUTE_SIGNUP, ROUTE_OFFERS } from '../../constant/routes';
 
-import "./SignUp.css";
+import './SignUp.css';
 
 class SignUp extends Component {
   state = {
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
     error: null
   };
 
@@ -41,12 +41,12 @@ class SignUp extends Component {
           if (response.data.token) {
             setUser(response.data);
             history.push(ROUTE_OFFERS);
-            console.log("Success, user created");
+            console.log('Success, user created');
           } else {
-            alert("an error occurred");
+            alert('an error occurred');
           }
         } else {
-          console.log("the passwords are not similar");
+          console.log('the passwords are not similar');
         }
       } else {
         console.log("you're missing one field");
@@ -108,10 +108,15 @@ class SignUp extends Component {
             <div className="sign-up-flex-right connection">
               <section>
                 <h1>Créez un compte</h1>
-                <form className="form" onSubmit={this.handleSubmit}>
+                <form
+                  data-testid="submit-form"
+                  className="form"
+                  onSubmit={this.handleSubmit}
+                >
                   <div className="form-item">
                     <label htmlFor="username">username *</label>
                     <input
+                      data-testid="input-username"
                       type="text"
                       name="username"
                       value={username}
@@ -123,6 +128,7 @@ class SignUp extends Component {
                   <div className="form-item">
                     <label htmlFor="email">Adresse email *</label>
                     <input
+                      data-testid="input-email"
                       type="email"
                       name="email"
                       value={email}
@@ -135,6 +141,7 @@ class SignUp extends Component {
                     <div className="form-item">
                       <label htmlFor="password">Mot de passe *</label>
                       <input
+                        data-testid="input-password"
                         type="password"
                         name="password"
                         value={password}
@@ -147,6 +154,7 @@ class SignUp extends Component {
                         Confirmer le mot de passe *
                       </label>
                       <input
+                        data-testid="input-confirm-password"
                         type="password"
                         name="confirmPassword"
                         value={confirmPassword}
@@ -165,7 +173,12 @@ class SignUp extends Component {
                   </div>
 
                   <div className="form-checkbox">
-                    <input type="checkbox" name="legal" required />
+                    <input
+                      data-testid="checkbox-legal"
+                      type="checkbox"
+                      name="legal"
+                      required
+                    />
                     <label htmlFor="legal">
                       "&nbsp;J'accepte les&nbsp;
                       <span>Conditions Générales de Vente</span>"
