@@ -62,7 +62,7 @@ class Publish extends Component {
       });
       this.props.history.push(ROUTE_OFFERS);
     } catch (error) {
-      console.log({
+      console.error({
         error: error.message,
         specific: 'The ad was not published'
       });
@@ -73,11 +73,7 @@ class Publish extends Component {
     const { isLoading } = this.state;
 
     if (!isLoading) {
-      return (
-        <button data-testid="submit" className="validate-btn">
-          Valider
-        </button>
-      );
+      return <button className="validate-btn">Valider</button>;
     } else {
       return (
         <>
@@ -102,6 +98,7 @@ class Publish extends Component {
       filesArray.push(
         <>
           <img
+            data-testid="image"
             key={i}
             onClick={() => {
               const newFiles = [...files];
@@ -124,10 +121,11 @@ class Publish extends Component {
 
           <div className="ad-listing-container">
             <h2>Votre annonce</h2>
-            <form onSubmit={this.submitForm}>
+            <form data-testid="submit-form" onSubmit={this.submitForm}>
               <div className="ad-listing-body">
                 <label htmlFor="title">Titre de l'annonce</label>
                 <input
+                  data-testid="input-title"
                   type="text"
                   name="title"
                   value={title}
@@ -137,6 +135,7 @@ class Publish extends Component {
                 />
                 <label htmlFor="description">Texte de l'annonce</label>
                 <textarea
+                  data-testid="textarea-description"
                   rows="10"
                   name="description"
                   value={description}
@@ -146,6 +145,7 @@ class Publish extends Component {
                 />
                 <label htmlFor="price">Prix</label>
                 <input
+                  data-testid="input-price"
                   type="text"
                   name="price"
                   value={price}

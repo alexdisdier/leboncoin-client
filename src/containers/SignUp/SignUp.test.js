@@ -1,12 +1,60 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import SignUp from "./SignUp";
+import SignUp from './SignUp';
 
-describe("SignUp", () => {
-  it("render()", () => {
-    const wrapper = shallow(<SignUp />);
-    expect(wrapper).toMatchInlineSnapshot(`
+import { getByTestId } from '../../utils';
+
+describe('SignUp', () => {
+  describe('actions', () => {
+    it('creates an account', () => {
+      const wrapper = shallow(<SignUp />);
+      const spyHandleSubmit = jest.spyOn(wrapper.instance(), 'handleSubmit');
+
+      const details = {
+        username: {
+          target: { name: 'username', value: 'tester' }
+        },
+        email: {
+          target: {
+            name: 'email',
+            value: 'tester@email.com'
+          }
+        },
+        password: {
+          target: {
+            name: 'password',
+            value: '123456789'
+          }
+        }
+      };
+
+      getByTestId(wrapper, 'input-username').simulate(
+        'change',
+        details.username
+      );
+      getByTestId(wrapper, 'input-password').simulate(
+        'change',
+        details.password
+      );
+      getByTestId(wrapper, 'input-confirm-password').simulate(
+        'change',
+        details.password
+      );
+      getByTestId(wrapper, 'checkbox-legal').simulate('click');
+
+      getByTestId(wrapper, 'submit-form').simulate('submit', {
+        preventDefault: () => {}
+      });
+
+      expect(spyHandleSubmit).toHaveBeenCalled();
+    });
+  });
+
+  describe('render()', () => {
+    it('render full component', () => {
+      const wrapper = shallow(<SignUp />);
+      expect(wrapper).toMatchInlineSnapshot(`
 <div
   className="wrapper"
 >
@@ -85,6 +133,7 @@ describe("SignUp", () => {
           </h1>
           <form
             className="form"
+            data-testid="submit-form"
             onSubmit={[Function]}
           >
             <div
@@ -96,6 +145,7 @@ describe("SignUp", () => {
                 username *
               </label>
               <input
+                data-testid="input-username"
                 name="username"
                 onChange={[Function]}
                 required={true}
@@ -112,6 +162,7 @@ describe("SignUp", () => {
                 Adresse email *
               </label>
               <input
+                data-testid="input-email"
                 name="email"
                 onChange={[Function]}
                 required={true}
@@ -131,6 +182,7 @@ describe("SignUp", () => {
                   Mot de passe *
                 </label>
                 <input
+                  data-testid="input-password"
                   name="password"
                   onChange={[Function]}
                   required={true}
@@ -147,6 +199,7 @@ describe("SignUp", () => {
                   Confirmer le mot de passe *
                 </label>
                 <input
+                  data-testid="input-confirm-password"
                   name="confirmPassword"
                   onChange={[Function]}
                   required={true}
@@ -172,6 +225,7 @@ describe("SignUp", () => {
               className="form-checkbox"
             >
               <input
+                data-testid="checkbox-legal"
                 name="legal"
                 required={true}
                 type="checkbox"
@@ -196,5 +250,6 @@ describe("SignUp", () => {
   </div>
 </div>
 `);
+    });
   });
 });
