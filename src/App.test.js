@@ -21,10 +21,13 @@ jest.mock("./containers/Profile/Profile", () => "Profile");
 jest.mock("./containers/Publish/Publish", () => "Publish");
 jest.mock("./containers/SignUp/SignUp", () => "SignUp");
 
-describe("<App />", () => {
-  it("should render all routes", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper).toMatchInlineSnapshot(`
+describe("App", () => {
+  describe("methods", () => {});
+
+  describe("render()", () => {
+    it("should render all routes", () => {
+      const wrapper = shallow(<App />);
+      expect(wrapper).toMatchInlineSnapshot(`
 <Component>
   <ScrollToTop>
     <Header
@@ -69,5 +72,6 @@ describe("<App />", () => {
   </ScrollToTop>
 </Component>
 `);
+    });
   });
 });

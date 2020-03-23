@@ -1,8 +1,8 @@
-import React from "react";
-import { ReactComponent as ChevronLeft } from "../../assets/img/chevronLeft.svg";
-import { ReactComponent as ChevronRight } from "../../assets/img/chevronRight.svg";
+import React from 'react';
+import { ReactComponent as ChevronLeft } from '../../assets/img/chevronLeft.svg';
+import { ReactComponent as ChevronRight } from '../../assets/img/chevronRight.svg';
 
-import "./Pagination.css";
+import './Pagination.css';
 
 const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
   const pages = [];
@@ -11,6 +11,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
     pages.push(
       <>
         <span
+          data-testid="mobile-previous-page"
           key="0"
           onClick={() => {
             if (currentPage > 1) {
@@ -22,6 +23,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
         </span>
         <span key="1">{currentPage}</span>
         <span
+          data-testid="mobile-next-page"
           key="2"
           onClick={() => {
             if (currentPage < totalPages) {
@@ -38,6 +40,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
       if (i === 1) {
         pages.push(
           <span
+            data-testid="desktop-previous-page"
             key={0}
             onClick={() => {
               if (currentPage > 1) {
@@ -52,7 +55,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
       pages.push(
         <span
           key={i}
-          className={currentPage === i ? "active" : ""}
+          className={currentPage === i ? 'active' : ''}
           onClick={() => goToPage(i)}
         >
           {i}
