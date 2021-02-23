@@ -23,9 +23,11 @@ const button = ({ to, children, toggleMenu }) => {
     );
 
   return (
-    <Link className={`btn ${to}`} to={to}>
+    <div>
+     <Link className={`btn ${to}`} to={to}>
       {children}
-    </Link>
+     </Link>
+    </div>
   );
 };
 

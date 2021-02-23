@@ -71,12 +71,16 @@ describe("Header", () => {
       >
         Déposer une annonce
       </Button>
-      <Button
-        to="/offres"
-        toggleMenu={[MockFunction]}
+      <div
+        className="offers-link"
       >
-        offres
-      </Button>
+        <Button
+          to="/offres"
+          toggleMenu={[MockFunction]}
+        >
+          offres
+        </Button>
+      </div>
       <div
         className="account-panel"
       >
