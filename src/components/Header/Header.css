@@ -69,6 +69,10 @@ menu svg {
   display: flex;
 }
 
+.offers-link {
+  margin: 15px;
+}
+
 menu {
   position: absolute;
   top: 0;
@@ -114,10 +118,16 @@ menu {
     align-items: baseline;
     padding-left: 15px;
     width: 100%;
+    margin-top: 10px;
   }
 
   .show-xs {
     display: none;
+  }
+
+  .offers-link {
+    flex-grow: 1;
+    margin-left: 15px;
   }
 
   .header a {

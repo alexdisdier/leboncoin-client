@@ -64,9 +64,11 @@ function Header(props) {
           <Button to={ROUTE_PUBLISH} toggleMenu={toggleMenu}>
             Déposer une annonce
           </Button>
-          <Button to={ROUTE_OFFERS} toggleMenu={toggleMenu}>
+          <div className="offers-link">
+           <Button to={ROUTE_OFFERS} toggleMenu={toggleMenu}>
             offres
-          </Button>
+           </Button>
+          </div>
           <div className="account-panel">{renderNav}</div>
         </div>
       </div>
