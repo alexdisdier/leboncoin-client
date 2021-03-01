@@ -145,16 +145,35 @@ class App extends Component {
                 }}
               />
               <Route
+                exact={true}
+                path={`/leboncoin-client` + ROUTE_OFFERS}
+                render={props => {
+                  return <Offers {...props} windowWidth={windowWidth} />;
+                }}
+              />
+              <Route
                 path={ROUTE_OFFER + '/:id'}
+                render={props => <Offer {...props} />}
+              />
+              <Route
+                path={`/leboncoin-client` + ROUTE_OFFER + '/:id'}
                 render={props => <Offer {...props} />}
               />
               <Route
                 path={ROUTE_SIGNUP}
                 render={props => <SignUp setUser={this.setUser} {...props} />}
               />
+              <Route
+                path={`/leboncoin-client` + ROUTE_SIGNUP}
+                render={props => <SignUp setUser={this.setUser} {...props} />}
+              />
 
               <Route
                 path={ROUTE_LOGIN}
+                render={props => <LogIn setUser={this.setUser} {...props} />}
+              />
+              <Route
+                path={`/leboncoin-client` + ROUTE_LOGIN}
                 render={props => <LogIn setUser={this.setUser} {...props} />}
               />
               <Route
@@ -169,6 +188,16 @@ class App extends Component {
               />
               <Route
                 path={ROUTE_PROFILE}
+                render={props => {
+                  if (token) {
+                    return <Profile getUser={this.getUser} {...props} />;
+                  } else {
+                    return <Redirect to={ROUTE_OFFERS} />;
+                  }
+                }}
+              />
+              <Route
+                path={`/leboncoin-client` + ROUTE_PROFILE}
                 render={props => {
                   if (token) {
                     return <Profile getUser={this.getUser} {...props} />;

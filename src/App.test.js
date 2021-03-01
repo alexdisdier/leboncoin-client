@@ -45,7 +45,17 @@ describe("App", () => {
       />
       <Route
         exact={true}
+        path="/leboncoin-client"
+        render={[Function]}
+      />
+      <Route
+        exact={true}
         path="/offres"
+        render={[Function]}
+      />
+      <Route
+        exact={true}
+        path="/leboncoin-client/offres"
         render={[Function]}
       />
       <Route
@@ -53,11 +63,23 @@ describe("App", () => {
         render={[Function]}
       />
       <Route
+        path="/leboncoin-client/offer/:id"
+        render={[Function]}
+      />
+      <Route
         path="/sign_up"
         render={[Function]}
       />
       <Route
+        path="/leboncoin-client/sign_up"
+        render={[Function]}
+      />
+      <Route
         path="/log_in"
+        render={[Function]}
+      />
+      <Route
+        path="/leboncoin-client/log_in"
         render={[Function]}
       />
       <Route
@@ -66,6 +88,10 @@ describe("App", () => {
       />
       <Route
         path="/profile"
+        render={[Function]}
+      />
+      <Route
+        path="/leboncoin-client/profile"
         render={[Function]}
       />
     </Switch>
