@@ -9,7 +9,8 @@ import {
   ROUTE_LOGIN,
   ROUTE_PROFILE,
   ROUTE_PUBLISH,
-  ROUTE_OFFERS
+  ROUTE_OFFERS,
+  ROUTE_HOME
 } from "../../constant/routes";
 
 import "./Header.css";
@@ -48,7 +49,7 @@ function Header(props) {
   return (
     <header className="header">
       <div className={`wrapper flex ${isToggle ? "flex-xs" : ""}`}>
-        <Button to="/">
+        <Button to={ROUTE_HOME}>
           <Logo />
         </Button>
         <menu

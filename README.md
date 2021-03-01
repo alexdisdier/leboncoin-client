@@ -8,7 +8,7 @@
 # Mobile
 
  <p align="center" >
-   <a href="https://leboncoin-alex-client.herokuapp.com/">
+   <a href="https://alexdisdier.github.io/leboncoin-client//">
     <img alt="leboncoin.fr copycat by alex disdier" src="https://res.cloudinary.com/dvrkxmxkw/image/upload/v1552171586/github-screenshot-gif/leboncoin-mobile.gif" width="252" height="401" />
  </a>
 
@@ -20,7 +20,7 @@ I also built the back-end. If you would like to take a look, [click here](https:
 
 ## Usage example
 
-[See demo](https://leboncoin-alex-client.herokuapp.com/)
+[See demo](https://alexdisdier.github.io/leboncoin-client/)
 
 ## ✅ Functionalities
 

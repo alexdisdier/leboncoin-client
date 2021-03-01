@@ -132,6 +132,13 @@ class App extends Component {
               />
               <Route
                 exact={true}
+                path={`/leboncoin-client`}
+                render={props => {
+                  return <Home {...props} />;
+                }}
+              />
+              <Route
+                exact={true}
                 path={ROUTE_OFFERS}
                 render={props => {
                   return <Offers {...props} windowWidth={windowWidth} />;
