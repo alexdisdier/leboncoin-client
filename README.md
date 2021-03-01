@@ -8,7 +8,7 @@
 # Mobile
 
  <p align="center" >
-   <a href="https://alexdisdier.github.io/leboncoin-client//">
+   <a href="https://alexdisdier.github.io/leboncoin-client/">
     <img alt="leboncoin.fr copycat by alex disdier" src="https://res.cloudinary.com/dvrkxmxkw/image/upload/v1552171586/github-screenshot-gif/leboncoin-mobile.gif" width="252" height="401" />
  </a>
 
