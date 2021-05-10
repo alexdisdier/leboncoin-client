@@ -12,7 +12,7 @@
     "gh-pages": "^2.0.1",
     "jest-enzyme": "^7.0.2",
     "js-cookie": "^2.2.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "lodash.template": "^4.5.0",
     "path-to-regexp": "^3.0.0",
     "prettier": "^1.18.2",
