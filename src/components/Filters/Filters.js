@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./Filters.css";
+import './Filters.css';
 
 const filters = ({
   title,
@@ -8,7 +8,7 @@ const filters = ({
   maxPrice,
   sort,
   handleFilters,
-  submitFilters
+  submitFilters,
 }) => {
   return (
     <div className="filters-container">

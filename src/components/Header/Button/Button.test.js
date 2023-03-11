@@ -1,37 +1,37 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import Button from "./Button";
+import Button from './Button';
 
-jest.mock("react-router-dom", () => ({
-  Link: "Link"
+jest.mock('react-router-dom', () => ({
+  Link: 'Link',
 }));
 
-describe("Button", () => {
+describe('Button', () => {
   let props;
 
   beforeEach(() => {
     window.innerWidth = 1000;
     props = {
-      to: "to",
-      children: "children",
-      toggleMenu: jest.fn()
+      to: 'to',
+      children: 'children',
+      toggleMenu: jest.fn(),
     };
   });
 
-  describe("action", () => {
-    it("toggles the menu", () => {
+  describe('action', () => {
+    it('toggles the menu', () => {
       window.innerWidth = 643;
       const wrapper = shallow(<Button {...props} />);
 
-      wrapper.find("div").simulate("click");
+      wrapper.find('div').simulate('click');
 
       expect(props.toggleMenu).toHaveBeenCalled();
     });
   });
 
-  describe("render()", () => {
-    it("renders a standard link", () => {
+  describe('render()', () => {
+    it('renders a standard link', () => {
       const wrapper = shallow(<Button {...props} />);
 
       expect(wrapper).toMatchInlineSnapshot(`
@@ -46,7 +46,7 @@ describe("Button", () => {
 `);
     });
 
-    it("renders a mobile clickable link", () => {
+    it('renders a mobile clickable link', () => {
       window.innerWidth = 643;
       const wrapper = shallow(<Button {...props} />);
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Button.css';
 
-const button = ({ to, children, toggleMenu }) => {
+const Button = ({ to, children, toggleMenu }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   React.useEffect(() => {
@@ -17,18 +17,20 @@ const button = ({ to, children, toggleMenu }) => {
 
   if (width < 768)
     return (
-      <div onClick={toggleMenu}>
+      // should be turned into a button
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus
+      <div role="button" onClick={toggleMenu}>
         <Link to={to}>{children}</Link>
       </div>
     );
 
   return (
     <div>
-     <Link className={`btn ${to}`} to={to}>
-      {children}
-     </Link>
+      <Link className={`btn ${to}`} to={to}>
+        {children}
+      </Link>
     </div>
   );
 };
 
-export default button;
+export default Button;

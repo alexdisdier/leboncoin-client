@@ -10,6 +10,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
   if (windowWidth < 768) {
     pages.push(
       <>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <span
           data-testid="mobile-previous-page"
           key="0"
@@ -22,6 +23,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
           <ChevronLeft />
         </span>
         <span key="1">{currentPage}</span>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <span
           data-testid="mobile-next-page"
           key="2"
@@ -36,9 +38,10 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
       </>
     );
   } else {
-    for (let i = 1; i <= totalPages; i++) {
+    for (let i = 1; i <= totalPages; i += 1) {
       if (i === 1) {
         pages.push(
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <span
             data-testid="desktop-previous-page"
             key={0}
@@ -53,6 +56,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
         );
       }
       pages.push(
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
         <span
           key={i}
           className={currentPage === i ? 'active' : ''}
@@ -64,6 +68,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
 
       if (i === totalPages) {
         pages.push(
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <span
             key={i + 1}
             onClick={() => {

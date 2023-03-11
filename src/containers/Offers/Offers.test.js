@@ -14,30 +14,30 @@ const mockOffers = {
     {
       created: '2019-03-02T18:40:44.613Z',
       creator: {
-        account: { phone: '123456789', username: 'faker' }
+        account: { phone: '123456789', username: 'faker' },
       },
       description: 'description-1',
       pictures: [],
       price: 675,
-      title: 'offer-1'
+      title: 'offer-1',
     },
     {
       created: '2019-03-02T18:40:44.613Z',
       creator: {
-        account: { phone: '123456789', username: 'faker' }
+        account: { phone: '123456789', username: 'faker' },
       },
       description: 'description-2',
       pictures: [],
       price: 675,
-      title: 'offer-2'
-    }
-  ]
+      title: 'offer-2',
+    },
+  ],
 };
 
 jest.mock('js-cookie', () => ({
   get: jest.fn(),
   set: jest.fn(),
-  remove: jest.fn()
+  remove: jest.fn(),
 }));
 
 jest.mock('../../components/Filters/Filters', () => 'Filters');
@@ -61,7 +61,7 @@ describe('Offers', () => {
       mock.reset();
     });
 
-    it('fetches offers on #componentDidMount', done => {
+    it('fetches offers on #componentDidMount', (done) => {
       const wrapper = shallow(<Offers />);
       expect(wrapper.state()).toHaveProperty('offers', []);
 
@@ -93,7 +93,7 @@ describe('Offers', () => {
             maxPrice: '',
             minPrice: '',
             sort: '',
-            title: 'title'
+            title: 'title',
           });
 
           done();
@@ -107,7 +107,7 @@ describe('Offers', () => {
         maxPrice: '',
         minPrice: '',
         sort: '',
-        title: ''
+        title: '',
       });
 
       const spyHandleFilters = jest.spyOn(wrapper.instance(), 'handleFilters');
@@ -126,7 +126,7 @@ describe('Offers', () => {
         maxPrice: '',
         minPrice: '',
         sort: '',
-        title: 'title'
+        title: 'title',
       });
 
       const spySubmitFilters = jest.spyOn(wrapper.instance(), 'submitFilters');
@@ -141,7 +141,7 @@ describe('Offers', () => {
         maxPrice: '',
         minPrice: '',
         sort: '',
-        title: 'title'
+        title: 'title',
       });
     });
 
@@ -152,7 +152,7 @@ describe('Offers', () => {
         maxPrice: '',
         minPrice: '',
         sort: '',
-        title: ''
+        title: '',
       });
 
       const spySubmitFilters = jest.spyOn(wrapper.instance(), 'submitFilters');
@@ -209,7 +209,7 @@ describe('Offers', () => {
         isLoading: false,
         error: null,
         offers: mockOffers.offers,
-        totalPages: 1
+        totalPages: 1,
       });
 
       expect(wrapper).toMatchInlineSnapshot(`

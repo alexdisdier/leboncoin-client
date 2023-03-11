@@ -12,26 +12,32 @@ import { ROUTE_OFFER } from '../../constant/routes';
 import './Offer.css';
 
 class Offer extends Component {
-  state = {
-    offer: {},
-    isLoading: true,
-    error: null
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      offer: {},
+      isLoading: true,
+      error: null,
+    };
+  }
 
   async componentDidMount() {
     try {
-      const response = await axios.get(
-        domain + ROUTE_OFFER + '/' + this.props.match.params.id
-      );
+      const {
+        match: { params },
+      } = this.props;
+
+      const response = await axios.get(`${domain + ROUTE_OFFER}/${params.id}`);
       const offer = response.data;
 
       this.setState({
-        offer: offer,
-        isLoading: false
+        offer,
+        isLoading: false,
       });
     } catch (error) {
       this.setState({
-        error: 'An error occurred'
+        error: 'An error occurred',
       });
     }
   }
@@ -40,13 +46,13 @@ class Offer extends Component {
     const {
       isLoading,
       error,
-      offer: { title, price, description, created, creator, pictures }
+      offer: { title, price, description, created, creator, pictures },
     } = this.state;
     const imgUrl = [];
 
     if (pictures) {
       if (pictures.length > 0) {
-        for (let i = 0; i < pictures.length; i++) {
+        for (let i = 0; i < pictures.length; i += 1) {
           imgUrl.push(pictures[i].secure_url);
         }
       }
@@ -74,9 +80,9 @@ class Offer extends Component {
                   ''
                 )}
                 <Carousel>
-                  {imgUrl.map((img, index) => {
+                  {imgUrl.map((img) => {
                     return (
-                      <div key={index}>
+                      <div key={img}>
                         <img src={img} alt="carousel slider" />
                       </div>
                     );
@@ -104,11 +110,11 @@ class Offer extends Component {
           </section>
         </div>
       );
-    } else if (isLoading && error === null) {
-      return <Loading />;
-    } else {
-      return error;
     }
+    if (isLoading && error === null) {
+      return <Loading />;
+    }
+    return error;
   }
 
   render() {

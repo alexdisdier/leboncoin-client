@@ -17,13 +17,13 @@
     "path-to-regexp": "^3.0.0",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-file-reader": "^1.1.4",
     "react-lines-ellipsis": "^0.14.1",
     "react-responsive-carousel": "^3.1.49",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,6 +44,13 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "axios-mock-adapter": "^1.17.0"
+    "axios-mock-adapter": "^1.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "prettier": "^2.1.2"
   }
 }

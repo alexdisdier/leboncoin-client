@@ -8,7 +8,7 @@ import Offer from './Offer';
 import domain from '../../assets/domain';
 
 jest.mock('react-responsive-carousel', () => ({
-  Carousel: 'Carousel'
+  Carousel: 'Carousel',
 }));
 
 jest.mock('../../components/Loading/Loading', () => 'Loading');
@@ -17,12 +17,12 @@ const mockOffer = {
   id: '123',
   created: '2019-03-02T18:40:44.613Z',
   creator: {
-    account: { phone: '123456789', username: 'faker' }
+    account: { phone: '123456789', username: 'faker' },
   },
   description: 'description-1',
   pictures: ['img_1', 'img_2'],
   price: 99,
-  title: 'offer'
+  title: 'offer',
 };
 
 describe('Offer', () => {
@@ -37,7 +37,7 @@ describe('Offer', () => {
     mock.reset();
   });
 
-  it('fetches one offer', done => {
+  it('fetches one offer', (done) => {
     const wrapper = shallow(<Offer />);
     expect(wrapper.state()).toHaveProperty('offer', {});
 
@@ -51,12 +51,10 @@ describe('Offer', () => {
       .instance()
       .componentDidMount()
       .then(() => {
-        axios
-          .get(`${domain}/offer`, { params: { id: '123' } })
-          .then(response => {
-            // console.log(response.data);
-            expect(wrapper.state('offer')).toEqual({});
-          });
+        axios.get(`${domain}/offer`, { params: { id: '123' } }).then(() => {
+          // console.log(response.data);
+          expect(wrapper.state('offer')).toEqual({});
+        });
         done();
       });
   });
@@ -66,7 +64,7 @@ describe('Offer', () => {
       const wrapper = shallow(<Offer />);
       wrapper.setState({
         isLoading: true,
-        error: null
+        error: null,
       });
       expect(wrapper).toMatchInlineSnapshot(`<Loading />`);
     });
@@ -74,7 +72,7 @@ describe('Offer', () => {
     it('renders an error message when network fails', () => {
       const wrapper = shallow(<Offer />);
       wrapper.setState({
-        error: 'error message'
+        error: 'error message',
       });
       expect(wrapper).toMatchInlineSnapshot(`"error message"`);
     });
@@ -84,7 +82,7 @@ describe('Offer', () => {
       wrapper.setState({
         offer: mockOffer,
         isLoading: false,
-        error: null
+        error: null,
       });
       expect(wrapper).toMatchInlineSnapshot(`
 <div
@@ -123,7 +121,7 @@ describe('Offer', () => {
           </h1>
           <span>
             99
-             €
+            €
           </span>
           <div>
             March 02, 2019

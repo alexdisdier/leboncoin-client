@@ -1,15 +1,15 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import Home from "./Home";
+import Home from './Home';
 
-jest.mock("../../components/Header/Button/Button", () => ({
+jest.mock('../../components/Header/Button/Button', () => ({
   __esModule: true,
-  default: "Button"
+  default: 'Button',
 }));
 
-describe("Home", () => {
-  it("render()", () => {
+describe('Home', () => {
+  it('render()', () => {
     const wrapper = shallow(<Home />);
     expect(wrapper).toMatchInlineSnapshot(`
 <div

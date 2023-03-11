@@ -1,41 +1,38 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import Filters from "./Filters";
+import Filters from './Filters';
 
-jest.mock("react-router-dom", () => ({
-  Link: "Link"
+jest.mock('react-router-dom', () => ({
+  Link: 'Link',
 }));
 
-describe("Filters", () => {
+describe('Filters', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      title: "title",
-      minPrice: "minPrice",
-      maxPrice: "maxPrice",
-      sort: "sort",
+      title: 'title',
+      minPrice: 'minPrice',
+      maxPrice: 'maxPrice',
+      sort: 'sort',
       handleFilters: jest.fn(),
-      submitFilters: jest.fn()
+      submitFilters: jest.fn(),
     };
   });
 
-  describe("actions", () => {
-    it("handles value change of the search input", () => {
+  describe('actions', () => {
+    it('handles value change of the search input', () => {
       const wrapper = shallow(<Filters {...props} />);
-      wrapper
-        .find("input")
-        .at(0)
-        .simulate("change", "test");
+      wrapper.find('input').at(0).simulate('change', 'test');
 
       expect(props.handleFilters).toHaveBeenCalledTimes(1);
-      expect(props.handleFilters).toHaveBeenCalledWith("test");
+      expect(props.handleFilters).toHaveBeenCalledWith('test');
     });
   });
 
-  describe("render()", () => {
-    it("renders the Filters correctly", () => {
+  describe('render()', () => {
+    it('renders the Filters correctly', () => {
       const wrapper = shallow(<Filters {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
 <div
@@ -72,7 +69,7 @@ describe("Filters", () => {
           <label
             htmlFor="price"
           >
-            Prix entre
+            Prixentre
           </label>
           <select
             name="minPrice"

@@ -13,7 +13,7 @@ describe('Pagination', () => {
       totalPages: 4,
       currentPage: 2,
       goToPage: jest.fn(),
-      windowWidth: 1024
+      windowWidth: 1024,
     };
 
     window.innerWidth = props.windowWidth;

@@ -9,62 +9,67 @@ import { ROUTE_PUBLISH, ROUTE_OFFERS } from '../../constant/routes';
 import './Publish.css';
 
 class Publish extends Component {
-  state = {
-    title: '',
-    description: '',
-    price: '',
-    files: [],
+  constructor(props) {
+    super(props);
 
-    isLoading: false,
-    error: null
-  };
+    this.state = {
+      title: '',
+      description: '',
+      price: '',
+      files: [],
 
-  handleFiles = files => {
-    const newFiles = [...this.state.files];
+      isLoading: false,
+    };
+  }
+
+  handleFiles = (files) => {
+    const { files: stateFiles } = this.state;
+    const newFiles = [...stateFiles];
     newFiles.push(files.base64);
     this.setState({
-      files: newFiles
+      files: newFiles,
     });
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  submitForm = async event => {
+  submitForm = async (event) => {
     const { title, description, price, files } = this.state;
     const { getUser } = this.props;
 
     event.preventDefault();
     try {
-      const token = getUser().token;
+      const { token } = getUser();
+      const { history } = this.props;
       this.setState({
-        isLoading: true
+        isLoading: true,
       });
       await axios.post(
         domain + ROUTE_PUBLISH,
         {
-          title: title,
-          description: description,
+          title,
+          description,
           pictures: files, // to change for pictures
-          price: Number(price)
+          price: Number(price),
         },
         {
           headers: {
-            authorization: 'Bearer ' + token
-          }
+            authorization: `Bearer ${token}`,
+          },
         }
       );
       this.setState({
-        isLoading: false
+        isLoading: false,
       });
-      this.props.history.push(ROUTE_OFFERS);
+      history.push(ROUTE_OFFERS);
     } catch (error) {
       console.error({
         error: error.message,
-        specific: 'The ad was not published'
+        specific: 'The ad was not published',
       });
     }
   };
@@ -73,44 +78,49 @@ class Publish extends Component {
     const { isLoading } = this.state;
 
     if (!isLoading) {
-      return <button className="validate-btn">Valider</button>;
-    } else {
       return (
-        <>
-          <Loading />
-          <span data-testid="loading" className="loading-message">
-            Une fois le chargement terminé, vous serez rediriger vers la page
-            d'accueil. merci de patienter
-            <span role="img" aria-label="smily face">
-              😃
-            </span>
-          </span>
-        </>
+        <button type="button" className="validate-btn">
+          Valider
+        </button>
       );
     }
+    return (
+      <>
+        <Loading />
+        <span data-testid="loading" className="loading-message">
+          Une fois le chargement terminé, vous serez rediriger vers la page
+          d&quot;accueil. merci de patienter
+          <span role="img" aria-label="smily face">
+            😃
+          </span>
+        </span>
+      </>
+    );
   };
 
   render() {
     const { title, description, price, files } = this.state;
 
+    const imageOnClick = (i) => {
+      const newFiles = [...files];
+      newFiles.splice(i, 1);
+      this.setState({
+        files: newFiles,
+      });
+    };
+
     const filesArray = [];
-    for (let i = 0; i < this.state.files.length; i++) {
+    for (let i = 0; i < files.length; i += 1) {
       filesArray.push(
-        <>
-          <img
-            data-testid="image"
-            key={i}
-            onClick={() => {
-              const newFiles = [...files];
-              newFiles.splice(i, 1);
-              this.setState({
-                files: newFiles
-              });
-            }}
-            src={files[i]}
-            alt="annonce"
-          />
-        </>
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+        <img
+          data-testid="image"
+          key={i}
+          // wrap image in a button which will take the event listener
+          onClick={() => imageOnClick(i)}
+          src={files[i]}
+          alt="annonce"
+        />
       );
     }
 
@@ -123,8 +133,9 @@ class Publish extends Component {
             <h2>Votre annonce</h2>
             <form data-testid="submit-form" onSubmit={this.submitForm}>
               <div className="ad-listing-body">
-                <label htmlFor="title">Titre de l'annonce</label>
+                <label htmlFor="title">Titre de l&apos;annonce</label>
                 <input
+                  id="title"
                   data-testid="input-title"
                   type="text"
                   name="title"
@@ -133,8 +144,9 @@ class Publish extends Component {
                   onChange={this.handleChange}
                   required
                 />
-                <label htmlFor="description">Texte de l'annonce</label>
+                <label htmlFor="description">Texte de l&apos;annonce</label>
                 <textarea
+                  id="description"
                   data-testid="textarea-description"
                   rows="10"
                   name="description"
@@ -145,6 +157,7 @@ class Publish extends Component {
                 />
                 <label htmlFor="price">Prix</label>
                 <input
+                  id="price"
                   data-testid="input-price"
                   type="text"
                   name="price"
@@ -155,12 +168,12 @@ class Publish extends Component {
                 />
                 <p>
                   <span>Photos :</span> Une annonce avec photo est 7 fois plus
-                  consultée qu'une annonce sans photo
+                  consultée qu&quot;une annonce sans photo
                 </p>
                 <aside>
                   <ReactFileReader
                     fileTypes={['.png', '.jpg']}
-                    base64={true}
+                    base64
                     multiplesFiles={false} // false for one single image
                     handleFiles={this.handleFiles}
                   >
@@ -174,7 +187,7 @@ class Publish extends Component {
 
                   <ReactFileReader
                     fileTypes={['.png', '.jpg']}
-                    base64={true}
+                    base64
                     multiplesFiles={false} // false for one single image
                     handleFiles={this.handleFiles}
                   >
@@ -186,7 +199,7 @@ class Publish extends Component {
 
                   <ReactFileReader
                     fileTypes={['.png', '.jpg']}
-                    base64={true}
+                    base64
                     multiplesFiles={false} // false for one single image
                     handleFiles={this.handleFiles}
                   >

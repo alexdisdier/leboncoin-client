@@ -16,7 +16,7 @@ const card = ({
   pictures,
   isDelete,
   deleteOffer,
-  dataTestId
+  dataTestId,
 }) => {
   let image;
 
@@ -24,18 +24,21 @@ const card = ({
     image = pictures[0].secure_url;
   }
 
-  let style = {
+  const style = {
     backgroundImage: `url(${image})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
   };
 
   let deleteAd;
 
   if (isDelete) {
     deleteAd = (
+      // This should be turned into a button
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus
       <span
+        role="button"
         id="delete-ad"
         onClick={() => {
           deleteOffer(id);
@@ -47,7 +50,7 @@ const card = ({
   }
 
   return (
-    <li data-testid={dataTestId ? dataTestId : 'card'} className="card">
+    <li data-testid={dataTestId || 'card'} className="card">
       {deleteAd}
       <Link to={`${ROUTE_OFFER}/${id}`}>
         <div className="card-body">

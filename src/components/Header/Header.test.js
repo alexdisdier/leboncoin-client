@@ -1,47 +1,41 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import Header from "./Header";
+import Header from './Header';
 
-jest.mock("./Button/Button", () => "Button");
+jest.mock('./Button/Button', () => 'Button');
 
-describe("Header", () => {
+describe('Header', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      token: "token",
-      username: "username",
+      token: 'token',
+      username: 'username',
       toggleMenu: jest.fn(),
       isToggle: false,
-      logOut: jest.fn()
+      logOut: jest.fn(),
     };
   });
 
-  describe("actions", () => {
-    it("toggles the menu", () => {
+  describe('actions', () => {
+    it('toggles the menu', () => {
       const wrapper = shallow(<Header {...props} />);
-      wrapper
-        .find("menu")
-        .at(0)
-        .simulate("click");
+      wrapper.find('menu').at(0).simulate('click');
 
       expect(props.toggleMenu).toHaveBeenCalledTimes(1);
     });
 
-    it("logs out", () => {
+    it('logs out', () => {
       const wrapper = shallow(<Header {...props} />);
-      wrapper
-        .find("button")
-        .at(0)
-        .simulate("click");
+      wrapper.find('button').at(0).simulate('click');
 
       expect(props.logOut).toHaveBeenCalledTimes(1);
     });
   });
 
-  describe("render()", () => {
-    it("renders the Header correctly", () => {
+  describe('render()', () => {
+    it('renders the Header correctly', () => {
       const wrapper = shallow(<Header {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
 <header

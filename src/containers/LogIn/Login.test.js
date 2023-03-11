@@ -11,8 +11,8 @@ jest.mock('../../Validation/Validation', () => 'Validation');
 
 const loginSuccessMock = {
   data: {
-    token: '123456789'
-  }
+    token: '123456789',
+  },
 };
 // const loginFailsMock = {
 //   message: 'wrong password'
@@ -27,9 +27,9 @@ describe('LogIn', () => {
 
     props = {
       history: {
-        push: jest.fn()
+        push: jest.fn(),
       },
-      setUser: jest.fn()
+      setUser: jest.fn(),
     };
   });
 
@@ -39,22 +39,22 @@ describe('LogIn', () => {
   });
 
   describe('actions', () => {
-    it('logs in', done => {
+    it('logs in', (done) => {
       const wrapper = shallow(<LogIn {...props} />);
       const emailEvent = {
-        target: { name: 'email', value: 'hello@gmail.com' }
+        target: { name: 'email', value: 'hello@gmail.com' },
       };
       const passwordEvent = { target: { name: 'password', value: 'world' } };
 
       getByTestId(wrapper, 'input-email').simulate('change', emailEvent);
       getByTestId(wrapper, 'input-password').simulate('change', passwordEvent);
       getByTestId(wrapper, 'login').simulate('submit', {
-        preventDefault: () => {}
+        preventDefault: () => {},
       });
 
       const header = {
         email: wrapper.state('email'),
-        password: wrapper.state('password')
+        password: wrapper.state('password'),
       };
 
       mock.onPost(`${domain}/log_in`, header).reply(200, loginSuccessMock);
