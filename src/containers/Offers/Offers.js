@@ -33,15 +33,19 @@ class Offers extends Component {
 
   async componentDidMount() {
     try {
-      const response = await axios.get(`${domain}/offer/with-count`);
+      const response = await axios.get(
+        'http://localhost:8888/.netlify/functions/getOffers'
+      );
       const { limit } = this.state;
-
+      console.log({ response });
+      // const response = await axios.get(`${domain}/offer/with-count`);
       await this.setState({
-        offers: response.data.offers,
-        totalPages: Math.ceil(response.data.count / limit),
+        offers: response.data,
+        totalPages: Math.ceil(response.data.length / limit),
       });
       this.goToPage(1);
     } catch (error) {
+      console.log({ error });
       this.setState({
         error,
       });
@@ -103,17 +107,17 @@ class Offers extends Component {
 
   searchFilters = async (criteria) => {
     try {
-      if (criteria) {
-        let maxPriceParam = '';
-
+      if (criteria !== undefined) {
+        let maxPriceQuery = '';
         if (criteria.maxPrice !== '') {
-          maxPriceParam = `&priceMax=${criteria.maxPrice}`;
+          maxPriceQuery = `&priceMax=${criteria.maxPrice}`;
         }
 
         const response = await axios.get(
-          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceParam}&sort=${criteria.sort}`
+          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceQuery}&sort=${criteria.sort}`
         );
         const { offers } = response.data;
+
         const { limit, title, minPrice, maxPrice, sort } = this.state;
 
         this.setState({
@@ -174,13 +178,9 @@ class Offers extends Component {
     const { isLoading, error, currentPage, totalPages, offers } = this.state;
     const { windowWidth } = this.props;
 
-    if (error || (!isLoading && !offers)) {
-      return null;
-    }
-
-    if (isLoading) {
-      return <Loading />;
-    }
+    if (error !== null) return null;
+    if (isLoading && error === null) return <Loading />;
+    if (!offers) return null;
 
     return (
       <>
