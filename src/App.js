@@ -113,9 +113,7 @@ class App extends Component {
   };
 
   render() {
-    const {
-      token, username, isToggle, windowWidth,
-    } = this.state;
+    const { token, username, isToggle, windowWidth } = this.state;
 
     return (
       <Router>
@@ -142,12 +140,16 @@ class App extends Component {
               <Route
                 exact
                 path={ROUTE_OFFERS}
-                render={(props) => <Offers {...props} windowWidth={windowWidth} />}
+                render={(props) => (
+                  <Offers {...props} windowWidth={windowWidth} />
+                )}
               />
               <Route
                 exact
                 path={`/leboncoin-client${ROUTE_OFFERS}`}
-                render={(props) => <Offers {...props} windowWidth={windowWidth} />}
+                render={(props) => (
+                  <Offers {...props} windowWidth={windowWidth} />
+                )}
               />
               <Route
                 path={`${ROUTE_OFFER}/:id`}

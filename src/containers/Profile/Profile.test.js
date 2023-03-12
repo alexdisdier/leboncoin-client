@@ -15,13 +15,13 @@ const mockOffers = [
     _id: '123',
     created: '2019-03-02T18:40:44.613Z',
     creator: {
-      account: { phone: '123456789', username: 'faker' }
+      account: { phone: '123456789', username: 'faker' },
     },
     description: 'description-1',
     pictures: ['img_1', 'img_2'],
     price: 99,
-    title: 'offer'
-  }
+    title: 'offer',
+  },
 ];
 
 describe('Profile', () => {
@@ -31,7 +31,7 @@ describe('Profile', () => {
   beforeEach(() => {
     mock = new MockAdapter(axios);
     props = {
-      getUser: jest.fn()
+      getUser: jest.fn(),
     };
   });
 
@@ -41,7 +41,7 @@ describe('Profile', () => {
   });
 
   describe('actions', () => {
-    it('fetches offers on #componentDidMount', done => {
+    it('fetches offers on #componentDidMount', (done) => {
       props.getUser.mockReturnValue('username');
       props.getUser.mockReturnValue('email');
       props.getUser.mockReturnValue('token');
@@ -51,8 +51,8 @@ describe('Profile', () => {
 
       mock.onGet(`${domain}/profile`).reply(200, mockOffers, {
         headers: {
-          authorization: 'Bearer 5GByR1WUvblAHtQu'
-        }
+          authorization: 'Bearer 5GByR1WUvblAHtQu',
+        },
       });
 
       expect(wrapper.state()).toHaveProperty('offers', []);
@@ -64,10 +64,10 @@ describe('Profile', () => {
           axios
             .get(`${domain}/profile`, {
               headers: {
-                authorization: 'Bearer 5GByR1WUvblAHtQu'
-              }
+                authorization: 'Bearer 5GByR1WUvblAHtQu',
+              },
             })
-            .then(response => {
+            .then((response) => {
               expect(fetchOfferSpy).toHaveBeenCalled();
               expect(wrapper.state('offers')).toEqual(response.data);
             });
@@ -86,7 +86,7 @@ describe('Profile', () => {
       const wrapper = shallow(<Profile {...props} />);
       wrapper.setState({
         isLoading: true,
-        error: null
+        error: null,
       });
 
       expect(wrapper).toMatchInlineSnapshot(`
@@ -104,12 +104,10 @@ describe('Profile', () => {
                 className="profile-details"
               >
                 <p>
-                  Username:
-                   
+                  Username: 
                 </p>
                 <p>
-                  Email:
-                   
+                  Email: 
                 </p>
               </div>
               <Loading />
@@ -127,7 +125,7 @@ describe('Profile', () => {
       const wrapper = shallow(<Profile {...props} />);
       wrapper.setState({
         isLoading: true,
-        error: 'error'
+        error: 'error',
       });
 
       expect(wrapper).toMatchInlineSnapshot(`
@@ -145,12 +143,10 @@ describe('Profile', () => {
                 className="profile-details"
               >
                 <p>
-                  Username:
-                   
+                  Username: 
                 </p>
                 <p>
-                  Email:
-                   
+                  Email: 
                 </p>
               </div>
             </div>
@@ -167,7 +163,7 @@ describe('Profile', () => {
       const wrapper = shallow(<Profile {...props} />);
       wrapper.setState({
         offers: mockOffers,
-        isLoading: false
+        isLoading: false,
       });
 
       expect(wrapper).toMatchInlineSnapshot(`
@@ -185,12 +181,10 @@ describe('Profile', () => {
                 className="profile-details"
               >
                 <p>
-                  Username:
-                   
+                  Username: 
                 </p>
                 <p>
-                  Email:
-                   
+                  Email: 
                 </p>
               </div>
               <div

@@ -79,7 +79,7 @@ describe('Offers', () => {
           const spyGoToPage = jest.spyOn(wrapper.instance(), 'goToPage');
           const spySearchFilters = jest.spyOn(
             wrapper.instance(),
-            'searchFilters',
+            'searchFilters'
           );
 
           wrapper.instance().forceUpdate();

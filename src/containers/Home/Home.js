@@ -34,11 +34,8 @@ const home = () => (
                 <p>Fonctionalités</p>
                 <ul className="p-20">
                   <li>
-                    Afficher toutes
-                    {' '}
-                    <Button to={ROUTE_OFFERS}>les offres</Button>
-                    {' '}
-                    avec un
+                    Afficher toutes{' '}
+                    <Button to={ROUTE_OFFERS}>les offres</Button> avec un
                     componsant loading en attendant le chargement.
                   </li>
                   <li>Afficher une offre spécifique.</li>
@@ -49,27 +46,20 @@ const home = () => (
                     recherche
                   </li>
                   <li>
-                    <Button to={ROUTE_SIGNUP}>Créer un compte</Button>
-                    {' '}
+                    <Button to={ROUTE_SIGNUP}>Créer un compte</Button>{' '}
                     d&apos;utilisateur
                   </li>
                   <li>
-                    <Button to={ROUTE_SIGNUP}>Se connecter</Button>
-                    {' '}
-                    à son
-                    compte
+                    <Button to={ROUTE_SIGNUP}>Se connecter</Button> à son compte
                   </li>
                   <li>
-                    <Button to={ROUTE_PUBLISH}>Publier</Button>
-                    {' '}
-                    une annonce
-                    avec Cloudinary
+                    <Button to={ROUTE_PUBLISH}>Publier</Button> une annonce avec
+                    Cloudinary
                   </li>
                   <li>
                     <Button to={ROUTE_PROFILE}>
                       Voir son profile d&apos;utilisateur
-                    </Button>
-                    {' '}
+                    </Button>{' '}
                     avec les annonces que l&apos;on a publié.
                   </li>
                   <li>Possibilité d&apos;effacer ses annonces.</li>
@@ -117,9 +107,7 @@ const home = () => (
               <div className="flex-column">
                 <p>Fonctionalités</p>
                 <ul>
-                  <li>
-                    Models pour les utilisateurs et les annonces (offres)
-                  </li>
+                  <li>Models pour les utilisateurs et les annonces (offres)</li>
                   <li>
                     Routes CRUD pour les utilisateurs et les annonces (offres)
                   </li>

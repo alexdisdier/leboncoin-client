@@ -4,9 +4,7 @@ import { ReactComponent as ChevronRight } from '../../assets/img/chevronRight.sv
 
 import './Pagination.css';
 
-const pagination = ({
-  totalPages, currentPage, goToPage, windowWidth,
-}) => {
+const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
   const pages = [];
 
   if (windowWidth < 768) {
@@ -39,7 +37,7 @@ const pagination = ({
         >
           <ChevronRight />
         </span>
-      </>,
+      </>
     );
   } else {
     for (let i = 1; i <= totalPages; i += 1) {
@@ -57,7 +55,7 @@ const pagination = ({
             }}
           >
             <ChevronLeft />
-          </span>,
+          </span>
         );
       }
       pages.push(
@@ -69,7 +67,7 @@ const pagination = ({
           onClick={() => goToPage(i)}
         >
           {i}
-        </span>,
+        </span>
       );
 
       if (i === totalPages) {
@@ -85,7 +83,7 @@ const pagination = ({
             }}
           >
             <ChevronRight />
-          </span>,
+          </span>
         );
       }
     }

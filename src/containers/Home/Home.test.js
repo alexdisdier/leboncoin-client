@@ -5,7 +5,7 @@ import Home from './Home';
 
 jest.mock('../../components/Header/Button/Button', () => ({
   __esModule: true,
-  default: 'Button'
+  default: 'Button',
 }));
 
 describe('Home', () => {
@@ -86,8 +86,7 @@ describe('Home', () => {
                         >
                           les offres
                         </Button>
-                         
-                        avec un componsant loading en attendant le chargement.
+                         avec un componsant loading en attendant le chargement.
                       </li>
                       <li>
                         Afficher une offre spécifique.
@@ -116,8 +115,7 @@ describe('Home', () => {
                         >
                           Se connecter
                         </Button>
-                         
-                        à son compte
+                         à son compte
                       </li>
                       <li>
                         <Button
@@ -125,8 +123,7 @@ describe('Home', () => {
                         >
                           Publier
                         </Button>
-                         
-                        une annonce avec Cloudinary
+                         une annonce avec Cloudinary
                       </li>
                       <li>
                         <Button

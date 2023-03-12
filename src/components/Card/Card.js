@@ -63,7 +63,7 @@ const card = ({
               <h3 className="card-title">{title}</h3>
               <span className="card-price">
                 {price}
-&nbsp;€
+                &nbsp;€
               </span>
             </div>
             <div className="card-bottom" />

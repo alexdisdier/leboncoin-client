@@ -38,9 +38,7 @@ class Publish extends Component {
   };
 
   submitForm = async (event) => {
-    const {
-      title, description, price, files,
-    } = this.state;
+    const { title, description, price, files } = this.state;
     const { getUser } = this.props;
 
     event.preventDefault();
@@ -62,7 +60,7 @@ class Publish extends Component {
           headers: {
             authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
       this.setState({
         isLoading: false,
@@ -101,9 +99,7 @@ class Publish extends Component {
   };
 
   render() {
-    const {
-      title, description, price, files,
-    } = this.state;
+    const { title, description, price, files } = this.state;
 
     const imageOnClick = (i) => {
       const newFiles = [...files];
@@ -125,7 +121,7 @@ class Publish extends Component {
           onClick={() => imageOnClick(i)}
           src={files[i]}
           alt="annonce"
-        />,
+        />
       );
     }
 
@@ -172,9 +168,7 @@ class Publish extends Component {
                   required
                 />
                 <p>
-                  <span>Photos :</span>
-                  {' '}
-                  Une annonce avec photo est 7 fois plus
+                  <span>Photos :</span> Une annonce avec photo est 7 fois plus
                   consultée qu&quot;une annonce sans photo
                 </p>
                 <aside>

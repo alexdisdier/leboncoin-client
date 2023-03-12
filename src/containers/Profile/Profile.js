@@ -65,9 +65,7 @@ class Profile extends Component {
   };
 
   renderOffers() {
-    const {
-      isLoading, error, offers, isDelete,
-    } = this.state;
+    const { isLoading, error, offers, isDelete } = this.state;
 
     if (error || (!isLoading && !offers)) {
       return null;
@@ -81,9 +79,7 @@ class Profile extends Component {
       <div className="wrapper homepage">
         <ul>
           {offers.map(
-            ({
-              _id: id, title, pictures, description, price, created,
-            }) => (
+            ({ _id: id, title, pictures, description, price, created }) => (
               <Card
                 dataTestId="profile-ad-card"
                 isDelete={isDelete}
@@ -96,7 +92,7 @@ class Profile extends Component {
                 price={price}
                 date={created}
               />
-            ),
+            )
           )}
         </ul>
       </div>
@@ -112,16 +108,8 @@ class Profile extends Component {
           <div className="ad-listing">
             <h1>Votre profil</h1>
             <div className="profile-details">
-              <p>
-                Username:
-                {' '}
-                {getUser().username}
-              </p>
-              <p>
-                Email:
-                {' '}
-                {getUser().email}
-              </p>
+              <p>Username: {getUser().username}</p>
+              <p>Email: {getUser().email}</p>
             </div>
             {this.renderOffers()}
           </div>
