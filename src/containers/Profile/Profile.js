@@ -10,13 +10,17 @@ import { ROUTE_PROFILE } from '../../constant/routes';
 import './Profile.css';
 
 class Profile extends Component {
-  state = {
-    offers: [],
-    isDelete: true,
+  constructor(props) {
+    super(props);
 
-    isLoading: true,
-    error: null
-  };
+    this.state = {
+      offers: [],
+      isDelete: true,
+
+      isLoading: true,
+      error: null,
+    };
+  }
 
   async componentDidMount() {
     this.fetchOffer();
@@ -26,31 +30,33 @@ class Profile extends Component {
     const { getUser } = this.props;
 
     try {
-      const token = getUser().token;
+      const { token } = getUser();
       const response = await axios.get(domain + ROUTE_PROFILE, {
         headers: {
-          authorization: 'Bearer ' + token
-        }
+          authorization: `Bearer ${token}`,
+        },
       });
 
       const offer = response.data;
       this.setState({
         offers: offer,
-        isLoading: false
+        isLoading: false,
       });
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  deleteOffer = async id => {
+  deleteOffer = async (id) => {
     const { getUser } = this.props;
 
     try {
-      const token = getUser().token;
+      const { token } = getUser();
 
       await axios.delete(`${domain}/delete/${id}`, {
         headers: {
-          authorization: 'Bearer ' + token
-        }
+          authorization: `Bearer ${token}`,
+        },
       });
       this.fetchOffer();
     } catch (error) {
@@ -61,36 +67,36 @@ class Profile extends Component {
   renderOffers() {
     const { isLoading, error, offers, isDelete } = this.state;
 
-    if (!isLoading && error === null) {
-      if (offers && offers) {
-        return (
-          <>
-            <div className="wrapper homepage">
-              <ul>
-                {offers.map(e => (
-                  <Card
-                    dataTestId="profile-ad-card"
-                    isDelete={isDelete}
-                    deleteOffer={this.deleteOffer}
-                    key={e._id + e.title}
-                    pictures={e.pictures}
-                    id={e._id}
-                    title={e.title}
-                    description={e.description}
-                    price={e.price}
-                    date={e.created}
-                  />
-                ))}
-              </ul>
-            </div>
-          </>
-        );
-      }
-    } else if (isLoading && error === null) {
-      return <Loading />;
-    } else {
+    if (error || (!isLoading && !offers)) {
       return null;
     }
+
+    if (isLoading) {
+      return <Loading />;
+    }
+
+    return (
+      <div className="wrapper homepage">
+        <ul>
+          {offers.map(
+            ({ _id: id, title, pictures, description, price, created }) => (
+              <Card
+                dataTestId="profile-ad-card"
+                isDelete={isDelete}
+                deleteOffer={this.deleteOffer}
+                key={id + title}
+                pictures={pictures}
+                id={id}
+                title={title}
+                description={description}
+                price={price}
+                date={created}
+              />
+            )
+          )}
+        </ul>
+      </div>
+    );
   }
 
   render() {

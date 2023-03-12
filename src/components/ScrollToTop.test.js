@@ -1,16 +1,16 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from './ScrollToTop';
 
-jest.mock("react-router-dom", () => ({
-  withRouter: x => x
+jest.mock('react-router-dom', () => ({
+  withRouter: (x) => x,
 }));
 
 const windowScrollTo = jest.fn();
 global.scrollTo = () => windowScrollTo();
 
-describe("ScrollToTop", () => {
+describe('ScrollToTop', () => {
   let props;
 
   beforeEach(() => {
@@ -18,19 +18,19 @@ describe("ScrollToTop", () => {
 
     props = {
       location: {
-        pathname: "pathname"
+        pathname: 'pathname',
       },
-      children: <div>child</div>
+      children: <div>child</div>,
     };
   });
 
-  it("calls window.scrollTo if pathname is different", () => {
+  it('calls window.scrollTo if pathname is different', () => {
     const wrapper = shallow(<ScrollToTop {...props} />);
-    wrapper.setProps({ location: { pathname: "new-pathname" } });
+    wrapper.setProps({ location: { pathname: 'new-pathname' } });
     expect(windowScrollTo).toHaveBeenCalledTimes(1);
   });
 
-  it("renders props children", () => {
+  it('renders props children', () => {
     const wrapper = shallow(<ScrollToTop {...props} />);
     expect(windowScrollTo).toHaveBeenCalledTimes(0);
     expect(wrapper).toMatchInlineSnapshot(`

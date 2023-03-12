@@ -4,6 +4,5 @@
  * @param {string} val - Value of data-testid attribute for search.
  * @returns {ShallowWrapper}
  */
-export const getByTestId = (wrapper, val) => {
-  return wrapper.find(`[data-testid="${val}"]`);
-};
+export const getByTestId = (wrapper, val) =>
+  wrapper.find(`[data-testid="${val}"]`);

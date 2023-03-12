@@ -1,20 +1,19 @@
-import React from "react";
-import "./Validation.css";
+import React from 'react';
+import './Validation.css';
 
-const validation = props => {
+const validation = (props) => {
   const { isValid } = props;
 
-  let validationMessage = "mauvais mot de passe";
+  const validationMessage = 'mauvais mot de passe';
 
   if (!isValid) {
     return (
-      <div className="error-message" style={{ color: "red" }}>
+      <div className="error-message" style={{ color: 'red' }}>
         {validationMessage}
       </div>
     );
-  } else {
-    return <div />;
   }
+  return <div />;
 };
 
 export default validation;

@@ -1,9 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import image from "../../assets/img/Cloud_Warning.svg";
-import "./Error.css";
+import image from '../../assets/img/Cloud_Warning.svg';
+import './Error.css';
 
-const error = ({ error }) => {
+const error = (props) => {
+  // eslint-disable-next-line no-shadow
+  const { error } = props;
+
   return (
     <div id="error-loading" className="absolute">
       <div className="relative">

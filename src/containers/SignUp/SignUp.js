@@ -10,20 +10,23 @@ import { ROUTE_SIGNUP, ROUTE_OFFERS } from '../../constant/routes';
 import './SignUp.css';
 
 class SignUp extends Component {
-  state = {
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    error: null
-  };
+  constructor(props) {
+    super(props);
 
-  handleChange = event =>
+    this.state = {
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    };
+  }
+
+  handleChange = (event) =>
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     const { setUser, history } = this.props;
 
     event.preventDefault();
@@ -33,9 +36,9 @@ class SignUp extends Component {
       if (username && email && password && confirmPassword) {
         if (password === confirmPassword) {
           const response = await axios.post(domain + ROUTE_SIGNUP, {
-            email: email,
-            username: username,
-            password: password
+            email,
+            username,
+            password,
           });
 
           if (response.data.token) {
@@ -43,7 +46,8 @@ class SignUp extends Component {
             history.push(ROUTE_OFFERS);
             console.log('Success, user created');
           } else {
-            alert('an error occurred');
+            // Need to create a pop up with an alert
+            console.error('an error occurred');
           }
         } else {
           console.log('the passwords are not similar');
@@ -52,7 +56,7 @@ class SignUp extends Component {
         console.log("you're missing one field");
       }
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
 
@@ -87,7 +91,7 @@ class SignUp extends Component {
                     <p>Soyez les premiers informés</p>
                     <p>
                       Créez des alertes Immo ou Emploi et ne manquez jamais
-                      l’annonce qui vous intéresse.
+                      l&quot;annonce qui vous intéresse.
                     </p>
                   </div>
                 </div>
@@ -116,6 +120,7 @@ class SignUp extends Component {
                   <div className="form-item">
                     <label htmlFor="username">username *</label>
                     <input
+                      id="username"
                       data-testid="input-username"
                       type="text"
                       name="username"
@@ -128,6 +133,7 @@ class SignUp extends Component {
                   <div className="form-item">
                     <label htmlFor="email">Adresse email *</label>
                     <input
+                      id="email"
                       data-testid="input-email"
                       type="email"
                       name="email"
@@ -141,6 +147,7 @@ class SignUp extends Component {
                     <div className="form-item">
                       <label htmlFor="password">Mot de passe *</label>
                       <input
+                        id="password"
                         data-testid="input-password"
                         type="password"
                         name="password"
@@ -154,6 +161,7 @@ class SignUp extends Component {
                         Confirmer le mot de passe *
                       </label>
                       <input
+                        id="confirmPassword"
                         data-testid="input-confirm-password"
                         type="password"
                         name="confirmPassword"
@@ -165,10 +173,10 @@ class SignUp extends Component {
                   </div>
 
                   <div className="form-checkbox">
-                    <input type="checkbox" name="newsletter" />
+                    <input type="checkbox" name="newsletter" id="newsletter" />
                     <label htmlFor="newsletter">
                       Je souhaite recevoir des offres des partenaires du site
-                      leboncoin susceptibles de m’intéresser
+                      leboncoin susceptibles de m&quot;intéresser
                     </label>
                   </div>
 
@@ -180,12 +188,12 @@ class SignUp extends Component {
                       required
                     />
                     <label htmlFor="legal">
-                      "&nbsp;J'accepte les&nbsp;
-                      <span>Conditions Générales de Vente</span>"
+                      &quot;J&rsquo;accepte les&nbsp;
+                      <span>Conditions Générales de Vente&quot;</span>
                     </label>
                   </div>
 
-                  <button>Créer mon Compte Personnel</button>
+                  <button type="button">Créer mon Compte Personnel</button>
                 </form>
               </section>
             </div>

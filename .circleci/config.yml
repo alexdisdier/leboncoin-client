@@ -1,11 +1,12 @@
 # Javascript Node CircleCI 2.0 configuration file
 defaults: &defaults
   docker:
-    - image: circleci/node:8.11
+    - image: circleci/node:12.22.0
   working_directory: ~/repo
 version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.4
+  eslint: arrai/eslint@7.4.0
 jobs:
   checkout_code:
     <<: *defaults

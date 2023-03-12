@@ -8,40 +8,43 @@ import { ROUTE_LOGIN, ROUTE_OFFERS, ROUTE_SIGNUP } from '../../constant/routes';
 import './LogIn.css';
 
 class LogIn extends Component {
-  state = {
-    email: '',
-    password: '',
-    error: null,
-    isValid: true
-  };
+  constructor(props) {
+    super(props);
 
-  handleChange = event => {
+    this.state = {
+      email: '',
+      password: '',
+      isValid: true,
+    };
+  }
+
+  handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     const { email, password } = this.state;
     const { history, setUser } = this.props;
 
     event.preventDefault();
     try {
       const response = await axios.post(domain + ROUTE_LOGIN, {
-        email: email,
-        password: password
+        email,
+        password,
       });
       if (response.data.message === 'wrong password') {
         console.log('wrong password');
         this.setState({
-          isValid: false
+          isValid: false,
         });
       }
 
       if (response.data.token) {
         setUser(response.data);
         await this.setState({
-          isValid: true
+          isValid: true,
         });
         history.push(ROUTE_OFFERS);
         console.log('success, check cookies');
@@ -84,7 +87,7 @@ class LogIn extends Component {
                   <input
                     data-testid="input-password"
                     style={{
-                      boxShadow: !isValid && '0 0 0 3px red inset'
+                      boxShadow: !isValid && '0 0 0 3px red inset',
                     }}
                     type="password"
                     name="password"
@@ -100,8 +103,9 @@ class LogIn extends Component {
             </form>
 
             <div className="create-account-redirect">
-              <p>Vous n'avez pas de compte ?</p>
+              <p>Vous n&apos;avez pas de compte ?</p>
               <button
+                type="button"
                 data-testid="go-to-signup"
                 className="btn"
                 onClick={() => history.push(ROUTE_SIGNUP)}

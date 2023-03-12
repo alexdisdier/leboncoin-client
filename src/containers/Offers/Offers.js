@@ -1,93 +1,99 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-import domain from "../../assets/domain";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import domain from '../../assets/domain';
 
-import Filters from "../../components/Filters/Filters";
-import Card from "../../components/Card/Card";
+import Filters from '../../components/Filters/Filters';
+import Card from '../../components/Card/Card';
 
-import Pagination from "../../components/Pagination/Pagination";
-import Loading from "../../components/Loading/Loading";
+import Pagination from '../../components/Pagination/Pagination';
+import Loading from '../../components/Loading/Loading';
 
-import "./Offers.css";
+import './Offers.css';
 
 class Offers extends Component {
-  state = {
-    offers: [],
-    count: 0,
-    limit: 10, // Products per page
-    totalPages: 0,
-    currentPage: 1,
+  constructor(props) {
+    super(props);
 
-    title: Cookies.get("title") || "",
-    minPrice: Cookies.get("minPrice") || "",
-    maxPrice: Cookies.get("maxPrice") || "",
-    sort: Cookies.get("sort") || "",
+    this.state = {
+      offers: [],
+      limit: 10, // Products per page
+      totalPages: 0,
+      currentPage: 1,
 
-    isLoading: true,
-    error: null
-  };
+      title: Cookies.get('title') || '',
+      minPrice: Cookies.get('minPrice') || '',
+      maxPrice: Cookies.get('maxPrice') || '',
+      sort: Cookies.get('sort') || '',
+
+      isLoading: true,
+      error: null,
+    };
+  }
 
   async componentDidMount() {
     try {
       const response = await axios.get(`${domain}/offer/with-count`);
+      const { limit } = this.state;
+
       await this.setState({
         offers: response.data.offers,
-        count: response.data.count,
-        totalPages: Math.ceil(response.data.count / this.state.limit)
+        totalPages: Math.ceil(response.data.count / limit),
       });
       this.goToPage(1);
     } catch (error) {
       this.setState({
-        error: error
+        error,
       });
     }
   }
 
-  goToPage = async pageClicked => {
+  goToPage = async (pageClicked) => {
     const { title, minPrice, maxPrice, sort, limit } = this.state;
+
     try {
-      if (title !== "" || minPrice !== "" || maxPrice !== "" || sort !== "") {
+      if (title !== '' || minPrice !== '' || maxPrice !== '' || sort !== '') {
         const criteria = {
-          title: title,
-          minPrice: minPrice,
-          maxPrice: maxPrice,
-          sort: sort
+          title,
+          minPrice,
+          maxPrice,
+          sort,
         };
+
         this.searchFilters(criteria);
         this.setState({
-          isLoading: false
+          isLoading: false,
         });
       } else {
         const skip = (pageClicked - 1) * limit;
         const response = await axios.get(
           `${domain}/offer/with-count?skip=${skip}&limit=${limit}`
         );
-        const offers = response.data.offers;
+        const { offers } = response.data;
 
         this.setState({
-          offers: offers,
+          offers,
           currentPage: pageClicked,
-          isLoading: false
+          isLoading: false,
         });
       }
     } catch (error) {
       this.setState({
-        error: "An error occurred"
+        error: 'An error occurred',
       });
     }
   };
 
-  handleFilters = event => {
-    const name = event.target.name;
-    const value = event.target.value;
+  handleFilters = (event) => {
+    const { name } = event.target;
+    const { value } = event.target;
     const stateToUpdate = {};
 
-    if (value === "") {
-      Cookies.remove("title");
-      Cookies.remove("minPrice");
-      Cookies.remove("maxPrice");
-      Cookies.remove("sort");
+    if (value === '') {
+      Cookies.remove('title');
+      Cookies.remove('minPrice');
+      Cookies.remove('maxPrice');
+      Cookies.remove('sort');
     }
 
     stateToUpdate[name] = value;
@@ -95,111 +101,119 @@ class Offers extends Component {
     this.setState(stateToUpdate);
   };
 
-  searchFilters = async criteria => {
+  searchFilters = async (criteria) => {
     try {
-      if (criteria !== undefined) {
-        let maxPrice = "";
-        if (criteria.maxPrice !== "") {
-          maxPrice = "&priceMax=" + criteria.maxPrice;
+      if (criteria) {
+        let maxPriceParam = '';
+
+        if (criteria.maxPrice !== '') {
+          maxPriceParam = `&priceMax=${criteria.maxPrice}`;
         }
+
         const response = await axios.get(
-          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPrice}&sort=${criteria.sort}`
+          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceParam}&sort=${criteria.sort}`
         );
-        const offers = response.data.offers;
+        const { offers } = response.data;
+        const { limit, title, minPrice, maxPrice, sort } = this.state;
 
         this.setState({
-          offers: offers,
-          totalPages: Math.ceil(response.data.count / this.state.limit),
-          title: this.state.title,
-          minPrice: this.state.minPrice,
-          maxPrice: this.state.maxPrice,
-          sort: this.state.sort
+          offers,
+          totalPages: Math.ceil(response.data.count / limit),
+          title,
+          minPrice,
+          maxPrice,
+          sort,
         });
-        Cookies.set("title", this.state.title);
-        Cookies.set("minPrice", this.state.minPrice);
-        Cookies.set("maxPrice", this.state.maxPrice);
-        Cookies.set("sort", this.state.sort);
+        Cookies.set('title', title);
+        Cookies.set('minPrice', minPrice);
+        Cookies.set('maxPrice', maxPrice);
+        Cookies.set('sort', sort);
       }
     } catch (error) {
       this.setState({
-        error: "An error occured"
+        error: 'An error occured',
       });
     }
   };
 
-  submitFilters = event => {
+  submitFilters = (event) => {
     event.preventDefault();
+    const { title, minPrice, maxPrice, sort } = this.state;
 
     const criteria = {
-      title: this.state.title,
-      minPrice: this.state.minPrice,
-      maxPrice: this.state.maxPrice,
-      sort: this.state.sort
+      title,
+      minPrice,
+      maxPrice,
+      sort,
     };
 
     const keys = Object.values(criteria);
 
     // Checks if a value exists
-    const notEmpty = keys.filter(value => value !== "").length > 0;
+    const notEmpty = keys.filter((value) => value !== '').length > 0;
 
     if (notEmpty) {
       this.searchFilters(criteria);
     } else {
       this.searchFilters();
       this.setState({
-        title: "",
-        minPrice: "",
-        maxPrice: "",
-        sort: ""
+        title: '',
+        minPrice: '',
+        maxPrice: '',
+        sort: '',
       });
-      Cookies.remove("title");
-      Cookies.remove("minPrice");
-      Cookies.remove("maxPrice");
-      Cookies.remove("sort");
+      Cookies.remove('title');
+      Cookies.remove('minPrice');
+      Cookies.remove('maxPrice');
+      Cookies.remove('sort');
       this.goToPage(1);
     }
   };
 
   renderMain() {
     const { isLoading, error, currentPage, totalPages, offers } = this.state;
+    const { windowWidth } = this.props;
 
-    if (!isLoading && error === null) {
-      if (offers !== undefined) {
-        return (
-          <>
-            <div className="wrapper Offerspage">
-              <ul>
-                {this.state.offers.map((e, index) => (
-                  <Card
-                    key={index}
-                    pictures={e.pictures}
-                    id={e._id}
-                    title={e.title}
-                    description={e.description}
-                    price={e.price}
-                    date={e.created}
-                  />
-                ))}
-              </ul>
-            </div>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              goToPage={this.goToPage}
-              windowWidth={this.props.windowWidth}
-            />
-          </>
-        );
-      }
-    } else if (isLoading && error === null) {
-      return <Loading />;
-    } else {
+    if (error || (!isLoading && !offers)) {
       return null;
     }
+
+    if (isLoading) {
+      return <Loading />;
+    }
+
+    return (
+      <>
+        <div className="wrapper Offerspage">
+          <ul>
+            {offers.map(
+              ({ _id: id, pictures, title, description, price, created }) => (
+                <Card
+                  key={id + title}
+                  pictures={pictures}
+                  id={id}
+                  title={title}
+                  description={description}
+                  price={price}
+                  date={created}
+                />
+              )
+            )}
+          </ul>
+        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          goToPage={this.goToPage}
+          windowWidth={windowWidth}
+        />
+      </>
+    );
   }
 
   render() {
     const { title, minPrice, maxPrice, sort } = this.state;
+
     return (
       <>
         <Filters

@@ -1,17 +1,17 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import Error from "./Error";
+import Error from './Error';
 
-describe("Error", () => {
+describe('Error', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      error: "error"
+      error: 'error',
     };
   });
-  it("renders an error", () => {
+  it('renders an error', () => {
     const wrapper = shallow(<Error {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
 <div

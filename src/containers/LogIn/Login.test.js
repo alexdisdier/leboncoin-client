@@ -11,8 +11,8 @@ jest.mock('../../Validation/Validation', () => 'Validation');
 
 const loginSuccessMock = {
   data: {
-    token: '123456789'
-  }
+    token: '123456789',
+  },
 };
 // const loginFailsMock = {
 //   message: 'wrong password'
@@ -27,9 +27,9 @@ describe('LogIn', () => {
 
     props = {
       history: {
-        push: jest.fn()
+        push: jest.fn(),
       },
-      setUser: jest.fn()
+      setUser: jest.fn(),
     };
   });
 
@@ -39,22 +39,22 @@ describe('LogIn', () => {
   });
 
   describe('actions', () => {
-    it('logs in', done => {
+    it('logs in', (done) => {
       const wrapper = shallow(<LogIn {...props} />);
       const emailEvent = {
-        target: { name: 'email', value: 'hello@gmail.com' }
+        target: { name: 'email', value: 'hello@gmail.com' },
       };
       const passwordEvent = { target: { name: 'password', value: 'world' } };
 
       getByTestId(wrapper, 'input-email').simulate('change', emailEvent);
       getByTestId(wrapper, 'input-password').simulate('change', passwordEvent);
       getByTestId(wrapper, 'login').simulate('submit', {
-        preventDefault: () => {}
+        preventDefault: () => {},
       });
 
       const header = {
         email: wrapper.state('email'),
-        password: wrapper.state('password')
+        password: wrapper.state('password'),
       };
 
       mock.onPost(`${domain}/log_in`, header).reply(200, loginSuccessMock);
@@ -76,91 +76,92 @@ describe('LogIn', () => {
   it('render()', () => {
     const wrapper = shallow(<LogIn {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
-<div
-  className="wrapper connection"
->
-  <div
-    className="sign-in-flex"
-  >
-    <section>
-      <h1>
-        Connexion
-      </h1>
-      <form
-        className="form"
-        data-testid="login"
-        onSubmit={[Function]}
-      >
-        <div
-          className="form-item"
-        >
-          <label
-            htmlFor="email"
-          >
-            Adresse email
-          </label>
-          <input
-            data-testid="input-email"
-            name="email"
-            onChange={[Function]}
-            placeholder="mern@gmail.com"
-            required={true}
-            type="email"
-            value=""
-          />
-        </div>
-        <div
-          className="form-item"
-        >
-          <div
-            className="form-item"
-          >
-            <label
-              htmlFor="password"
-            >
-              Mot de passe
-            </label>
-            <input
-              data-testid="input-password"
-              name="password"
-              onChange={[Function]}
-              required={true}
-              style={
-                Object {
-                  "boxShadow": false,
-                }
-              }
-              type="password"
-              value=""
-            />
-          </div>
-          <Validation
-            isValid={true}
-          />
-        </div>
-        <button
-          type="submit"
-        >
-          Se connecter
-        </button>
-      </form>
       <div
-        className="create-account-redirect"
+        className="wrapper connection"
       >
-        <p>
-          Vous n'avez pas de compte ?
-        </p>
-        <button
-          className="btn"
-          data-testid="go-to-signup"
-          onClick={[Function]}
+        <div
+          className="sign-in-flex"
         >
-          Créer un compte
-        </button>
+          <section>
+            <h1>
+              Connexion
+            </h1>
+            <form
+              className="form"
+              data-testid="login"
+              onSubmit={[Function]}
+            >
+              <div
+                className="form-item"
+              >
+                <label
+                  htmlFor="email"
+                >
+                  Adresse email
+                </label>
+                <input
+                  data-testid="input-email"
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="mern@gmail.com"
+                  required={true}
+                  type="email"
+                  value=""
+                />
+              </div>
+              <div
+                className="form-item"
+              >
+                <div
+                  className="form-item"
+                >
+                  <label
+                    htmlFor="password"
+                  >
+                    Mot de passe
+                  </label>
+                  <input
+                    data-testid="input-password"
+                    name="password"
+                    onChange={[Function]}
+                    required={true}
+                    style={
+                      Object {
+                        "boxShadow": false,
+                      }
+                    }
+                    type="password"
+                    value=""
+                  />
+                </div>
+                <Validation
+                  isValid={true}
+                />
+              </div>
+              <button
+                type="submit"
+              >
+                Se connecter
+              </button>
+            </form>
+            <div
+              className="create-account-redirect"
+            >
+              <p>
+                Vous n'avez pas de compte ?
+              </p>
+              <button
+                className="btn"
+                data-testid="go-to-signup"
+                onClick={[Function]}
+                type="button"
+              >
+                Créer un compte
+              </button>
+            </div>
+          </section>
+        </div>
       </div>
-    </section>
-  </div>
-</div>
-`);
+    `);
   });
 });

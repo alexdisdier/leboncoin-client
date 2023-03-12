@@ -13,7 +13,7 @@ describe('Pagination', () => {
       totalPages: 4,
       currentPage: 2,
       goToPage: jest.fn(),
-      windowWidth: 1024
+      windowWidth: 1024,
     };
 
     window.innerWidth = props.windowWidth;
@@ -57,81 +57,81 @@ describe('Pagination', () => {
     it('render desktop pagination', () => {
       const wrapper = shallow(<Pagination {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<div
-  className="pagination"
->
-  <span
-    data-testid="desktop-previous-page"
-    key="0"
-    onClick={[Function]}
-  >
-    <ReactComponent />
-  </span>
-  <span
-    className=""
-    key="1"
-    onClick={[Function]}
-  >
-    1
-  </span>
-  <span
-    className="active"
-    key="2"
-    onClick={[Function]}
-  >
-    2
-  </span>
-  <span
-    className=""
-    key="3"
-    onClick={[Function]}
-  >
-    3
-  </span>
-  <span
-    className=""
-    key="4"
-    onClick={[Function]}
-  >
-    4
-  </span>
-  <span
-    key="5"
-    onClick={[Function]}
-  >
-    <ReactComponent />
-  </span>
-</div>
-`);
+        <div
+          className="pagination"
+        >
+          <span
+            data-testid="desktop-previous-page"
+            key="0"
+            onClick={[Function]}
+          >
+            <ForwardRef(SvgChevronLeft) />
+          </span>
+          <span
+            className=""
+            key="1"
+            onClick={[Function]}
+          >
+            1
+          </span>
+          <span
+            className="active"
+            key="2"
+            onClick={[Function]}
+          >
+            2
+          </span>
+          <span
+            className=""
+            key="3"
+            onClick={[Function]}
+          >
+            3
+          </span>
+          <span
+            className=""
+            key="4"
+            onClick={[Function]}
+          >
+            4
+          </span>
+          <span
+            key="5"
+            onClick={[Function]}
+          >
+            <ForwardRef(SvgChevronRight) />
+          </span>
+        </div>
+      `);
     });
     it('render mobile pagination', () => {
       props.windowWidth = 643;
       const wrapper = shallow(<Pagination {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<div
-  className="pagination"
->
-  <span
-    data-testid="mobile-previous-page"
-    key="0"
-    onClick={[Function]}
-  >
-    <ReactComponent />
-  </span>
-  <span
-    key="1"
-  >
-    2
-  </span>
-  <span
-    data-testid="mobile-next-page"
-    key="2"
-    onClick={[Function]}
-  >
-    <ReactComponent />
-  </span>
-</div>
-`);
+        <div
+          className="pagination"
+        >
+          <span
+            data-testid="mobile-previous-page"
+            key="0"
+            onClick={[Function]}
+          >
+            <ForwardRef(SvgChevronLeft) />
+          </span>
+          <span
+            key="1"
+          >
+            2
+          </span>
+          <span
+            data-testid="mobile-next-page"
+            key="2"
+            onClick={[Function]}
+          >
+            <ForwardRef(SvgChevronRight) />
+          </span>
+        </div>
+      `);
     });
   });
 });

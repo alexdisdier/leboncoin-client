@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -24,21 +24,24 @@ import {
   ROUTE_PUBLISH,
   ROUTE_OFFERS,
   ROUTE_OFFER,
-  ROUTE_PROFILE
+  ROUTE_PROFILE,
 } from './constant/routes';
 
 import './assets/css/reset.css';
 import './App.css';
 
 class App extends Component {
-  state = {
-    token: Cookies.get('token') || null,
-    email: Cookies.get('email') || null,
-    username: Cookies.get('username') || null,
-    phone: Cookies.get('phone') || null,
-    isToggle: false,
-    windowWidth: window.innerWidth
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      token: Cookies.get('token') || null,
+      email: Cookies.get('email') || null,
+      username: Cookies.get('username') || null,
+      isToggle: false,
+      windowWidth: window.innerWidth,
+    };
+  }
 
   componentDidMount = () => {
     window.addEventListener('resize', this.handleResize);
@@ -52,24 +55,22 @@ class App extends Component {
     this.setState({ windowWidth: window.innerWidth });
   };
 
-  setUser = user => {
+  setUser = (user) => {
     if (user) {
       const {
         token,
         email,
-        account: { username, phone }
+        account: { username },
       } = user;
       this.setState({
-        token: token,
-        email: email,
-        username: username,
-        phone: phone
+        token,
+        email,
+        username,
       });
 
       Cookies.set('token', token);
       Cookies.set('email', email);
       Cookies.set('username', username);
-      Cookies.set('phone', phone);
     } else {
       console.error('no user was passed in setUser()');
     }
@@ -78,15 +79,17 @@ class App extends Component {
   getUser = () => {
     const { token, email, username } = this.state;
 
-    if (token) {
-      return {
-        token: token,
-        email: email,
-        username: username
-      };
-    } else {
+    if (!token) {
       console.error('getUser() does not find a user, check token');
+      return;
     }
+
+    // eslint-disable-next-line consistent-return
+    return {
+      token,
+      email,
+      username,
+    };
   };
 
   logOut = () => {
@@ -94,19 +97,20 @@ class App extends Component {
       token: null,
       email: null,
       username: null,
-      phone: null
     });
 
     Cookies.remove('token');
     Cookies.remove('email');
     Cookies.remove('username');
-    Cookies.remove('phone');
   };
 
-  toggleMenu = () =>
+  toggleMenu = () => {
+    const { isToggle } = this.state;
+
     this.setState({
-      isToggle: !this.state.isToggle
+      isToggle: !isToggle,
     });
+  };
 
   render() {
     const { token, username, isToggle, windowWidth } = this.state;
@@ -124,86 +128,79 @@ class App extends Component {
             />
             <Switch>
               <Route
-                exact={true}
+                exact
                 path={ROUTE_HOME}
-                render={props => {
-                  return <Home {...props} />;
-                }}
+                render={(props) => <Home {...props} />}
               />
               <Route
-                exact={true}
-                path={`/leboncoin-client`}
-                render={props => {
-                  return <Home {...props} />;
-                }}
+                exact
+                path="/leboncoin-client"
+                render={(props) => <Home {...props} />}
               />
               <Route
-                exact={true}
+                exact
                 path={ROUTE_OFFERS}
-                render={props => {
-                  return <Offers {...props} windowWidth={windowWidth} />;
-                }}
+                render={(props) => (
+                  <Offers {...props} windowWidth={windowWidth} />
+                )}
               />
               <Route
-                exact={true}
-                path={`/leboncoin-client` + ROUTE_OFFERS}
-                render={props => {
-                  return <Offers {...props} windowWidth={windowWidth} />;
-                }}
+                exact
+                path={`/leboncoin-client${ROUTE_OFFERS}`}
+                render={(props) => (
+                  <Offers {...props} windowWidth={windowWidth} />
+                )}
               />
               <Route
-                path={ROUTE_OFFER + '/:id'}
-                render={props => <Offer {...props} />}
+                path={`${ROUTE_OFFER}/:id`}
+                render={(props) => <Offer {...props} />}
               />
               <Route
-                path={`/leboncoin-client` + ROUTE_OFFER + '/:id'}
-                render={props => <Offer {...props} />}
+                path={`/leboncoin-client${ROUTE_OFFER}/:id`}
+                render={(props) => <Offer {...props} />}
               />
               <Route
                 path={ROUTE_SIGNUP}
-                render={props => <SignUp setUser={this.setUser} {...props} />}
+                render={(props) => <SignUp setUser={this.setUser} {...props} />}
               />
               <Route
-                path={`/leboncoin-client` + ROUTE_SIGNUP}
-                render={props => <SignUp setUser={this.setUser} {...props} />}
+                path={`/leboncoin-client${ROUTE_SIGNUP}`}
+                render={(props) => <SignUp setUser={this.setUser} {...props} />}
               />
 
               <Route
                 path={ROUTE_LOGIN}
-                render={props => <LogIn setUser={this.setUser} {...props} />}
+                render={(props) => <LogIn setUser={this.setUser} {...props} />}
               />
               <Route
-                path={`/leboncoin-client` + ROUTE_LOGIN}
-                render={props => <LogIn setUser={this.setUser} {...props} />}
+                path={`/leboncoin-client${ROUTE_LOGIN}`}
+                render={(props) => <LogIn setUser={this.setUser} {...props} />}
               />
               <Route
                 path={ROUTE_PUBLISH}
-                render={props => {
+                render={(props) => {
                   if (token) {
                     return <Publish getUser={this.getUser} {...props} />;
-                  } else {
-                    return <Redirect to={ROUTE_LOGIN} />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
                   }
+                  return <Redirect to={ROUTE_LOGIN} />; // source: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Redirect.md
                 }}
               />
               <Route
                 path={ROUTE_PROFILE}
-                render={props => {
+                render={(props) => {
                   if (token) {
                     return <Profile getUser={this.getUser} {...props} />;
-                  } else {
-                    return <Redirect to={ROUTE_OFFERS} />;
                   }
+                  return <Redirect to={ROUTE_OFFERS} />;
                 }}
               />
               <Route
-                path={`/leboncoin-client` + ROUTE_PROFILE}
-                render={props => {
+                path={`/leboncoin-client${ROUTE_PROFILE}`}
+                render={(props) => {
                   if (token) {
                     return <Profile getUser={this.getUser} {...props} />;
-                  } else {
-                    return <Redirect to={ROUTE_OFFERS} />;
                   }
+                  return <Redirect to={ROUTE_OFFERS} />;
                 }}
               />
             </Switch>

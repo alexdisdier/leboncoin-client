@@ -15,13 +15,13 @@ const mockOffers = [
     _id: '123',
     created: '2019-03-02T18:40:44.613Z',
     creator: {
-      account: { phone: '123456789', username: 'faker' }
+      account: { phone: '123456789', username: 'faker' },
     },
     description: 'description-1',
     pictures: ['img_1', 'img_2'],
     price: 99,
-    title: 'offer'
-  }
+    title: 'offer',
+  },
 ];
 
 describe('Profile', () => {
@@ -31,7 +31,7 @@ describe('Profile', () => {
   beforeEach(() => {
     mock = new MockAdapter(axios);
     props = {
-      getUser: jest.fn()
+      getUser: jest.fn(),
     };
   });
 
@@ -41,7 +41,7 @@ describe('Profile', () => {
   });
 
   describe('actions', () => {
-    it('fetches offers on #componentDidMount', done => {
+    it('fetches offers on #componentDidMount', (done) => {
       props.getUser.mockReturnValue('username');
       props.getUser.mockReturnValue('email');
       props.getUser.mockReturnValue('token');
@@ -51,8 +51,8 @@ describe('Profile', () => {
 
       mock.onGet(`${domain}/profile`).reply(200, mockOffers, {
         headers: {
-          authorization: 'Bearer 5GByR1WUvblAHtQu'
-        }
+          authorization: 'Bearer 5GByR1WUvblAHtQu',
+        },
       });
 
       expect(wrapper.state()).toHaveProperty('offers', []);
@@ -64,10 +64,10 @@ describe('Profile', () => {
           axios
             .get(`${domain}/profile`, {
               headers: {
-                authorization: 'Bearer 5GByR1WUvblAHtQu'
-              }
+                authorization: 'Bearer 5GByR1WUvblAHtQu',
+              },
             })
-            .then(response => {
+            .then((response) => {
               expect(fetchOfferSpy).toHaveBeenCalled();
               expect(wrapper.state('offers')).toEqual(response.data);
             });
@@ -86,35 +86,35 @@ describe('Profile', () => {
       const wrapper = shallow(<Profile {...props} />);
       wrapper.setState({
         isLoading: true,
-        error: null
+        error: null,
       });
 
       expect(wrapper).toMatchInlineSnapshot(`
-<Fragment>
-  <div
-    className="wrapper"
-  >
-    <div
-      className="ad-listing"
-    >
-      <h1>
-        Votre profil
-      </h1>
-      <div
-        className="profile-details"
-      >
-        <p>
-          Username: 
-        </p>
-        <p>
-          Email: 
-        </p>
-      </div>
-      <Loading />
-    </div>
-  </div>
-</Fragment>
-`);
+        <Fragment>
+          <div
+            className="wrapper"
+          >
+            <div
+              className="ad-listing"
+            >
+              <h1>
+                Votre profil
+              </h1>
+              <div
+                className="profile-details"
+              >
+                <p>
+                  Username: 
+                </p>
+                <p>
+                  Email: 
+                </p>
+              </div>
+              <Loading />
+            </div>
+          </div>
+        </Fragment>
+      `);
     });
 
     it('renders no offers', () => {
@@ -125,34 +125,34 @@ describe('Profile', () => {
       const wrapper = shallow(<Profile {...props} />);
       wrapper.setState({
         isLoading: true,
-        error: 'error'
+        error: 'error',
       });
 
       expect(wrapper).toMatchInlineSnapshot(`
-<Fragment>
-  <div
-    className="wrapper"
-  >
-    <div
-      className="ad-listing"
-    >
-      <h1>
-        Votre profil
-      </h1>
-      <div
-        className="profile-details"
-      >
-        <p>
-          Username: 
-        </p>
-        <p>
-          Email: 
-        </p>
-      </div>
-    </div>
-  </div>
-</Fragment>
-`);
+        <Fragment>
+          <div
+            className="wrapper"
+          >
+            <div
+              className="ad-listing"
+            >
+              <h1>
+                Votre profil
+              </h1>
+              <div
+                className="profile-details"
+              >
+                <p>
+                  Username: 
+                </p>
+                <p>
+                  Email: 
+                </p>
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      `);
     });
 
     it('renders the Section with one offer', () => {
@@ -163,57 +163,57 @@ describe('Profile', () => {
       const wrapper = shallow(<Profile {...props} />);
       wrapper.setState({
         offers: mockOffers,
-        isLoading: false
+        isLoading: false,
       });
 
       expect(wrapper).toMatchInlineSnapshot(`
-<Fragment>
-  <div
-    className="wrapper"
-  >
-    <div
-      className="ad-listing"
-    >
-      <h1>
-        Votre profil
-      </h1>
-      <div
-        className="profile-details"
-      >
-        <p>
-          Username: 
-        </p>
-        <p>
-          Email: 
-        </p>
-      </div>
-      <div
-        className="wrapper homepage"
-      >
-        <ul>
-          <Card
-            dataTestId="profile-ad-card"
-            date="2019-03-02T18:40:44.613Z"
-            deleteOffer={[Function]}
-            description="description-1"
-            id="123"
-            isDelete={true}
-            key="123offer"
-            pictures={
-              Array [
-                "img_1",
-                "img_2",
-              ]
-            }
-            price={99}
-            title="offer"
-          />
-        </ul>
-      </div>
-    </div>
-  </div>
-</Fragment>
-`);
+        <Fragment>
+          <div
+            className="wrapper"
+          >
+            <div
+              className="ad-listing"
+            >
+              <h1>
+                Votre profil
+              </h1>
+              <div
+                className="profile-details"
+              >
+                <p>
+                  Username: 
+                </p>
+                <p>
+                  Email: 
+                </p>
+              </div>
+              <div
+                className="wrapper homepage"
+              >
+                <ul>
+                  <Card
+                    dataTestId="profile-ad-card"
+                    date="2019-03-02T18:40:44.613Z"
+                    deleteOffer={[Function]}
+                    description="description-1"
+                    id="123"
+                    isDelete={true}
+                    key="123offer"
+                    pictures={
+                      Array [
+                        "img_1",
+                        "img_2",
+                      ]
+                    }
+                    price={99}
+                    title="offer"
+                  />
+                </ul>
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      `);
     });
   });
 });
