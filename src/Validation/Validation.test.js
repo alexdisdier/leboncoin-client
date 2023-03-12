@@ -16,7 +16,7 @@ describe('Validation', () => {
     it("doesn't render an error message", () => {
       props.isValid = true;
       const wrapper = shallow(<Validation {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`<div />`);
+      expect(wrapper).toMatchInlineSnapshot('<div />');
     });
 
     it('renders an error message', () => {

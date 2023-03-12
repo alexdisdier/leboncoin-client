@@ -93,7 +93,7 @@ describe('Publish', () => {
       getByTestId(wrapper, 'input-title').simulate('change', details.title);
       getByTestId(wrapper, 'textarea-description').simulate(
         'change',
-        details.description
+        details.description,
       );
       getByTestId(wrapper, 'input-price').simulate('change', details.price);
 

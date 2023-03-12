@@ -4,12 +4,10 @@ import React from 'react';
 import image from '../../assets/img/loading.svg';
 import './Loading.css';
 
-const loading = () => {
-  return (
-    <div className="loader loader--style1" title="0">
-      <img src={image} alt="loading gif" />
-    </div>
-  );
-};
+const loading = () => (
+  <div className="loader loader--style1" title="0">
+    <img src={image} alt="loading gif" />
+  </div>
+);
 
 export default loading;

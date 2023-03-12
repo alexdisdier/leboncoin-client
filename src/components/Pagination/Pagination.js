@@ -4,12 +4,15 @@ import { ReactComponent as ChevronRight } from '../../assets/img/chevronRight.sv
 
 import './Pagination.css';
 
-const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
+const pagination = ({
+  totalPages, currentPage, goToPage, windowWidth,
+}) => {
   const pages = [];
 
   if (windowWidth < 768) {
     pages.push(
       <>
+        {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <span
           data-testid="mobile-previous-page"
@@ -23,6 +26,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
           <ChevronLeft />
         </span>
         <span key="1">{currentPage}</span>
+        {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <span
           data-testid="mobile-next-page"
@@ -35,12 +39,13 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
         >
           <ChevronRight />
         </span>
-      </>
+      </>,
     );
   } else {
     for (let i = 1; i <= totalPages; i += 1) {
       if (i === 1) {
         pages.push(
+          // eslint-disable-next-line max-len
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <span
             data-testid="desktop-previous-page"
@@ -52,10 +57,11 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
             }}
           >
             <ChevronLeft />
-          </span>
+          </span>,
         );
       }
       pages.push(
+        // eslint-disable-next-line max-len
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
         <span
           key={i}
@@ -63,11 +69,12 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
           onClick={() => goToPage(i)}
         >
           {i}
-        </span>
+        </span>,
       );
 
       if (i === totalPages) {
         pages.push(
+          // eslint-disable-next-line max-len
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <span
             key={i + 1}
@@ -78,7 +85,7 @@ const pagination = ({ totalPages, currentPage, goToPage, windowWidth }) => {
             }}
           >
             <ChevronRight />
-          </span>
+          </span>,
         );
       }
     }

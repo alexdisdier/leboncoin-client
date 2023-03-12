@@ -9,9 +9,7 @@
   "extends": [
     "airbnb",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/strict",
-    "plugin:prettier/recommended",
-    "prettier/react"
+    "plugin:jsx-a11y/strict"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -24,7 +22,7 @@
     }
   },
   "plugins": [
-    "react", "react-hooks", "jsx-a11y", "prettier"
+    "react", "react-hooks", "jsx-a11y"
   ],
   "ignorePatterns": ["serviceWorker.js", "**/vendor/*.js"],
   "rules": {

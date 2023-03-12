@@ -15,14 +15,16 @@ const Button = ({ to, children, toggleMenu }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  if (width < 768)
+  if (width < 768) {
     return (
-      // should be turned into a button
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus
+    // should be turned into a button
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus
       <div role="button" onClick={toggleMenu}>
         <Link to={to}>{children}</Link>
       </div>
     );
+  }
 
   return (
     <div>

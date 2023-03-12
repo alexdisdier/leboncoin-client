@@ -32,15 +32,15 @@ describe('SignUp', () => {
 
       getByTestId(wrapper, 'input-username').simulate(
         'change',
-        details.username
+        details.username,
       );
       getByTestId(wrapper, 'input-password').simulate(
         'change',
-        details.password
+        details.password,
       );
       getByTestId(wrapper, 'input-confirm-password').simulate(
         'change',
-        details.password
+        details.password,
       );
       getByTestId(wrapper, 'checkbox-legal').simulate('click');
 

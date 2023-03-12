@@ -36,6 +36,7 @@ const card = ({
   if (isDelete) {
     deleteAd = (
       // This should be turned into a button
+      // eslint-disable-next-line max-len
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus
       <span
         role="button"
@@ -60,7 +61,10 @@ const card = ({
           <div className="card-content">
             <div className="card-top">
               <h3 className="card-title">{title}</h3>
-              <span className="card-price">{price}&nbsp;€</span>
+              <span className="card-price">
+                {price}
+&nbsp;€
+              </span>
             </div>
             <div className="card-bottom" />
             <LinesEllipsis

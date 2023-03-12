@@ -37,7 +37,7 @@ describe('Card', () => {
   });
 
   describe('render()', () => {
-    it(`doesn't render the delete button`, () => {
+    it('doesn\'t render the delete button', () => {
       props.isDelete = false;
 
       const wrapper = shallow(<Card {...props} />);

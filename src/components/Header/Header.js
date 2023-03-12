@@ -21,7 +21,9 @@ import './Header.css';
 // };
 
 function Header(props) {
-  const { token, username, toggleMenu, isToggle, logOut: propsLogOut } = props;
+  const {
+    token, username, toggleMenu, isToggle, logOut: propsLogOut,
+  } = props;
 
   let renderNav;
 
@@ -39,7 +41,9 @@ function Header(props) {
   const logIn = (
     <>
       <Button to={ROUTE_PROFILE} toggleMenu={toggleMenu}>
-        Hello {username}
+        Hello
+        {' '}
+        {username}
       </Button>
       <button type="button" onClick={() => propsLogOut()}>
         Se déconnecter
@@ -59,6 +63,7 @@ function Header(props) {
         <Button to={ROUTE_HOME}>
           <Logo />
         </Button>
+        {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
         <menu
           id="menu"

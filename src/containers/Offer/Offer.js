@@ -46,7 +46,9 @@ class Offer extends Component {
     const {
       isLoading,
       error,
-      offer: { title, price, description, created, creator, pictures },
+      offer: {
+        title, price, description, created, creator, pictures,
+      },
     } = this.state;
     const imgUrl = [];
 
@@ -80,18 +82,19 @@ class Offer extends Component {
                   ''
                 )}
                 <Carousel>
-                  {imgUrl.map((img) => {
-                    return (
-                      <div key={img}>
-                        <img src={img} alt="carousel slider" />
-                      </div>
-                    );
-                  })}
+                  {imgUrl.map((img) => (
+                    <div key={img}>
+                      <img src={img} alt="carousel slider" />
+                    </div>
+                  ))}
                 </Carousel>
 
                 <div className="section-card-body">
                   <h1>{title}</h1>
-                  <span>{price}&nbsp;€</span>
+                  <span>
+                    {price}
+&nbsp;€
+                  </span>
                   <div>{format(created, 'MMMM DD, YYYY')}</div>
                 </div>
               </div>

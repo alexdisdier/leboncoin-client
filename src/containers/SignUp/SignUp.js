@@ -21,17 +21,18 @@ class SignUp extends Component {
     };
   }
 
-  handleChange = (event) =>
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+  handleChange = (event) => this.setState({
+    [event.target.name]: event.target.value,
+  });
 
   handleSubmit = async (event) => {
     const { setUser, history } = this.props;
 
     event.preventDefault();
     try {
-      const { username, email, password, confirmPassword } = this.state;
+      const {
+        username, email, password, confirmPassword,
+      } = this.state;
 
       if (username && email && password && confirmPassword) {
         if (password === confirmPassword) {
@@ -61,7 +62,9 @@ class SignUp extends Component {
   };
 
   render() {
-    const { username, email, password, confirmPassword } = this.state;
+    const {
+      username, email, password, confirmPassword,
+    } = this.state;
 
     return (
       <div className="wrapper">

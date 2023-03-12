@@ -67,7 +67,7 @@ describe('Offer', () => {
         isLoading: true,
         error: null,
       });
-      expect(wrapper).toMatchInlineSnapshot(`<Loading />`);
+      expect(wrapper).toMatchInlineSnapshot('<Loading />');
     });
 
     it('renders an error message when network fails', () => {
@@ -75,7 +75,7 @@ describe('Offer', () => {
       wrapper.setState({
         error: 'error message',
       });
-      expect(wrapper).toMatchInlineSnapshot(`"error message"`);
+      expect(wrapper).toMatchInlineSnapshot('"error message"');
     });
 
     it('renders the full component', () => {

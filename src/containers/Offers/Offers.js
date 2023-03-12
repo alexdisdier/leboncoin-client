@@ -49,7 +49,9 @@ class Offers extends Component {
   }
 
   goToPage = async (pageClicked) => {
-    const { title, minPrice, maxPrice, sort, limit } = this.state;
+    const {
+      title, minPrice, maxPrice, sort, limit,
+    } = this.state;
 
     try {
       if (title !== '' || minPrice !== '' || maxPrice !== '' || sort !== '') {
@@ -67,7 +69,7 @@ class Offers extends Component {
       } else {
         const skip = (pageClicked - 1) * limit;
         const response = await axios.get(
-          `${domain}/offer/with-count?skip=${skip}&limit=${limit}`
+          `${domain}/offer/with-count?skip=${skip}&limit=${limit}`,
         );
         const { offers } = response.data;
 
@@ -111,10 +113,12 @@ class Offers extends Component {
         }
 
         const response = await axios.get(
-          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceParam}&sort=${criteria.sort}`
+          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceParam}&sort=${criteria.sort}`,
         );
         const { offers } = response.data;
-        const { limit, title, minPrice, maxPrice, sort } = this.state;
+        const {
+          limit, title, minPrice, maxPrice, sort,
+        } = this.state;
 
         this.setState({
           offers,
@@ -138,7 +142,9 @@ class Offers extends Component {
 
   submitFilters = (event) => {
     event.preventDefault();
-    const { title, minPrice, maxPrice, sort } = this.state;
+    const {
+      title, minPrice, maxPrice, sort,
+    } = this.state;
 
     const criteria = {
       title,
@@ -171,7 +177,9 @@ class Offers extends Component {
   };
 
   renderMain() {
-    const { isLoading, error, currentPage, totalPages, offers } = this.state;
+    const {
+      isLoading, error, currentPage, totalPages, offers,
+    } = this.state;
     const { windowWidth } = this.props;
 
     if (error || (!isLoading && !offers)) {
@@ -187,7 +195,9 @@ class Offers extends Component {
         <div className="wrapper Offerspage">
           <ul>
             {offers.map(
-              ({ _id: id, pictures, title, description, price, created }) => (
+              ({
+                _id: id, pictures, title, description, price, created,
+              }) => (
                 <Card
                   key={id + title}
                   pictures={pictures}
@@ -197,7 +207,7 @@ class Offers extends Component {
                   price={price}
                   date={created}
                 />
-              )
+              ),
             )}
           </ul>
         </div>
@@ -212,7 +222,9 @@ class Offers extends Component {
   }
 
   render() {
-    const { title, minPrice, maxPrice, sort } = this.state;
+    const {
+      title, minPrice, maxPrice, sort,
+    } = this.state;
 
     return (
       <>

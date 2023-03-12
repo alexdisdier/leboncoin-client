@@ -6,6 +6,6 @@ import ScrollToTopOnMount from './ScrollToTopOnMount';
 describe('ScrollToTopOnMount', () => {
   it('should render null', () => {
     const wrapper = shallow(<ScrollToTopOnMount />);
-    expect(wrapper).toMatchInlineSnapshot(`""`);
+    expect(wrapper).toMatchInlineSnapshot('""');
   });
 });
