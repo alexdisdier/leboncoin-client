@@ -101,7 +101,7 @@ describe('SignUp', () => {
                         Soyez les premiers informés
                       </p>
                       <p>
-                        Créez des alertes Immo ou Emploi et ne manquez jamais l’annonce qui vous intéresse.
+                        Créez des alertes Immo ou Emploi et ne manquez jamais l"annonce qui vous intéresse.
                       </p>
                     </div>
                   </div>
@@ -146,6 +146,7 @@ describe('SignUp', () => {
                       </label>
                       <input
                         data-testid="input-username"
+                        id="username"
                         name="username"
                         onChange={[Function]}
                         required={true}
@@ -163,6 +164,7 @@ describe('SignUp', () => {
                       </label>
                       <input
                         data-testid="input-email"
+                        id="email"
                         name="email"
                         onChange={[Function]}
                         required={true}
@@ -183,6 +185,7 @@ describe('SignUp', () => {
                         </label>
                         <input
                           data-testid="input-password"
+                          id="password"
                           name="password"
                           onChange={[Function]}
                           required={true}
@@ -200,6 +203,7 @@ describe('SignUp', () => {
                         </label>
                         <input
                           data-testid="input-confirm-password"
+                          id="confirmPassword"
                           name="confirmPassword"
                           onChange={[Function]}
                           required={true}
@@ -212,13 +216,14 @@ describe('SignUp', () => {
                       className="form-checkbox"
                     >
                       <input
+                        id="newsletter"
                         name="newsletter"
                         type="checkbox"
                       />
                       <label
                         htmlFor="newsletter"
                       >
-                        Je souhaite recevoir des offres des partenaires du site leboncoin susceptibles de m’intéresser
+                        Je souhaite recevoir des offres des partenaires du site leboncoin susceptibles de m"intéresser
                       </label>
                     </div>
                     <div
@@ -233,14 +238,15 @@ describe('SignUp', () => {
                       <label
                         htmlFor="legal"
                       >
-                        "J'accepte les
+                        "J’accepte les 
                         <span>
-                          Conditions Générales de Vente
+                          Conditions Générales de Vente"
                         </span>
-                        "
                       </label>
                     </div>
-                    <button>
+                    <button
+                      type="button"
+                    >
                       Créer mon Compte Personnel
                     </button>
                   </form>

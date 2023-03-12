@@ -85,105 +85,101 @@ describe('Offer', () => {
         error: null,
       });
       expect(wrapper).toMatchInlineSnapshot(`
-<div
-  className="wrapper"
->
-  <section
-    className="section-offer"
-  >
-    <div
-      className="section-main"
-    >
-      <div
-        className="section-card"
-      >
-        <Carousel>
-          <div
-            key="0"
-          >
-            <img
-              alt="carousel slider"
-            />
-          </div>
-          <div
-            key="1"
-          >
-            <img
-              alt="carousel slider"
-            />
-          </div>
-        </Carousel>
         <div
-          className="section-card-body"
+          className="wrapper"
         >
-          <h1>
-            offer
-          </h1>
-          <span>
-            99
-            €
-          </span>
-          <div>
-            March 02, 2019
-          </div>
-        </div>
-      </div>
-      <div
-        className="section-description"
-      >
-        <div>
-          Description
-        </div>
-        <p>
-          description-1
-        </p>
-      </div>
-    </div>
-    <div
-      className="section-sidebar"
-    >
-      <div
-        className="contact-card"
-      >
-        <div>
-          <svg
-            data-name="Calque 1"
-            focusable="false"
-            viewBox="0 0 24 24"
+          <section
+            className="section-offer"
           >
-            <circle
-              cx="12"
-              cy="12"
-              fill="#cad1d9"
-              r="12"
-            />
-            <circle
-              cx="12"
-              cy="10.26"
-              fill="#a8b4c0"
-              r="4.73"
-            />
-            <path
-              d="M12 16.64a8.67 8.67 0 0 0-7.73 4.53 12 12 0 0 0 15.46 0A8.67 8.67 0 0 0 12 16.64z"
-              fill="#a8b4c0"
-            />
-          </svg>
+            <div
+              className="section-main"
+            >
+              <div
+                className="section-card"
+              >
+                <Carousel>
+                  <div>
+                    <img
+                      alt="carousel slider"
+                    />
+                  </div>
+                  <div>
+                    <img
+                      alt="carousel slider"
+                    />
+                  </div>
+                </Carousel>
+                <div
+                  className="section-card-body"
+                >
+                  <h1>
+                    offer
+                  </h1>
+                  <span>
+                    99
+                     €
+                  </span>
+                  <div>
+                    March 02, 2019
+                  </div>
+                </div>
+              </div>
+              <div
+                className="section-description"
+              >
+                <div>
+                  Description
+                </div>
+                <p>
+                  description-1
+                </p>
+              </div>
+            </div>
+            <div
+              className="section-sidebar"
+            >
+              <div
+                className="contact-card"
+              >
+                <div>
+                  <svg
+                    data-name="Calque 1"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      fill="#cad1d9"
+                      r="12"
+                    />
+                    <circle
+                      cx="12"
+                      cy="10.26"
+                      fill="#a8b4c0"
+                      r="4.73"
+                    />
+                    <path
+                      d="M12 16.64a8.67 8.67 0 0 0-7.73 4.53 12 12 0 0 0 15.46 0A8.67 8.67 0 0 0 12 16.64z"
+                      fill="#a8b4c0"
+                    />
+                  </svg>
+                </div>
+                <div
+                  className="user"
+                >
+                  faker
+                </div>
+                <div
+                  className="phone"
+                >
+                  123456789
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-        <div
-          className="user"
-        >
-          faker
-        </div>
-        <div
-          className="phone"
-        >
-          123456789
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-`);
+      `);
     });
   });
 });

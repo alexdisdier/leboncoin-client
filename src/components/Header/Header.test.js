@@ -38,63 +38,64 @@ describe('Header', () => {
     it('renders the Header correctly', () => {
       const wrapper = shallow(<Header {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<header
-  className="header"
->
-  <div
-    className="wrapper flex "
-  >
-    <Button
-      to="/"
-    >
-      <ReactComponent />
-    </Button>
-    <menu
-      className="show-xs"
-      id="menu"
-      onClick={[Function]}
-    >
-      <ReactComponent />
-    </menu>
-    <div
-      className="nav hidden-xs"
-    >
-      <Button
-        to="/publish"
-        toggleMenu={[MockFunction]}
-      >
-        Déposer une annonce
-      </Button>
-      <div
-        className="offers-link"
-      >
-        <Button
-          to="/offres"
-          toggleMenu={[MockFunction]}
+        <header
+          className="header"
         >
-          offres
-        </Button>
-      </div>
-      <div
-        className="account-panel"
-      >
-        <Button
-          to="/profile"
-          toggleMenu={[MockFunction]}
-        >
-          Hello 
-          username
-        </Button>
-        <button
-          onClick={[Function]}
-        >
-          Se déconnecter
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
-`);
+          <div
+            className="wrapper flex "
+          >
+            <Button
+              to="/"
+            >
+              <ForwardRef(SvgLogo) />
+            </Button>
+            <menu
+              className="show-xs"
+              id="menu"
+              onClick={[Function]}
+            >
+              <ForwardRef(SvgMenuButton) />
+            </menu>
+            <div
+              className="nav hidden-xs"
+            >
+              <Button
+                to="/publish"
+                toggleMenu={[MockFunction]}
+              >
+                Déposer une annonce
+              </Button>
+              <div
+                className="offers-link"
+              >
+                <Button
+                  to="/offres"
+                  toggleMenu={[MockFunction]}
+                >
+                  offres
+                </Button>
+              </div>
+              <div
+                className="account-panel"
+              >
+                <Button
+                  to="/profile"
+                  toggleMenu={[MockFunction]}
+                >
+                  Hello 
+                  username
+                </Button>
+                <button
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Se déconnecter
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+      `);
     });
   });
 });

@@ -35,15 +35,15 @@ describe('Button', () => {
       const wrapper = shallow(<Button {...props} />);
 
       expect(wrapper).toMatchInlineSnapshot(`
-<div>
-  <Link
-    className="btn to"
-    to="to"
-  >
-    children
-  </Link>
-</div>
-`);
+        <div>
+          <Link
+            className="btn to"
+            to="to"
+          >
+            children
+          </Link>
+        </div>
+      `);
     });
 
     it('renders a mobile clickable link', () => {
@@ -51,16 +51,17 @@ describe('Button', () => {
       const wrapper = shallow(<Button {...props} />);
 
       expect(wrapper).toMatchInlineSnapshot(`
-<div
-  onClick={[MockFunction]}
->
-  <Link
-    to="to"
-  >
-    children
-  </Link>
-</div>
-`);
+        <div
+          onClick={[MockFunction]}
+          role="button"
+        >
+          <Link
+            to="to"
+          >
+            children
+          </Link>
+        </div>
+      `);
     });
   });
 });

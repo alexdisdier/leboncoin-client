@@ -46,76 +46,77 @@ describe('Card', () => {
     it('render()', () => {
       const wrapper = shallow(<Card {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<li
-  className="card"
-  data-testid="card"
->
-  <span
-    id="delete-ad"
-    onClick={[Function]}
-  >
-    ⤫
-  </span>
-  <Link
-    replace={false}
-    to="/offer/id"
-  >
-    <div
-      className="card-body"
-    >
-      <div
-        className="card-img"
-      >
-        <div
-          className="img"
-          style={
-            Object {
-              "backgroundImage": "url(undefined)",
-              "backgroundPosition": "center",
-              "backgroundRepeat": "no-repeat",
-              "backgroundSize": "contain",
-            }
-          }
-        />
-      </div>
-      <div
-        className="card-content"
-      >
-        <div
-          className="card-top"
+        <li
+          className="card"
+          data-testid="card"
         >
-          <h3
-            className="card-title"
-          >
-            title
-          </h3>
           <span
-            className="card-price"
+            id="delete-ad"
+            onClick={[Function]}
+            role="button"
           >
-            15
-            €
+            ⤫
           </span>
-        </div>
-        <div
-          className="card-bottom"
-        />
-        <LinesEllipsis
-          basedOn="letters"
-          ellipsis="..."
-          maxLine="1"
-          text="description"
-          trimRight={true}
-        />
-        <span
-          className="date-fns"
-        >
-          23/09/2019
-        </span>
-      </div>
-    </div>
-  </Link>
-</li>
-`);
+          <Link
+            replace={false}
+            to="/offer/id"
+          >
+            <div
+              className="card-body"
+            >
+              <div
+                className="card-img"
+              >
+                <div
+                  className="img"
+                  style={
+                    Object {
+                      "backgroundImage": "url(undefined)",
+                      "backgroundPosition": "center",
+                      "backgroundRepeat": "no-repeat",
+                      "backgroundSize": "contain",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="card-content"
+              >
+                <div
+                  className="card-top"
+                >
+                  <h3
+                    className="card-title"
+                  >
+                    title
+                  </h3>
+                  <span
+                    className="card-price"
+                  >
+                    15
+                     €
+                  </span>
+                </div>
+                <div
+                  className="card-bottom"
+                />
+                <LinesEllipsis
+                  basedOn="letters"
+                  ellipsis="..."
+                  maxLine="1"
+                  text="description"
+                  trimRight={true}
+                />
+                <span
+                  className="date-fns"
+                >
+                  23/09/2019
+                </span>
+              </div>
+            </div>
+          </Link>
+        </li>
+      `);
     });
   });
 });

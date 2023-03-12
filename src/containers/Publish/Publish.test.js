@@ -150,146 +150,150 @@ describe('Publish', () => {
     it('renders the publish page', () => {
       const wrapper = shallow(<Publish {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<div
-  className="wrapper"
->
-  <div
-    className="ad-listing"
-  >
-    <h1>
-      Déposer une annonce
-    </h1>
-    <div
-      className="ad-listing-container"
-    >
-      <h2>
-        Votre annonce
-      </h2>
-      <form
-        data-testid="submit-form"
-        onSubmit={[Function]}
-      >
         <div
-          className="ad-listing-body"
+          className="wrapper"
         >
-          <label
-            htmlFor="title"
+          <div
+            className="ad-listing"
           >
-            Titre de l'annonce
-          </label>
-          <input
-            data-testid="input-title"
-            maxLength="50"
-            name="title"
-            onChange={[Function]}
-            required={true}
-            type="text"
-            value=""
-          />
-          <label
-            htmlFor="description"
-          >
-            Texte de l'annonce
-          </label>
-          <textarea
-            data-testid="textarea-description"
-            maxLength="4000"
-            name="description"
-            onChange={[Function]}
-            required={true}
-            rows="10"
-            value=""
-          />
-          <label
-            htmlFor="price"
-          >
-            Prix
-          </label>
-          <input
-            data-testid="input-price"
-            maxLength="8"
-            name="price"
-            onChange={[Function]}
-            required={true}
-            type="text"
-            value=""
-          />
-          <p>
-            <span>
-              Photos :
-            </span>
-             Une annonce avec photo est 7 fois plus consultée qu'une annonce sans photo
-          </p>
-          <aside>
-            <ReactFileReader
-              base64={true}
-              disabled={false}
-              fileTypes={
-                Array [
-                  ".png",
-                  ".jpg",
-                ]
-              }
-              handleFiles={[Function]}
-              multipleFiles={false}
-              multiplesFiles={false}
+            <h1>
+              Déposer une annonce
+            </h1>
+            <div
+              className="ad-listing-container"
             >
-              <div
-                className="box-photo"
+              <h2>
+                Votre annonce
+              </h2>
+              <form
+                data-testid="submit-form"
+                onSubmit={[Function]}
               >
-                Photo principale
-              </div>
-            </ReactFileReader>
-            <ReactFileReader
-              base64={true}
-              disabled={false}
-              fileTypes={
-                Array [
-                  ".png",
-                  ".jpg",
-                ]
-              }
-              handleFiles={[Function]}
-              multipleFiles={false}
-              multiplesFiles={false}
-            >
-              <div
-                className="box-photo"
-              >
-                Photo 2
-              </div>
-            </ReactFileReader>
-            <ReactFileReader
-              base64={true}
-              disabled={false}
-              fileTypes={
-                Array [
-                  ".png",
-                  ".jpg",
-                ]
-              }
-              handleFiles={[Function]}
-              multipleFiles={false}
-              multiplesFiles={false}
-            >
-              <div
-                className="box-photo"
-              >
-                Photo 3
-              </div>
-            </ReactFileReader>
-          </aside>
-          <button
-            className="validate-btn"
-          >
-            Valider
-          </button>
+                <div
+                  className="ad-listing-body"
+                >
+                  <label
+                    htmlFor="title"
+                  >
+                    Titre de l'annonce
+                  </label>
+                  <input
+                    data-testid="input-title"
+                    id="title"
+                    maxLength="50"
+                    name="title"
+                    onChange={[Function]}
+                    required={true}
+                    type="text"
+                    value=""
+                  />
+                  <label
+                    htmlFor="description"
+                  >
+                    Texte de l'annonce
+                  </label>
+                  <textarea
+                    data-testid="textarea-description"
+                    id="description"
+                    maxLength="4000"
+                    name="description"
+                    onChange={[Function]}
+                    required={true}
+                    rows="10"
+                    value=""
+                  />
+                  <label
+                    htmlFor="price"
+                  >
+                    Prix
+                  </label>
+                  <input
+                    data-testid="input-price"
+                    id="price"
+                    maxLength="8"
+                    name="price"
+                    onChange={[Function]}
+                    required={true}
+                    type="text"
+                    value=""
+                  />
+                  <p>
+                    <span>
+                      Photos :
+                    </span>
+                     Une annonce avec photo est 7 fois plus consultée qu"une annonce sans photo
+                  </p>
+                  <aside>
+                    <ReactFileReader
+                      base64={true}
+                      disabled={false}
+                      fileTypes={
+                        Array [
+                          ".png",
+                          ".jpg",
+                        ]
+                      }
+                      handleFiles={[Function]}
+                      multipleFiles={false}
+                      multiplesFiles={false}
+                    >
+                      <div
+                        className="box-photo"
+                      >
+                        Photo principale
+                      </div>
+                    </ReactFileReader>
+                    <ReactFileReader
+                      base64={true}
+                      disabled={false}
+                      fileTypes={
+                        Array [
+                          ".png",
+                          ".jpg",
+                        ]
+                      }
+                      handleFiles={[Function]}
+                      multipleFiles={false}
+                      multiplesFiles={false}
+                    >
+                      <div
+                        className="box-photo"
+                      >
+                        Photo 2
+                      </div>
+                    </ReactFileReader>
+                    <ReactFileReader
+                      base64={true}
+                      disabled={false}
+                      fileTypes={
+                        Array [
+                          ".png",
+                          ".jpg",
+                        ]
+                      }
+                      handleFiles={[Function]}
+                      multipleFiles={false}
+                      multiplesFiles={false}
+                    >
+                      <div
+                        className="box-photo"
+                      >
+                        Photo 3
+                      </div>
+                    </ReactFileReader>
+                  </aside>
+                  <button
+                    className="validate-btn"
+                    type="button"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
-  </div>
-</div>
-`);
+      `);
     });
   });
 });

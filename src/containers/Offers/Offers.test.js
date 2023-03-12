@@ -174,34 +174,34 @@ describe('Offers', () => {
       wrapper.setState({ isLoading: true });
 
       expect(wrapper).toMatchInlineSnapshot(`
-<Fragment>
-  <Filters
-    handleFilters={[Function]}
-    maxPrice=""
-    minPrice=""
-    sort=""
-    submitFilters={[Function]}
-    title=""
-  />
-  <Loading />
-</Fragment>
-`);
+        <Fragment>
+          <Filters
+            handleFilters={[Function]}
+            maxPrice=""
+            minPrice=""
+            sort=""
+            submitFilters={[Function]}
+            title=""
+          />
+          <Loading />
+        </Fragment>
+      `);
     });
 
     it('renders no cards', () => {
       wrapper.setState({ isLoading: true, error: 'error' });
       expect(wrapper).toMatchInlineSnapshot(`
-<Fragment>
-  <Filters
-    handleFilters={[Function]}
-    maxPrice=""
-    minPrice=""
-    sort=""
-    submitFilters={[Function]}
-    title=""
-  />
-</Fragment>
-`);
+        <Fragment>
+          <Filters
+            handleFilters={[Function]}
+            maxPrice=""
+            minPrice=""
+            sort=""
+            submitFilters={[Function]}
+            title=""
+          />
+        </Fragment>
+      `);
     });
 
     it('renders the offers cards', () => {
@@ -213,44 +213,44 @@ describe('Offers', () => {
       });
 
       expect(wrapper).toMatchInlineSnapshot(`
-<Fragment>
-  <Filters
-    handleFilters={[Function]}
-    maxPrice=""
-    minPrice=""
-    sort=""
-    submitFilters={[Function]}
-    title=""
-  />
-  <div
-    className="wrapper Offerspage"
-  >
-    <ul>
-      <Card
-        date="2019-03-02T18:40:44.613Z"
-        description="description-1"
-        key="0"
-        pictures={Array []}
-        price={675}
-        title="offer-1"
-      />
-      <Card
-        date="2019-03-02T18:40:44.613Z"
-        description="description-2"
-        key="1"
-        pictures={Array []}
-        price={675}
-        title="offer-2"
-      />
-    </ul>
-  </div>
-  <Pagination
-    currentPage={1}
-    goToPage={[Function]}
-    totalPages={1}
-  />
-</Fragment>
-`);
+        <Fragment>
+          <Filters
+            handleFilters={[Function]}
+            maxPrice=""
+            minPrice=""
+            sort=""
+            submitFilters={[Function]}
+            title=""
+          />
+          <div
+            className="wrapper Offerspage"
+          >
+            <ul>
+              <Card
+                date="2019-03-02T18:40:44.613Z"
+                description="description-1"
+                key="undefinedoffer-1"
+                pictures={Array []}
+                price={675}
+                title="offer-1"
+              />
+              <Card
+                date="2019-03-02T18:40:44.613Z"
+                description="description-2"
+                key="undefinedoffer-2"
+                pictures={Array []}
+                price={675}
+                title="offer-2"
+              />
+            </ul>
+          </div>
+          <Pagination
+            currentPage={1}
+            goToPage={[Function]}
+            totalPages={1}
+          />
+        </Fragment>
+      `);
     });
   });
 });
