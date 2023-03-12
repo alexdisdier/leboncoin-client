@@ -35,7 +35,6 @@
     "react-hooks/exhaustive-deps": "warn",
     "no-console": "off",
     "react/prop-types": 0,
-    "prettier/prettier": ["error"],
     "no-unused-vars":"warn",
     "import/no-extraneous-dependencies": 0,
     "import/prefer-default-export": 0,
