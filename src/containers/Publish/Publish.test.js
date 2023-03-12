@@ -14,7 +14,7 @@ const mockAdvertBody = {
   title: 'testing',
   description: 'hello world',
   price: 100,
-  files: ['img_1'],
+  files: ['img_1']
 };
 
 const mockAdvertResponse = {
@@ -26,11 +26,11 @@ const mockAdvertResponse = {
   creator: {
     account: {
       phone: '0600000000',
-      username: 'faker',
+      username: 'faker'
     },
-    _id: '5c7a850dd4bf7a00174c015e',
+    _id: '5c7a850dd4bf7a00174c015e'
   },
-  created: '2020-03-22T13:07:52.517Z',
+  created: '2020-03-22T13:07:52.517Z'
 };
 
 console.error = jest.fn();
@@ -46,8 +46,8 @@ describe('Publish', () => {
     props = {
       getUser: jest.fn(),
       history: {
-        push: jest.fn(),
-      },
+        push: jest.fn()
+      }
     };
   });
 
@@ -57,12 +57,14 @@ describe('Publish', () => {
       const wrapper = shallow(<Publish {...props} />);
 
       wrapper.setState({
-        files: mockAdvertBody.files,
+        files: mockAdvertBody.files
       });
 
       expect(wrapper.state('files')).toEqual(['img_1']);
 
-      getByTestId(wrapper, 'image').at(0).simulate('click');
+      getByTestId(wrapper, 'image')
+        .at(0)
+        .simulate('click');
 
       expect(wrapper.state('files')).toEqual([]);
     });
@@ -74,46 +76,46 @@ describe('Publish', () => {
 
       const details = {
         title: {
-          target: { name: 'title', value: 'hello' },
+          target: { name: 'title', value: 'hello' }
         },
         description: {
           target: {
             name: 'description',
-            value: 'this is the world description',
-          },
+            value: 'this is the world description'
+          }
         },
         price: {
           target: {
             name: 'price',
-            value: '99',
-          },
-        },
+            value: '99'
+          }
+        }
       };
 
       getByTestId(wrapper, 'input-title').simulate('change', details.title);
       getByTestId(wrapper, 'textarea-description').simulate(
         'change',
-        details.description,
+        details.description
       );
       getByTestId(wrapper, 'input-price').simulate('change', details.price);
 
       getByTestId(wrapper, 'submit-form').simulate('submit', {
-        preventDefault: () => {},
+        preventDefault: () => {}
       });
 
       expect(spySubmitForm).toHaveBeenCalled();
 
       mock.onPost(`${domain}/publish`).reply(200, mockAdvertResponse, {
         headers: {
-          authorization: 'Bearer 5GByR1WUvblAHtQu',
-        },
+          authorization: 'Bearer 5GByR1WUvblAHtQu'
+        }
       });
 
       axios
         .post(`${domain}/publish`, wrapper.state(), {
           headers: {
-            authorization: 'Bearer 5GByR1WUvblAHtQu',
-          },
+            authorization: 'Bearer 5GByR1WUvblAHtQu'
+          }
         })
         .then(() => {
           // console.log(response);
@@ -140,7 +142,7 @@ describe('Publish', () => {
     it('renders a loader while uploading', () => {
       const wrapper = shallow(<Publish {...props} />);
       wrapper.setState({
-        isLoading: true,
+        isLoading: true
       });
 
       expect(wrapper.find('Loading')).toBeTruthy();
@@ -221,7 +223,8 @@ describe('Publish', () => {
                     <span>
                       Photos :
                     </span>
-                     Une annonce avec photo est 7 fois plus consultée qu"une annonce sans photo
+                     
+                    Une annonce avec photo est 7 fois plus consultée qu"une annonce sans photo
                   </p>
                   <aside>
                     <ReactFileReader

@@ -14,21 +14,27 @@ describe('Header', () => {
       username: 'username',
       toggleMenu: jest.fn(),
       isToggle: false,
-      logOut: jest.fn(),
+      logOut: jest.fn()
     };
   });
 
   describe('actions', () => {
     it('toggles the menu', () => {
       const wrapper = shallow(<Header {...props} />);
-      wrapper.find('menu').at(0).simulate('click');
+      wrapper
+        .find('menu')
+        .at(0)
+        .simulate('click');
 
       expect(props.toggleMenu).toHaveBeenCalledTimes(1);
     });
 
     it('logs out', () => {
       const wrapper = shallow(<Header {...props} />);
-      wrapper.find('button').at(0).simulate('click');
+      wrapper
+        .find('button')
+        .at(0)
+        .simulate('click');
 
       expect(props.logOut).toHaveBeenCalledTimes(1);
     });
@@ -82,7 +88,8 @@ describe('Header', () => {
                   to="/profile"
                   toggleMenu={[MockFunction]}
                 >
-                  Hello 
+                  Hello
+                   
                   username
                 </Button>
                 <button
