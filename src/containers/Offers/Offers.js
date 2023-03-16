@@ -34,13 +34,12 @@ class Offers extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        'http://localhost:8888/.netlify/functions/getOffers'
+        'http://localhost:8888/.netlify/functions/offer'
       );
       const { limit } = this.state;
-      console.log({ response });
-      // const response = await axios.get(`${domain}/offer/with-count`);
-      await this.setState({
-        offers: response.data,
+
+      this.setState({
+        offers: response.data.offers,
         totalPages: Math.ceil(response.data.length / limit),
       });
       this.goToPage(1);
@@ -71,7 +70,7 @@ class Offers extends Component {
       } else {
         const skip = (pageClicked - 1) * limit;
         const response = await axios.get(
-          `${domain}/offer/with-count?skip=${skip}&limit=${limit}`
+          `http://localhost:8888/.netlify/functions/offer/with-count?skip=${skip}&limit=${limit}`
         );
         const { offers } = response.data;
 
@@ -114,7 +113,7 @@ class Offers extends Component {
         }
 
         const response = await axios.get(
-          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceQuery}&sort=${criteria.sort}`
+          `http://localhost:8888/.netlify/functions/offer-with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceQuery}&sort=${criteria.sort}`
         );
         const { offers } = response.data;
 
@@ -122,7 +121,7 @@ class Offers extends Component {
 
         this.setState({
           offers,
-          totalPages: Math.ceil(response.data.count / limit),
+          totalPages: Math.ceil(response.data.offers.count / limit),
           title,
           minPrice,
           maxPrice,
@@ -179,7 +178,7 @@ class Offers extends Component {
     const { windowWidth } = this.props;
 
     if (error !== null) return null;
-    if (isLoading && error === null) return <Loading />;
+    if (isLoading) return <Loading />;
     if (!offers) return null;
 
     return (

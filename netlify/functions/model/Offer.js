@@ -5,35 +5,35 @@ const Offer = mongoose.model('Offer', {
     type: String,
     minLength: 1,
     maxLength: 25,
-    required: true
+    required: true,
   },
   description: {
     type: String,
     minLength: 0,
     maxLength: 500,
     default: '',
-    required: true
+    required: true,
   },
   price: {
     type: Number,
     min: 0,
     default: 0,
-    required: true
+    required: true,
   },
   pictures: {
     type: Array,
     of: String,
-    default: []
+    default: [],
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
   },
   created: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = Offer;

@@ -20,7 +20,7 @@ const card = ({
 }) => {
   let image;
 
-  if (pictures.length > 0) {
+  if (pictures?.length > 0) {
     image = pictures[0].secure_url;
   }
 
