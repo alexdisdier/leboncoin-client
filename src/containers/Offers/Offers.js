@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import domain from '../../assets/domain';
 
 import Filters from '../../components/Filters/Filters';
 import Card from '../../components/Card/Card';
@@ -33,18 +32,15 @@ class Offers extends Component {
 
   async componentDidMount() {
     try {
-      const response = await axios.get(
-        'http://localhost:8888/.netlify/functions/offer'
-      );
+      const response = await axios.get('/.netlify/functions/offer');
       const { limit } = this.state;
 
       this.setState({
         offers: response.data.offers,
-        totalPages: Math.ceil(response.data.length / limit),
+        totalPages: Math.ceil(response.data.offers.length / limit),
       });
       this.goToPage(1);
     } catch (error) {
-      console.log({ error });
       this.setState({
         error,
       });
@@ -70,7 +66,7 @@ class Offers extends Component {
       } else {
         const skip = (pageClicked - 1) * limit;
         const response = await axios.get(
-          `http://localhost:8888/.netlify/functions/offer/with-count?skip=${skip}&limit=${limit}`
+          `/.netlify/functions/offer/with-count?skip=${skip}&limit=${limit}`
         );
         const { offers } = response.data;
 
@@ -113,7 +109,7 @@ class Offers extends Component {
         }
 
         const response = await axios.get(
-          `http://localhost:8888/.netlify/functions/offer-with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceQuery}&sort=${criteria.sort}`
+          `/.netlify/functions/offer-with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceQuery}&sort=${criteria.sort}`
         );
         const { offers } = response.data;
 

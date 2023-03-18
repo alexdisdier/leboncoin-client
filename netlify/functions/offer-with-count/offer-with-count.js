@@ -3,7 +3,7 @@ const { buildFilters, buildSortOrder } = require('./utils');
 const Offer = require('../model/Offer');
 require('../model/User');
 
-const DEFAULT_OFFERS_LIMIT = 100;
+// const DEFAULT_OFFERS_LIMIT = 100;
 
 mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/leboncoin`, {
   useNewUrlParser: true,
@@ -12,9 +12,7 @@ mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/leboncoin`, {
 const handler = async (event) => {
   try {
     const {
-      queryStringParameters: { priceMin, priceMax, title, sort },
-      skip,
-      limit,
+      queryStringParameters: { priceMin, priceMax, title, sort, skip, limit },
     } = event;
 
     const filter = buildFilters(title, priceMin, priceMax);
@@ -42,6 +40,8 @@ const handler = async (event) => {
 
     const offers = await Offer.find(filter)
       .sort(sortOrder)
+      .skip(skip)
+      .limit(limit)
       .then((res) => res)
       .catch((err) => err);
 

@@ -3,11 +3,8 @@ import axios from 'axios';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { format } from 'date-fns';
-// import domain from '../../assets/domain';
 
 import Loading from '../../components/Loading/Loading';
-
-// import { ROUTE_OFFER } from '../../constant/routes';
 
 import './Offer.css';
 
@@ -29,7 +26,7 @@ class Offer extends Component {
       } = this.props;
 
       const response = await axios.get(
-        `http://localhost:8888/.netlify/functions/offer?id=${params.id}`
+        `/.netlify/functions/offer?id=${params.id}`
       );
       const offer = response.data;
 

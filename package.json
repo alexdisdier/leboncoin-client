@@ -37,7 +37,7 @@
     "cov": "npm test -- --coverage",
     "deploy": "npm run build && gh-pages -d build",
     "eject": "react-scripts eject",
-    "kill:pid": "sudo kill ${PID} pid"
+    "kill:pid": "kill ${PID} pid"
   },
   "browserslist": [
     ">0.2%",
