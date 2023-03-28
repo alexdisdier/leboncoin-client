@@ -175,7 +175,10 @@ class Offers extends Component {
 
     if (error !== null) return null;
     if (isLoading) return <Loading />;
-    if (!offers) return null;
+    if (!offers)
+      return (
+        <div>No offers at the moment - migrating from heroku to netlify</div>
+      );
 
     return (
       <>

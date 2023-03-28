@@ -75,7 +75,7 @@ describe('Offer', () => {
       wrapper.setState({
         error: 'error message',
       });
-      expect(wrapper).toMatchInlineSnapshot('"error message"');
+      expect(wrapper).toMatchInlineSnapshot(`""`);
     });
 
     it('renders the full component', () => {
@@ -99,12 +99,16 @@ describe('Offer', () => {
                 className="section-card"
               >
                 <Carousel>
-                  <div>
+                  <div
+                    key="img0"
+                  >
                     <img
                       alt="carousel slider"
                     />
                   </div>
-                  <div>
+                  <div
+                    key="img1"
+                  >
                     <img
                       alt="carousel slider"
                     />

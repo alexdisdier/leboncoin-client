@@ -78,8 +78,9 @@ class Offer extends Component {
             <div className="section-card">
               {imgUrl.length === 0 ? <div className="gallery-container" /> : ''}
               <Carousel>
-                {imgUrl.map((img) => (
-                  <div key={img}>
+                {imgUrl.map((img, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <div key={`img${index}`}>
                     <img src={img} alt="carousel slider" />
                   </div>
                 ))}
