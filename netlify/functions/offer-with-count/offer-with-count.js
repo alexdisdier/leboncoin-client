@@ -5,7 +5,7 @@ require('../model/User');
 
 // const DEFAULT_OFFERS_LIMIT = 100;
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/leboncoin`, {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
 });
 

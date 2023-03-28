@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const Offer = require('../model/Offer');
 require('../model/User');
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/leboncoin`, {
+// netlify env:set MONGODB_URI YOUR_URI_HERE
+// netlify env:set MONGODB_DATABASE sample_mflix
+// netlify env:set MONGODB_COLLECTION movies
+
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
 });
 

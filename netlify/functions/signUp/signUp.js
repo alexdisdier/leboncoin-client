@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('../model/Offer');
 require('../model/User');
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/leboncoin`, {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
 });
 
