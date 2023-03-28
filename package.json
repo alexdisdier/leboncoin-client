@@ -14,6 +14,8 @@
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.19",
     "lodash.template": "^4.5.0",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.0",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.0",
@@ -27,14 +29,15 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "dev": "netlify dev",
+    "functions:serve": "netlify functions:serve",
     "test": "react-scripts test",
     "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "cov": "npm test -- --coverage",
     "deploy": "npm run build && gh-pages -d build",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "eject": "react-scripts eject",
+    "kill:pid": "kill ${PID} pid"
   },
   "browserslist": [
     ">0.2%",
@@ -42,6 +45,9 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "devDependencies": {
     "axios-mock-adapter": "^1.17.0",
     "eslint-config-airbnb": "^18.2.1",

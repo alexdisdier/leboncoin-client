@@ -103,3 +103,7 @@ fix(release): need to depend on latest rxjs and zone.js
 - [React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel).
 - [Faker](https://www.npmjs.com/package/faker).
 - Deploy React to github pages [codeburst](https://codeburst.io/deploy-react-to-github-pages-to-create-an-amazing-website-42d8b09cd4d)
+
+https://docs.netlify.com/cli/get-started/
+
+netlify dev

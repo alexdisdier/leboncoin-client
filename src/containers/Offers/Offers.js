@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import domain from '../../assets/domain';
 
 import Filters from '../../components/Filters/Filters';
 import Card from '../../components/Card/Card';
@@ -33,12 +32,12 @@ class Offers extends Component {
 
   async componentDidMount() {
     try {
-      const response = await axios.get(`${domain}/offer/with-count`);
+      const response = await axios.get('/.netlify/functions/offer');
       const { limit } = this.state;
 
-      await this.setState({
+      this.setState({
         offers: response.data.offers,
-        totalPages: Math.ceil(response.data.count / limit),
+        totalPages: Math.ceil(response.data.offers.length / limit),
       });
       this.goToPage(1);
     } catch (error) {
@@ -67,7 +66,7 @@ class Offers extends Component {
       } else {
         const skip = (pageClicked - 1) * limit;
         const response = await axios.get(
-          `${domain}/offer/with-count?skip=${skip}&limit=${limit}`
+          `/.netlify/functions/offer/with-count?skip=${skip}&limit=${limit}`
         );
         const { offers } = response.data;
 
@@ -103,22 +102,22 @@ class Offers extends Component {
 
   searchFilters = async (criteria) => {
     try {
-      if (criteria) {
-        let maxPriceParam = '';
-
+      if (criteria !== undefined) {
+        let maxPriceQuery = '';
         if (criteria.maxPrice !== '') {
-          maxPriceParam = `&priceMax=${criteria.maxPrice}`;
+          maxPriceQuery = `&priceMax=${criteria.maxPrice}`;
         }
 
         const response = await axios.get(
-          `${domain}/offer/with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceParam}&sort=${criteria.sort}`
+          `/.netlify/functions/offer-with-count?title=${criteria.title}&priceMin=${criteria.minPrice}${maxPriceQuery}&sort=${criteria.sort}`
         );
         const { offers } = response.data;
+
         const { limit, title, minPrice, maxPrice, sort } = this.state;
 
         this.setState({
           offers,
-          totalPages: Math.ceil(response.data.count / limit),
+          totalPages: Math.ceil(response.data.offers.count / limit),
           title,
           minPrice,
           maxPrice,
@@ -174,13 +173,12 @@ class Offers extends Component {
     const { isLoading, error, currentPage, totalPages, offers } = this.state;
     const { windowWidth } = this.props;
 
-    if (error || (!isLoading && !offers)) {
-      return null;
-    }
-
-    if (isLoading) {
-      return <Loading />;
-    }
+    if (error !== null) return null;
+    if (isLoading) return <Loading />;
+    if (!offers)
+      return (
+        <div>No offers at the moment - migrating from heroku to netlify</div>
+      );
 
     return (
       <>
